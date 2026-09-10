@@ -21,7 +21,7 @@ Prototipo automatizado a escala (40 × 40 × 40 cm) para la clasificación y alm
 
 ---
 
-## 📐 Descripción del Proyecto y Solución Adoptada
+## Descripción del Proyecto y Solución Adoptada
 
 La problemática principal radica en gestionar el almacenamiento final de pallets sin interrumpir el proceso de las estaciones previas. Para lograrlo, se implementó una **solución basada en clasificación por color y manipulación mediante un brazo robótico**:
 
