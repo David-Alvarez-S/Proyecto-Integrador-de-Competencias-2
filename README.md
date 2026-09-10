@@ -1,4 +1,4 @@
-# Intercambiador de Contenedores en Estación Final - Planta DLWL-800A
+# Intercambiador de Contenedores en Estación Final - Planta DLWL-800A #
 
 ![Estado del Proyecto](https://img.shields.io/badge/Estado-En_Desarrollo-yellow)
 ![Microcontrolador](https://img.shields.io/badge/Control-ESP32-blue)
