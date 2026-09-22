@@ -1,0 +1,135 @@
+[0.190s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.190s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=2, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7fd816aad1c0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fd816aad190>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fd816aad190>>)
+[0.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.264s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.264s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.313s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.314s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.315s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extensions ['ignore', 'ignore_ament_install']
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extension 'ignore'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extension 'ignore_ament_install'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extensions ['colcon_pkg']
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extension 'colcon_pkg'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extensions ['colcon_meta']
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extension 'colcon_meta'
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extensions ['ros']
+[0.317s] Level 1:colcon.colcon_core.package_identification:_identify(src/Descripcion_Brazo) by extension 'ros'
+[0.323s] DEBUG:colcon.colcon_core.package_identification:Package 'src/Descripcion_Brazo' with type 'ros.ament_python' and name 'descripcion_brazo'
+[0.323s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.323s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.323s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.323s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.323s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.355s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.358s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 1 installed packages in /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install
+[0.361s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 289 installed packages in /opt/ros/jazzy
+[0.363s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'cmake_args' from command line to 'None'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'cmake_target' from command line to 'None'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'cmake_clean_cache' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'cmake_clean_first' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'cmake_force_configure' from command line to 'False'
+[0.460s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'ament_cmake_args' from command line to 'None'
+[0.461s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'catkin_cmake_args' from command line to 'None'
+[0.461s] Level 5:colcon.colcon_core.verb:set package 'descripcion_brazo' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.461s] DEBUG:colcon.colcon_core.verb:Building package 'descripcion_brazo' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo', 'merge_install': False, 'path': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo', 'symlink_install': True, 'test_result_base': None}
+[0.461s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.463s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.463s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo' with build type 'ament_python'
+[0.463s] Level 1:colcon.colcon_core.shell:create_environment_hook('descripcion_brazo', 'ament_prefix_path')
+[0.467s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.468s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/hook/ament_prefix_path.ps1'
+[0.469s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/hook/ament_prefix_path.dsv'
+[0.469s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/hook/ament_prefix_path.sh'
+[0.470s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.471s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.877s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo'
+[0.877s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.877s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.916s] DEBUG:colcon.colcon_core.task.python.build:Available setuptools commands: clean, setopt, sdist, build, editable_wheel, bdist_egg, build_py, install_data, build_scripts, bdist, symlink_data, dist_info, bdist_dumb, check, bdist_rpm, install_egg_info, install_lib, easy_install, rotate, install_scripts, install_headers, upload, upload_docs, test, egg_info, register, build_ext, develop, build_clib, install, saveopts, alias
+[2.539s] DEBUG:colcon.colcon_core.task.python.build:Available setuptools 'develop' options: --editable, --verbose, --force-installation-into-system-dir, --multi-version, --build-directory, --always-unzip, --site-dirs, --no-find-links, --help, --find-links, --zip-ok, --prefix, --dry-run, --no-deps, --always-copy, --uninstall, --local-snapshots-ok, --no-user-cfg, --upgrade, --install-layout, --index-url, --allow-hosts, --user, --record, --optimize, --egg-path, --quiet, --install-dir, --version, --script-dir, --exclude-scripts
+[2.544s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build --no-deps symlink_data
+[3.735s] Level 1:colcon.colcon_core.shell:create_environment_hook('descripcion_brazo', 'pythonpath_develop')
+[3.736s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/share/descripcion_brazo/hook/pythonpath_develop.ps1'
+[3.736s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo' returned '0': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build --no-deps symlink_data
+[3.737s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/share/descripcion_brazo/hook/pythonpath_develop.dsv'
+[3.738s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/share/descripcion_brazo/hook/pythonpath_develop.sh'
+[3.742s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo' for CMake module files
+[3.743s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo' for CMake config files
+[3.744s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib'
+[3.745s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/bin'
+[3.745s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/pkgconfig/descripcion_brazo.pc'
+[3.745s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages'
+[3.745s] Level 1:colcon.colcon_core.shell:create_environment_hook('descripcion_brazo', 'pythonpath')
+[3.746s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/hook/pythonpath.ps1'
+[3.747s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/hook/pythonpath.dsv'
+[3.747s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/hook/pythonpath.sh'
+[3.748s] Level 1:colcon.colcon_core.environment:checking '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/bin'
+[3.748s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(descripcion_brazo)
+[3.749s] INFO:colcon.colcon_core.shell:Creating package script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/package.ps1'
+[3.751s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/package.dsv'
+[3.752s] INFO:colcon.colcon_core.shell:Creating package script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/package.sh'
+[3.753s] INFO:colcon.colcon_core.shell:Creating package script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/package.bash'
+[3.754s] INFO:colcon.colcon_core.shell:Creating package script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/package.zsh'
+[3.755s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/colcon-core/packages/descripcion_brazo)
+[3.756s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[3.756s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[3.756s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[3.756s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[3.766s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[3.767s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[3.767s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[3.767s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[3.768s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+[3.768s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[3.768s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/local_setup.ps1'
+[3.770s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/_local_setup_util_ps1.py'
+[3.772s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/setup.ps1'
+[3.773s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/local_setup.sh'
+[3.774s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/_local_setup_util_sh.py'
+[3.775s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/setup.sh'
+[3.777s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/local_setup.bash'
+[3.777s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/setup.bash'
+[3.779s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/local_setup.zsh'
+[3.781s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/setup.zsh'

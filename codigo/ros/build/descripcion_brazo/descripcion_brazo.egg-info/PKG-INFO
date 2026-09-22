@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: descripcion-brazo
+Version: 0.0.0
+Summary: Paquete URDF para el brazo robotico
+Maintainer: agustin
+Maintainer-email: agustin@todo.todo
+License: Apache-2.0
+Provides-Extra: test

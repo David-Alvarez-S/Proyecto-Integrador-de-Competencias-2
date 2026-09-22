@@ -1,0 +1,15 @@
+[2.124s] Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build --no-deps symlink_data
+[2.713s] running develop
+[3.082s] running egg_info
+[3.117s] writing descripcion_brazo.egg-info/PKG-INFO
+[3.118s] writing dependency_links to descripcion_brazo.egg-info/dependency_links.txt
+[3.118s] writing requirements to descripcion_brazo.egg-info/requires.txt
+[3.118s] writing top-level names to descripcion_brazo.egg-info/top_level.txt
+[3.192s] reading manifest file 'descripcion_brazo.egg-info/SOURCES.txt'
+[3.194s] writing manifest file 'descripcion_brazo.egg-info/SOURCES.txt'
+[3.232s] running build_ext
+[3.232s] Creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion-brazo.egg-link (link to .)
+[3.233s] 
+[3.233s] Installed /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo
+[3.233s] running symlink_data
+[3.317s] Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo' returned '0': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build --no-deps symlink_data

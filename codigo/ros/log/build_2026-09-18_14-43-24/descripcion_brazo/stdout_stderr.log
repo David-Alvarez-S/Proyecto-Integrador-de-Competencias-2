@@ -1,0 +1,33 @@
+running develop
+running egg_info
+creating descripcion_brazo.egg-info
+writing descripcion_brazo.egg-info/PKG-INFO
+writing dependency_links to descripcion_brazo.egg-info/dependency_links.txt
+writing requirements to descripcion_brazo.egg-info/requires.txt
+writing top-level names to descripcion_brazo.egg-info/top_level.txt
+writing manifest file 'descripcion_brazo.egg-info/SOURCES.txt'
+reading manifest file 'descripcion_brazo.egg-info/SOURCES.txt'
+writing manifest file 'descripcion_brazo.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion-brazo.egg-link (link to .)
+
+Installed /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo
+running symlink_data
+creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index
+creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index/resource_index
+creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index/resource_index/packages
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/resource/descripcion_brazo -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index/resource_index/packages
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/package.xml -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo
+creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/urdf
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/urdf/Brazo.urdf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/urdf
+creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_1_2.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_1_3.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_1.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_4.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_1_1.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_1_4.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_2.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/meshes/Part_3.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/launch
+symbolically linking /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/launch/display.launch.py -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/launch

@@ -1,0 +1,53 @@
+[0.000000] (-) TimerEvent: {}
+[0.000329] (descripcion_brazo) JobQueued: {'identifier': 'descripcion_brazo', 'dependencies': OrderedDict()}
+[0.000411] (descripcion_brazo) JobStarted: {'identifier': 'descripcion_brazo'}
+[0.098475] (-) TimerEvent: {}
+[0.198855] (-) TimerEvent: {}
+[0.299239] (-) TimerEvent: {}
+[0.400429] (-) TimerEvent: {}
+[0.501245] (-) TimerEvent: {}
+[0.601721] (-) TimerEvent: {}
+[0.702106] (-) TimerEvent: {}
+[0.802464] (-) TimerEvent: {}
+[0.902864] (-) TimerEvent: {}
+[1.003252] (-) TimerEvent: {}
+[1.103658] (-) TimerEvent: {}
+[1.204048] (-) TimerEvent: {}
+[1.304444] (-) TimerEvent: {}
+[1.404835] (-) TimerEvent: {}
+[1.505259] (-) TimerEvent: {}
+[1.605690] (-) TimerEvent: {}
+[1.706079] (-) TimerEvent: {}
+[1.806454] (-) TimerEvent: {}
+[1.906854] (-) TimerEvent: {}
+[2.007260] (-) TimerEvent: {}
+[2.107714] (-) TimerEvent: {}
+[2.151269] (descripcion_brazo) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build', '--no-deps', 'symlink_data'], 'cwd': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo', 'env': OrderedDict({'MAIL': '/var/spool/mail/agustin', 'USER': 'agustin', 'HYPRLAND_INSTANCE_SIGNATURE': 'efb50993780079460b0cbed1363e2166a2de1d9f_1789750225_910705077', 'HYPRLAND_CMD': 'Hyprland --watchdog-fd 5', 'HOSTNAME': 'David', 'XDG_SESSION_TYPE': 'wayland', 'XCURSOR_SIZE': '20', 'XDG_CACHE_HOME': '/home/agustin/.cache', 'SHLVL': '4', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/agustin', 'MOZ_ENABLE_WAYLAND': '1', 'OLDPWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2', 'TERMINFO': '/usr/lib/kitty/terminfo', 'MOTD_SHOWN': 'pam', 'LESS': '-R', 'KITTY_INSTALLATION_DIR': '/usr/lib/kitty', 'LSCOLORS': 'Gxfxcxdxbxegedabagacad', 'ZSH': '/home/agustin/.oh-my-zsh', 'PAGER': 'less', 'ROS_PYTHON_VERSION': '3', 'KITTY_PID': '3280', 'SYSTEMD_EXEC_PID': '630', 'XDG_STATE_HOME': '/home/agustin/.local/state', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'DISTROBOX_ENTER_PATH': '/usr/sbin/distrobox-enter', 'container': 'podman', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'WAYLAND_DISPLAY': 'wayland-1', 'ROS_DISTRO': 'jazzy', 'COLCON_PREFIX_PATH': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install', 'LOGNAME': 'agustin', '_': '/usr/bin/colcon', 'TERMINFO_DIRS': '/usr/share/terminfo:/run/host/usr/share/terminfo', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/system.slice/system-ly.slice/ly@tty2.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'ROS_VERSION': '2', 'XDG_SESSION_ID': 'c1', 'KITTY_PUBLIC_KEY': '1:*Uzp~WRew+^c?VRcj(!_q#p(~{M8QfrSfH8lgI&Y', 'TERM': 'xterm-kitty', 'HL_INITIAL_WORKSPACE_TOKEN': '172a3787-241b-4364-ab04-548713cef57f', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin', 'INVOCATION_ID': 'd4f859dc648a4d85888d9b0de5f4fcb7', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'HYPRCURSOR_SIZE': '20', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Hyprland', 'XDG_CONFIG_HOME': '/home/agustin/.config', 'XDG_SESSION_DESKTOP': 'Hyprland', 'XDG_DATA_HOME': '/home/agustin/.local/share', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.jxl=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy', 'SHELL': 'zsh', 'KITTY_WINDOW_ID': '1', 'VSSCRIPT_PATH': '/usr/lib/python3.14/site-packages/vapoursynth/libvsscript.so', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'CONTAINER_ID': 'ros2-env', 'PWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo', 'XDG_CONFIG_DIRS': '/etc/xdg', 'XDG_BACKEND': 'wayland', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share', 'PYTHONPATH': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[2.207921] (-) TimerEvent: {}
+[2.308313] (-) TimerEvent: {}
+[2.408828] (-) TimerEvent: {}
+[2.509230] (-) TimerEvent: {}
+[2.609655] (-) TimerEvent: {}
+[2.710057] (-) TimerEvent: {}
+[2.748969] (descripcion_brazo) StdoutLine: {'line': b'running develop\n'}
+[2.810216] (-) TimerEvent: {}
+[2.910627] (-) TimerEvent: {}
+[3.011023] (-) TimerEvent: {}
+[3.111514] (-) TimerEvent: {}
+[3.118675] (descripcion_brazo) StdoutLine: {'line': b'running egg_info\n'}
+[3.154060] (descripcion_brazo) StdoutLine: {'line': b'writing descripcion_brazo.egg-info/PKG-INFO\n'}
+[3.154488] (descripcion_brazo) StdoutLine: {'line': b'writing dependency_links to descripcion_brazo.egg-info/dependency_links.txt\n'}
+[3.154810] (descripcion_brazo) StdoutLine: {'line': b'writing requirements to descripcion_brazo.egg-info/requires.txt\n'}
+[3.155091] (descripcion_brazo) StdoutLine: {'line': b'writing top-level names to descripcion_brazo.egg-info/top_level.txt\n'}
+[3.211630] (-) TimerEvent: {}
+[3.230255] (descripcion_brazo) StdoutLine: {'line': b"reading manifest file 'descripcion_brazo.egg-info/SOURCES.txt'\n"}
+[3.231818] (descripcion_brazo) StdoutLine: {'line': b"writing manifest file 'descripcion_brazo.egg-info/SOURCES.txt'\n"}
+[3.269409] (descripcion_brazo) StdoutLine: {'line': b'running build_ext\n'}
+[3.269820] (descripcion_brazo) StdoutLine: {'line': b'Creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion-brazo.egg-link (link to .)\n'}
+[3.270710] (descripcion_brazo) StdoutLine: {'line': b'\n'}
+[3.270896] (descripcion_brazo) StdoutLine: {'line': b'Installed /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo\n'}
+[3.271104] (descripcion_brazo) StdoutLine: {'line': b'running symlink_data\n'}
+[3.311805] (-) TimerEvent: {}
+[3.356757] (descripcion_brazo) CommandEnded: {'returncode': 0}
+[3.392855] (descripcion_brazo) JobEnded: {'identifier': 'descripcion_brazo', 'rc': 0}
+[3.394746] (-) EventReactorShutdown: {}
