@@ -1,1 +1,167 @@
-/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/urdf/Brazo.urdf
+<?xml version="1.0"?>
+<robot name="robot_master">
+
+    <!-- ========================================================== -->
+    <!-- 1. BASE                                                    -->
+    <!-- ========================================================== -->
+    <link name="base_link"/>
+
+    <!-- Agrupa las piezas 1_5 y 1_1 como la Base del robot -->
+    <link name="base">
+        <inertial>
+            <mass value="0.000155" />
+            <origin xyz="-0.0017 0.0 0.038" rpy="0 0 0" />
+            <inertia ixx="2.27e-07" ixy="0" ixz="0" iyy="2.34e-07" iyz="0" izz="4.18e-07" />
+        </inertial>
+        <!-- Malla de Part_1_5 (Part_1_4.gltf) -->
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_1_4.gltf" scale="1 1 1" />
+            </geometry>
+        </visual>
+        <!-- Malla de Part_1_1 -->
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_1_1.gltf" scale="1 1 1" />
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="joint_base_fixed" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="base" />
+    </joint>
+
+    <!-- ========================================================== -->
+    <!-- 2. ESLABÓN 1                                               -->
+    <!-- ========================================================== -->
+    <link name="eslabon_1">
+        <visual>
+            <origin xyz="-0.0133614 -0.83 0.625956" rpy="0 1.5708 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_1_2.gltf" scale="1 1 1" />
+            </geometry>
+            <material name="mat_azul">
+                <color rgba="0.231373 0.380392 0.705882 1" />
+            </material>
+        </visual>
+    </link>
+
+  <link name="hombro_pitch"/>
+
+    <!-- Joint 1: rotación Z (yaw) -->
+    <joint name="Servomotor 1" type="revolute">
+        <origin xyz="0 0 0.08" rpy="0 0 0" />
+        <parent link="base" />
+        <child link="hombro_pitch" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.14159" upper="3.14159" effort="10.0" velocity="1.0" />
+    </joint>
+
+    <!-- Joint 2: rotación Y (pitch) -->
+    <joint name="Servomotor 2" type="revolute">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="hombro_pitch" />
+        <child link="eslabon_1" />
+        <axis xyz="0 1 0" />
+        <!--limit lower="-1.5" upper="1.5" effort="10.0" velocity="5.0" /-->
+        <limit lower="-3.14159" upper="3.14159" effort="10.0" velocity="1.0" />
+    </joint>
+
+    <!-- ========================================================== -->
+    <!-- 3. ESLABÓN 2 (Anteriormente 1_2a)                          -->
+    <!-- ========================================================== -->
+    <link name="eslabon_2">
+        <visual>
+            <origin xyz="-0.0134109 -0.83 0.63143" rpy="0 1.5708 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_1_2.gltf" scale="1 1 1" />
+            </geometry>
+            <material name="mat_azul" />
+        </visual>
+    </link>
+
+    <joint name="Servomotor 3" type="revolute">
+        <origin xyz="0 0 0.10" rpy="0 0 0" />
+        <parent link="eslabon_1" />
+        <child link="eslabon_2" />
+        <axis xyz="0 1 0" />
+        <!--limit lower="-2.4" upper="2.4" effort="10.0" velocity="1.0" /-->
+        <limit lower="-3.14159" upper="3.14159" effort="10.0" velocity="1.0" />
+    </joint>
+
+    <!-- ========================================================== -->
+    <!-- 4. ESLABÓN 3                                               -->
+    <!-- ========================================================== -->
+    <link name="eslabon_3">
+        <visual>
+            <origin xyz="-0.0136522 -0.829859 0.630285" rpy="0 1.5708 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_1.gltf" scale="1 1 1" />
+            </geometry>
+            <material name="mat_base">
+                <color rgba="0.647059 0.647059 0.637059 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="Servomotor 4" type="revolute">
+        <origin xyz="0 0 0.106" rpy="0 0 0" />
+        <parent link="eslabon_2" />
+        <child link="eslabon_3" />
+        <axis xyz="0 1 0" />
+        <!--limit lower="-2.3" upper="2.3" effort="10.0" velocity="1.0" /-->
+        <limit lower="-3.14159" upper="3.14159" effort="10.0" velocity="1.0" />
+    </joint>
+
+    <!-- ========================================================== -->
+    <!-- 5. HERRAMIENTA (Agrupa Piezas 4, 3, 2 y 1_3)              -->
+    <!-- ========================================================== -->
+    <link name="herramienta">
+        <inertial>
+            <mass value="0.0000021" />
+            <origin xyz="0.09 0.11 0.005" rpy="0 0 0" />
+            <inertia ixx="1.1e-10" ixy="0" ixz="0" iyy="8.6e-11" iyz="0" izz="1.5e-10" />
+        </inertial>
+        <!-- Malla Part 2 -->
+        <visual>
+            <origin xyz="-0.286 -0.132 -0.0055" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_2.gltf" scale="1 1 1" />
+            </geometry>
+        </visual>
+        <!-- Malla Part 4 -->
+        <visual>
+            <origin xyz="-0.2652 0.008462 -0.0804112" rpy="1.5708 0 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_4.gltf" scale="1 1 1" />
+            </geometry>
+        </visual>
+        <!-- Malla Part 1_3 -->
+        <visual>
+            <origin xyz="-0.3172 -0.010214 -0.07944843" rpy="1.5708 0 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_1_3.gltf" scale="1 1 1" />
+            </geometry>
+        </visual>
+        <!-- Malla Part 3 -->
+        <visual>
+           <origin xyz="-0.286 -0.132 -0.0055" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://descripcion_brazo/meshes/Part_3.gltf" scale="1 1 1" />
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="Sin Servomotor" type="fixed">
+        <origin xyz="0.00101011 0 0.254243" rpy="0 -1.5708 0" />
+        <parent link="eslabon_3" />
+        <child link="herramienta" />
+        <axis xyz="1 0 0" />
+        <limit lower="-3.14159" upper="3.14159" effort="10.0" velocity="1.0" />
+    </joint>
+
+</robot>

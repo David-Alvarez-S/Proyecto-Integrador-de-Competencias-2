@@ -1,0 +1,11 @@
+# Objetivo
+float32 x
+float32 y
+float32 z
+---
+# Resultado
+bool exito
+string mensaje
+---
+# Retroalimentacion
+float32 progreso

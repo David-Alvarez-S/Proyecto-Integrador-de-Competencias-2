@@ -4,6 +4,3 @@ source;share/descripcion_brazo/hook/pythonpath.sh
 source;share/descripcion_brazo/hook/ament_prefix_path.ps1
 source;share/descripcion_brazo/hook/ament_prefix_path.dsv
 source;share/descripcion_brazo/hook/ament_prefix_path.sh
-source;../../build/descripcion_brazo/share/descripcion_brazo/hook/pythonpath_develop.ps1
-source;../../build/descripcion_brazo/share/descripcion_brazo/hook/pythonpath_develop.dsv
-source;../../build/descripcion_brazo/share/descripcion_brazo/hook/pythonpath_develop.sh

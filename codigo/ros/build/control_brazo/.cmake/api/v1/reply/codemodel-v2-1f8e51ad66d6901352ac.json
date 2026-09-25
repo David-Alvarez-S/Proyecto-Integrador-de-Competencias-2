@@ -1,0 +1,276 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-1d40c55fe155a03096de.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20
+					]
+				},
+				{
+					"build" : "control_brazo__py",
+					"jsonFile" : "directory-control_brazo__py-83848186ea5c4d494616.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo/control_brazo__py",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "control_brazo__rs",
+					"jsonFile" : "directory-control_brazo__rs-5c66ce1fe7db105cf3c8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo/control_brazo__rs",
+					"targetIndexes" : 
+					[
+						14
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "control_brazo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_control_brazo_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_control_brazo_egg-ba252932bdb541d0a84e.json",
+					"name" : "ament_cmake_python_build_control_brazo_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_control_brazo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_control_brazo-0a9393e8a10e05d33e46.json",
+					"name" : "ament_cmake_python_copy_control_brazo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo-137665929d5ec9b3cb51.json",
+					"name" : "control_brazo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__cpp-916ea44e6e5627e44dbe.json",
+					"name" : "control_brazo__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "control_brazo__py::@f1e9b98d81fe6001402c",
+					"jsonFile" : "target-control_brazo__py-9c550f72ec97fd060469.json",
+					"name" : "control_brazo__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_generator_c-355e68d841541ab77210.json",
+					"name" : "control_brazo__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_generator_py-3ed9c80c546c7e7f849e.json",
+					"name" : "control_brazo__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_generator_type_description::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_generator_type_description-f0f1f64a5e9632da073a.json",
+					"name" : "control_brazo__rosidl_generator_type_description",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_typesupport_c-8ec7f8f58b516bd8675d.json",
+					"name" : "control_brazo__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_typesupport_cpp-95589440a8dbfaa2ff41.json",
+					"name" : "control_brazo__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_typesupport_fastrtps_c-e27a11fcf4d97f60b27f.json",
+					"name" : "control_brazo__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_typesupport_fastrtps_cpp-5a546b43160474379ad7.json",
+					"name" : "control_brazo__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_typesupport_introspection_c-6c8fe72d0002198fbeb5.json",
+					"name" : "control_brazo__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo__rosidl_typesupport_introspection_cpp-58a5259a610932259970.json",
+					"name" : "control_brazo__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "control_brazo__rs::@6b12b467b4e332a23c22",
+					"jsonFile" : "target-control_brazo__rs-2b25b668344ecf90d936.json",
+					"name" : "control_brazo__rs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo_s__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo_s__rosidl_typesupport_c-2e3081433ec427b9c31e.json",
+					"name" : "control_brazo_s__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo_s__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo_s__rosidl_typesupport_fastrtps_c-ca446c63b8e681fe30ac.json",
+					"name" : "control_brazo_s__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo_s__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo_s__rosidl_typesupport_introspection_c-6614d86fd653fb61a446.json",
+					"name" : "control_brazo_s__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "control_brazo_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-control_brazo_uninstall-85e60b093fb805c4581f.json",
+					"name" : "control_brazo_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "nodo_control::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-nodo_control-d471a238ee0fa725ae24.json",
+					"name" : "nodo_control",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-c5828e8d1ecb1300de67.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo",
+		"source" : "/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

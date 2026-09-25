@@ -1,0 +1,47 @@
+[1.593s] Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/descripcion_brazo build --build-base /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build install --record /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log --install-scripts $base/lib/Descripcion_Brazo --single-version-externally-managed install_data
+[2.128s] running egg_info
+[2.129s] creating ../../build/descripcion_brazo/descripcion_brazo.egg-info
+[2.165s] writing ../../build/descripcion_brazo/descripcion_brazo.egg-info/PKG-INFO
+[2.166s] writing dependency_links to ../../build/descripcion_brazo/descripcion_brazo.egg-info/dependency_links.txt
+[2.166s] writing requirements to ../../build/descripcion_brazo/descripcion_brazo.egg-info/requires.txt
+[2.168s] writing top-level names to ../../build/descripcion_brazo/descripcion_brazo.egg-info/top_level.txt
+[2.168s] writing manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'
+[2.245s] reading manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'
+[2.246s] writing manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'
+[2.247s] running build
+[2.247s] running build_py
+[2.247s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build
+[2.248s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build/lib
+[2.248s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build/lib/descripcion_brazo
+[2.249s] copying descripcion_brazo/__init__.py -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build/lib/descripcion_brazo
+[2.250s] running install
+[2.260s] running install_lib
+[2.299s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo
+[2.299s] copying /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build/lib/descripcion_brazo/__init__.py -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo
+[2.300s] byte-compiling /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo/__init__.py to __init__.cpython-312.pyc
+[2.301s] running install_data
+[2.301s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index
+[2.302s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index/resource_index
+[2.302s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index/resource_index/packages
+[2.302s] copying resource/descripcion_brazo -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/ament_index/resource_index/packages
+[2.303s] copying package.xml -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo
+[2.303s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/urdf
+[2.305s] copying urdf/Brazo.urdf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/urdf
+[2.306s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.307s] copying meshes/Part_1_2.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.308s] copying meshes/Part_1_3.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.308s] copying meshes/Part_1.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.309s] copying meshes/Part_4.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.310s] copying meshes/Part_1_1.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.310s] copying meshes/Part_1_4.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.311s] copying meshes/Part_2.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.312s] copying meshes/Part_3.gltf -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/meshes
+[2.312s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/launch
+[2.313s] copying launch/display.launch.py -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/launch
+[2.313s] creating /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/rviz
+[2.314s] copying rviz/config_brazo.rviz -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/rviz
+[2.314s] running install_egg_info
+[2.357s] Copying ../../build/descripcion_brazo/descripcion_brazo.egg-info to /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info
+[2.359s] running install_scripts
+[2.615s] writing list of installed files to '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log'
+[2.694s] Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo' returned '0': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/descripcion_brazo build --build-base /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build install --record /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log --install-scripts $base/lib/Descripcion_Brazo --single-version-externally-managed install_data

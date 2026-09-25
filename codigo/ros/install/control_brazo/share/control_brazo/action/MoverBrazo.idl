@@ -1,0 +1,30 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from control_brazo/action/MoverBrazo.action
+// generated code does not contain a copyright notice
+
+
+module control_brazo {
+  module action {
+    @verbatim (language="comment", text=
+      "1. Goal (Lo que envía el cliente)")
+    struct MoverBrazo_Goal {
+      float x;
+
+      float y;
+
+      float z;
+    };
+    @verbatim (language="comment", text=
+      "2. Result (Lo que devuelve el servidor al finalizar)")
+    struct MoverBrazo_Result {
+      boolean exito;
+
+      string mensaje;
+    };
+    @verbatim (language="comment", text=
+      "3. Feedback (Lo que informa el servidor durante la ejecución)")
+    struct MoverBrazo_Feedback {
+      float progreso;
+    };
+  };
+};

@@ -1,0 +1,51 @@
+[  5%] Built target control_brazo__rosidl_generator_type_description
+[  2%] Built target control_brazo__rs
+[ 18%] Built target control_brazo__rosidl_generator_c
+[ 18%] Built target ament_cmake_python_copy_control_brazo
+[ 21%] Built target control_brazo__cpp
+[ 29%] Built target control_brazo__rosidl_typesupport_introspection_c
+[ 37%] Built target control_brazo__rosidl_typesupport_c
+[ 45%] Built target control_brazo__rosidl_typesupport_fastrtps_c
+[ 54%] Built target control_brazo__rosidl_typesupport_fastrtps_cpp
+[ 62%] Built target control_brazo__rosidl_typesupport_introspection_cpp
+[ 70%] Built target control_brazo__rosidl_typesupport_cpp
+[ 70%] Built target control_brazo
+[ 72%] [32mBuilding CXX object CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o[0m
+running egg_info
+writing control_brazo.egg-info/PKG-INFO
+writing dependency_links to control_brazo.egg-info/dependency_links.txt
+writing top-level names to control_brazo.egg-info/top_level.txt
+reading manifest file 'control_brazo.egg-info/SOURCES.txt'
+writing manifest file 'control_brazo.egg-info/SOURCES.txt'
+[ 72%] Built target ament_cmake_python_build_control_brazo_egg
+[ 75%] Built target control_brazo__py
+[ 81%] Built target control_brazo__rosidl_generator_py
+[ 86%] Built target control_brazo_s__rosidl_typesupport_fastrtps_c
+[ 91%] Built target control_brazo_s__rosidl_typesupport_introspection_c
+[ 97%] Built target control_brazo_s__rosidl_typesupport_c
+In file included from [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:9[m[K:
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:[m[K In function ‘[01m[Kcuaternion_t[01;32m[K inicializar_cuat[m[K()[m[K’:
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:16:35:[m[K [01;35m[Kwarning: [m[KISO C++ forbids compound-literals [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+   16 |   return (cuaternion_t){0, 0, 0, 0[01;35m[K}[m[K;
+      |                                   [01;35m[K^[m[K
+In file included from [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:14[m[K:
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:[m[K In function ‘[01m[Kestado_perfil_s_t[01;32m[K Estado_Perfil_s[m[K(planificador_perfil_s_t*, float)[m[K’:
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:131:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::velocidad[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+  131 |   estado_perfil_s_t estado = {0[01;35m[K}[m[K;
+      |                                [01;35m[K^[m[K
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:131:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::aceleracion[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:131:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::tiron[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:131:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::termino[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:159:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kv3[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+  159 |   float [01;35m[Kv3[m[K = v_m;
+      |         [01;35m[K^~[m[K
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:[m[K In member function ‘[01m[Kvoid ControlBrazoNode::[01;32m[Ktimer_callback[m[K()[m[K’:
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:114:11:[m[K [01;31m[Kerror: [m[K‘[01m[Kest[m[K’ was not declared in this scope
+  114 |       if ([01;31m[Kest[m[K.termino) {
+      |           [01;31m[K^~~[m[K
+[01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:118:54:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_actual[m[K’ was not declared in this scope
+  118 |         printf("FIN PERFIL -> Z enviada a IK: %f\n", [01;31m[Kpos_actual[m[K.z);
+      |                                                      [01;31m[K^~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/nodo_control.dir/build.make:76: CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:644: CMakeFiles/nodo_control.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

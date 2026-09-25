@@ -1,0 +1,36 @@
+{
+  "type_description_msg": {
+    "type_description": {
+      "type_name": "control_brazo/action/MoverBrazo_Result",
+      "fields": [
+        {
+          "name": "exito",
+          "type": {
+            "type_id": 15,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        },
+        {
+          "name": "mensaje",
+          "type": {
+            "type_id": 17,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        }
+      ]
+    },
+    "referenced_type_descriptions": []
+  },
+  "type_hashes": [
+    {
+      "type_name": "control_brazo/action/MoverBrazo_Result",
+      "hash_string": "RIHS01_cef43e9b1c88b529bb83f3a1d7fddff8fa497254f7e671246f66e4ee35afa915"
+    }
+  ]
+}
