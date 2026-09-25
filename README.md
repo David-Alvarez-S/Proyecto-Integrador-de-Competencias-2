@@ -18,6 +18,7 @@ Prototipo automatizado a escala (40 × 40 × 40 cm) para la clasificación y alm
 * **Carrera:** Ingeniería en Mecatrónica
 * **Unidad Curricular:** Proyecto Integrador de Competencias II (PIC II)
 * **Docentes:** Leonardo Eguia, Marcelo Diaz, Andres Hippa, Rodrigo Sosa
+* **Drive:** https://drive.google.com/drive/folders/1wYajqpO4K8P1RmDh_BZdPhU3djc_-1ak?usp=sharing
 
 ---
 
