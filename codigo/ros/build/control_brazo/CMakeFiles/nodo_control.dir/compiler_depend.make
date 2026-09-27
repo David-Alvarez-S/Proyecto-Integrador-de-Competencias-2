@@ -9,6 +9,7 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
   rosidl_generator_cpp/control_brazo/action/mover_brazo.hpp \
   rosidl_generator_cpp/control_brazo/msg/rosidl_generator_cpp__visibility_control.hpp \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Aritmetica.h \
+  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Coordenadas_Cilindricas.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Global_Config.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h \
@@ -1246,6 +1247,8 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
 
 /usr/include/c++/13/bits/move.h:
 
+/usr/include/c++/13/bits/memoryfwd.h:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/macros.hpp:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
@@ -1266,9 +1269,9 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/guard_condition.hpp:
 
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.h:
-
 rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__struct.hpp:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.h:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/wait_set_policies/detail/synchronization_policy_common.hpp:
 
@@ -1538,6 +1541,8 @@ rosidl_generator_cpp/control_brazo/action/mover_brazo.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/init_options.hpp:
 
+/opt/ros/jazzy/include/rclcpp/rclcpp/create_timer.hpp:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/dynamic_typesupport/dynamic_message.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter_value.hpp:
@@ -1708,6 +1713,10 @@ rosidl_generator_cpp/control_brazo/msg/rosidl_generator_cpp__visibility_control.
 
 /opt/ros/jazzy/include/rcl/rcl/init_options.h:
 
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__type_support.hpp:
+
+/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:
+
 /usr/include/x86_64-linux-gnu/sys/ucontext.h:
 
 /opt/ros/jazzy/include/rosidl_runtime_cpp/rosidl_runtime_cpp/service_type_support_decl.hpp:
@@ -1725,6 +1734,8 @@ rosidl_generator_cpp/control_brazo/msg/rosidl_generator_cpp__visibility_control.
 /opt/ros/jazzy/include/unique_identifier_msgs/unique_identifier_msgs/msg/detail/uuid__struct.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/intra_process_setting.hpp:
+
+/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Coordenadas_Cilindricas.h:
 
 /opt/ros/jazzy/include/rcpputils/rcpputils/visibility_control.hpp:
 
@@ -1763,6 +1774,10 @@ rosidl_generator_cpp/control_brazo/msg/rosidl_generator_cpp__visibility_control.
 /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/serialization.hpp:
+
+/opt/ros/jazzy/include/rcutils/rcutils/logging_macros.h:
+
+/opt/ros/jazzy/include/rmw/rmw/events_statuses/liveliness_lost.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
@@ -1977,16 +1992,6 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/list_parameters__type_support.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_descriptor__type_support.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/create_timer.hpp:
-
-/opt/ros/jazzy/include/rmw/rmw/events_statuses/liveliness_lost.h:
-
-/opt/ros/jazzy/include/rcutils/rcutils/logging_macros.h:
-
-/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__type_support.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/message_info.hpp:
 
@@ -2541,5 +2546,3 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__type_support.hpp:
 /usr/include/c++/13/bits/locale_facets_nonio.h:
 
 /usr/include/c++/13/bits/localefwd.h:
-
-/usr/include/c++/13/bits/memoryfwd.h:

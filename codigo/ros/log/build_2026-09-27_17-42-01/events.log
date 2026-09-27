@@ -1,0 +1,362 @@
+[0.000000] (-) TimerEvent: {}
+[0.000982] (control_brazo) JobQueued: {'identifier': 'control_brazo', 'dependencies': OrderedDict()}
+[0.001089] (descripcion_brazo) JobQueued: {'identifier': 'descripcion_brazo', 'dependencies': OrderedDict()}
+[0.001154] (control_brazo) JobStarted: {'identifier': 'control_brazo'}
+[0.042161] (descripcion_brazo) JobStarted: {'identifier': 'descripcion_brazo'}
+[0.062477] (control_brazo) JobProgress: {'identifier': 'control_brazo', 'progress': 'cmake'}
+[0.073021] (control_brazo) JobProgress: {'identifier': 'control_brazo', 'progress': 'build'}
+[0.074337] (control_brazo) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', '--', '-j2', '-l2'], 'cwd': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', 'env': OrderedDict({'MAIL': '/var/spool/mail/agustin', 'USER': 'agustin', 'HYPRLAND_INSTANCE_SIGNATURE': 'efb50993780079460b0cbed1363e2166a2de1d9f_1790534518_531161191', 'HYPRLAND_CMD': 'Hyprland --watchdog-fd 5', 'HOSTNAME': 'David', 'XDG_SESSION_TYPE': 'wayland', 'CSF_TObjDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_XSMessage': '/usr/share/opencascade/resources/XSMessage', 'XDG_CACHE_HOME': '/home/agustin/.cache', 'SHLVL': '4', 'CSF_XCAFDefaults': '/usr/share/opencascade/resources/StdResource', 'XCURSOR_SIZE': '20', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/agustin', 'OLDPWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src', 'MMGT_CLEAR': '1', 'CSF_TObjMessage': '/usr/share/opencascade/resources/TObj', 'LESS': '-R', 'MOZ_ENABLE_WAYLAND': '1', 'TERMINFO': '/usr/lib/kitty/terminfo', 'MOTD_SHOWN': 'pam', 'KITTY_INSTALLATION_DIR': '/usr/lib/kitty', 'CSF_ShadersDirectory': '/usr/share/opencascade/resources/Shaders', 'LSCOLORS': 'Gxfxcxdxbxegedabagacad', 'ZSH': '/home/agustin/.oh-my-zsh', 'PAGER': 'less', 'CSF_MDTVTexturesDirectory': '/usr/share/opencascade/resources/Textures', 'ROS_PYTHON_VERSION': '3', 'KITTY_PID': '12681', 'DRAWHOME': '/usr/share/opencascade/resources/DrawResources', 'XDG_STATE_HOME': '/home/agustin/.local/state', 'CSF_IGESDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'DISTROBOX_ENTER_PATH': '/usr/sbin/distrobox-enter', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'SYSTEMD_EXEC_PID': '590', 'container': 'podman', 'COLORTERM': 'truecolor', 'CASROOT': '/usr', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'WAYLAND_DISPLAY': 'wayland-1', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'agustin', '_': '/usr/bin/colcon', 'TERMINFO_DIRS': '/usr/share/terminfo:/run/host/usr/share/terminfo', 'XDG_SESSION_CLASS': 'user', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/system.slice/system-ly.slice/ly@tty2.service/memory.pressure', 'CSF_LANGUAGE': 'us', 'ROS_VERSION': '2', 'TERM': 'xterm-kitty', 'XDG_SESSION_ID': 'c1', 'HL_INITIAL_WORKSPACE_TOKEN': 'f4208bd3-3415-404a-b1e2-b91893805bf5', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin', 'INVOCATION_ID': '334748335a464196ab3e4b191525393e', 'XDG_RUNTIME_DIR': '/run/user/1000', 'CSF_XmlOcafResource': '/usr/share/opencascade/resources/XmlOcafResource', 'HYPRCURSOR_SIZE': '20', 'DISPLAY': ':0', 'XDG_CURRENT_DESKTOP': 'Hyprland', 'LANG': 'en_US.UTF-8', 'XDG_DATA_HOME': '/home/agustin/.local/share', 'XDG_SESSION_DESKTOP': 'Hyprland', 'XDG_CONFIG_HOME': '/home/agustin/.config', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.jxl=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'CSF_StandardDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_PluginDefaults': '/usr/share/opencascade/resources/StdResource', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': 'zsh', 'CSF_SHMessage': '/usr/share/opencascade/resources/SHMessage', 'KITTY_WINDOW_ID': '1', 'CSF_STEPDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'VSSCRIPT_PATH': '/usr/lib/python3.14/site-packages/vapoursynth/libvsscript.so', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'CONTAINER_ID': 'ros2-env', 'PWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', 'CSF_StandardLiteDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_BACKEND': 'wayland', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share', 'XDG_CONFIG_DIRS': '/etc/xdg', 'CSF_DrawPluginDefaults': '/usr/share/opencascade/resources/DrawResources', 'CSF_MIGRATION_TYPES': '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt', 'CSF_OCCTResourcePath': '/usr/share/opencascade/resources', 'DRAWDEFAULT': '/usr/share/opencascade/resources/DrawResources/DrawDefault', 'PYTHONPATH': '/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CSF_EXCEPTION_PROMPT': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.099170] (-) TimerEvent: {}
+[0.199574] (-) TimerEvent: {}
+[0.300014] (-) TimerEvent: {}
+[0.400981] (-) TimerEvent: {}
+[0.480039] (control_brazo) StdoutLine: {'line': b'[  2%] Built target control_brazo__rs\n'}
+[0.484978] (control_brazo) StdoutLine: {'line': b'[  5%] Built target control_brazo__rosidl_generator_type_description\n'}
+[0.501112] (-) TimerEvent: {}
+[0.590616] (control_brazo) StdoutLine: {'line': b'[  5%] Built target ament_cmake_python_copy_control_brazo\n'}
+[0.599242] (control_brazo) StdoutLine: {'line': b'[ 18%] Built target control_brazo__rosidl_generator_c\n'}
+[0.601214] (-) TimerEvent: {}
+[0.657794] (control_brazo) StdoutLine: {'line': b'[ 21%] Built target control_brazo__cpp\n'}
+[0.702017] (-) TimerEvent: {}
+[0.779097] (control_brazo) StdoutLine: {'line': b'[ 29%] Built target control_brazo__rosidl_typesupport_fastrtps_c\n'}
+[0.802149] (-) TimerEvent: {}
+[0.864042] (control_brazo) StdoutLine: {'line': b'[ 37%] Built target control_brazo__rosidl_typesupport_fastrtps_cpp\n'}
+[0.902825] (-) TimerEvent: {}
+[0.970070] (control_brazo) StdoutLine: {'line': b'[ 45%] Built target control_brazo__rosidl_typesupport_introspection_c\n'}
+[1.002956] (-) TimerEvent: {}
+[1.066871] (control_brazo) StdoutLine: {'line': b'[ 54%] Built target control_brazo__rosidl_typesupport_c\n'}
+[1.104159] (-) TimerEvent: {}
+[1.191142] (control_brazo) StdoutLine: {'line': b'[ 62%] Built target control_brazo__rosidl_typesupport_introspection_cpp\n'}
+[1.204959] (-) TimerEvent: {}
+[1.254193] (control_brazo) StdoutLine: {'line': b'running egg_info\n'}
+[1.270100] (control_brazo) StdoutLine: {'line': b'[ 70%] Built target control_brazo__rosidl_typesupport_cpp\n'}
+[1.299674] (control_brazo) StdoutLine: {'line': b'writing control_brazo.egg-info/PKG-INFO\n'}
+[1.300636] (control_brazo) StdoutLine: {'line': b'writing dependency_links to control_brazo.egg-info/dependency_links.txt\n'}
+[1.301467] (control_brazo) StdoutLine: {'line': b'writing top-level names to control_brazo.egg-info/top_level.txt\n'}
+[1.305921] (-) TimerEvent: {}
+[1.325152] (control_brazo) StdoutLine: {'line': b'[ 70%] Built target control_brazo\n'}
+[1.405206] (-) TimerEvent: {}
+[1.450069] (control_brazo) StdoutLine: {'line': b"reading manifest file 'control_brazo.egg-info/SOURCES.txt'\n"}
+[1.453254] (control_brazo) StdoutLine: {'line': b"writing manifest file 'control_brazo.egg-info/SOURCES.txt'\n"}
+[1.475271] (control_brazo) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o\x1b[0m\n'}
+[1.505351] (-) TimerEvent: {}
+[1.525975] (control_brazo) StdoutLine: {'line': b'[ 72%] Built target ament_cmake_python_build_control_brazo_egg\n'}
+[1.571608] (control_brazo) StdoutLine: {'line': b'[ 75%] Built target control_brazo__py\n'}
+[1.605520] (-) TimerEvent: {}
+[1.643791] (control_brazo) StdoutLine: {'line': b'[ 81%] Built target control_brazo__rosidl_generator_py\n'}
+[1.705830] (-) TimerEvent: {}
+[1.707225] (control_brazo) StdoutLine: {'line': b'[ 86%] Built target control_brazo_s__rosidl_typesupport_fastrtps_c\n'}
+[1.754257] (control_brazo) StdoutLine: {'line': b'[ 91%] Built target control_brazo_s__rosidl_typesupport_introspection_c\n'}
+[1.806786] (-) TimerEvent: {}
+[1.819588] (control_brazo) StdoutLine: {'line': b'[ 97%] Built target control_brazo_s__rosidl_typesupport_c\n'}
+[1.907244] (-) TimerEvent: {}
+[2.007960] (-) TimerEvent: {}
+[2.109048] (-) TimerEvent: {}
+[2.209515] (-) TimerEvent: {}
+[2.310183] (-) TimerEvent: {}
+[2.411691] (-) TimerEvent: {}
+[2.512120] (-) TimerEvent: {}
+[2.561663] (descripcion_brazo) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/descripcion_brazo', 'build', '--build-base', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build', 'install', '--record', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log', '--install-scripts', '$base/lib/Descripcion_Brazo', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo', 'env': OrderedDict({'MAIL': '/var/spool/mail/agustin', 'USER': 'agustin', 'HYPRLAND_INSTANCE_SIGNATURE': 'efb50993780079460b0cbed1363e2166a2de1d9f_1790534518_531161191', 'HYPRLAND_CMD': 'Hyprland --watchdog-fd 5', 'HOSTNAME': 'David', 'XDG_SESSION_TYPE': 'wayland', 'CSF_TObjDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_XSMessage': '/usr/share/opencascade/resources/XSMessage', 'XDG_CACHE_HOME': '/home/agustin/.cache', 'SHLVL': '4', 'CSF_XCAFDefaults': '/usr/share/opencascade/resources/StdResource', 'XCURSOR_SIZE': '20', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/agustin', 'OLDPWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src', 'MMGT_CLEAR': '1', 'CSF_TObjMessage': '/usr/share/opencascade/resources/TObj', 'LESS': '-R', 'MOZ_ENABLE_WAYLAND': '1', 'TERMINFO': '/usr/lib/kitty/terminfo', 'MOTD_SHOWN': 'pam', 'KITTY_INSTALLATION_DIR': '/usr/lib/kitty', 'CSF_ShadersDirectory': '/usr/share/opencascade/resources/Shaders', 'LSCOLORS': 'Gxfxcxdxbxegedabagacad', 'ZSH': '/home/agustin/.oh-my-zsh', 'PAGER': 'less', 'CSF_MDTVTexturesDirectory': '/usr/share/opencascade/resources/Textures', 'ROS_PYTHON_VERSION': '3', 'KITTY_PID': '12681', 'DRAWHOME': '/usr/share/opencascade/resources/DrawResources', 'XDG_STATE_HOME': '/home/agustin/.local/state', 'CSF_IGESDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'DISTROBOX_ENTER_PATH': '/usr/sbin/distrobox-enter', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'SYSTEMD_EXEC_PID': '590', 'container': 'podman', 'COLORTERM': 'truecolor', 'CASROOT': '/usr', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'WAYLAND_DISPLAY': 'wayland-1', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'agustin', '_': '/usr/bin/colcon', 'TERMINFO_DIRS': '/usr/share/terminfo:/run/host/usr/share/terminfo', 'XDG_SESSION_CLASS': 'user', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/system.slice/system-ly.slice/ly@tty2.service/memory.pressure', 'CSF_LANGUAGE': 'us', 'ROS_VERSION': '2', 'TERM': 'xterm-kitty', 'XDG_SESSION_ID': 'c1', 'HL_INITIAL_WORKSPACE_TOKEN': 'f4208bd3-3415-404a-b1e2-b91893805bf5', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin', 'INVOCATION_ID': '334748335a464196ab3e4b191525393e', 'XDG_RUNTIME_DIR': '/run/user/1000', 'CSF_XmlOcafResource': '/usr/share/opencascade/resources/XmlOcafResource', 'HYPRCURSOR_SIZE': '20', 'DISPLAY': ':0', 'XDG_CURRENT_DESKTOP': 'Hyprland', 'LANG': 'en_US.UTF-8', 'XDG_DATA_HOME': '/home/agustin/.local/share', 'XDG_SESSION_DESKTOP': 'Hyprland', 'XDG_CONFIG_HOME': '/home/agustin/.config', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.jxl=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'CSF_StandardDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_PluginDefaults': '/usr/share/opencascade/resources/StdResource', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': 'zsh', 'CSF_SHMessage': '/usr/share/opencascade/resources/SHMessage', 'KITTY_WINDOW_ID': '1', 'CSF_STEPDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'VSSCRIPT_PATH': '/usr/lib/python3.14/site-packages/vapoursynth/libvsscript.so', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'CONTAINER_ID': 'ros2-env', 'PWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo', 'CSF_StandardLiteDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_BACKEND': 'wayland', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share', 'XDG_CONFIG_DIRS': '/etc/xdg', 'CSF_DrawPluginDefaults': '/usr/share/opencascade/resources/DrawResources', 'CSF_MIGRATION_TYPES': '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt', 'CSF_OCCTResourcePath': '/usr/share/opencascade/resources', 'DRAWDEFAULT': '/usr/share/opencascade/resources/DrawResources/DrawDefault', 'PYTHONPATH': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CSF_EXCEPTION_PROMPT': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[2.612240] (-) TimerEvent: {}
+[2.712972] (-) TimerEvent: {}
+[2.813364] (-) TimerEvent: {}
+[2.913961] (-) TimerEvent: {}
+[3.014437] (-) TimerEvent: {}
+[3.090260] (descripcion_brazo) StdoutLine: {'line': b'running egg_info\n'}
+[3.114562] (-) TimerEvent: {}
+[3.128045] (descripcion_brazo) StdoutLine: {'line': b'writing ../../build/descripcion_brazo/descripcion_brazo.egg-info/PKG-INFO\n'}
+[3.129488] (descripcion_brazo) StdoutLine: {'line': b'writing dependency_links to ../../build/descripcion_brazo/descripcion_brazo.egg-info/dependency_links.txt\n'}
+[3.130876] (descripcion_brazo) StdoutLine: {'line': b'writing requirements to ../../build/descripcion_brazo/descripcion_brazo.egg-info/requires.txt\n'}
+[3.131090] (descripcion_brazo) StdoutLine: {'line': b'writing top-level names to ../../build/descripcion_brazo/descripcion_brazo.egg-info/top_level.txt\n'}
+[3.208838] (descripcion_brazo) StdoutLine: {'line': b"reading manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'\n"}
+[3.211158] (descripcion_brazo) StdoutLine: {'line': b"writing manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'\n"}
+[3.214848] (-) TimerEvent: {}
+[3.230797] (descripcion_brazo) StdoutLine: {'line': b'running build\n'}
+[3.231154] (descripcion_brazo) StdoutLine: {'line': b'running build_py\n'}
+[3.232479] (descripcion_brazo) StdoutLine: {'line': b'running install\n'}
+[3.245456] (descripcion_brazo) StdoutLine: {'line': b'running install_lib\n'}
+[3.286397] (descripcion_brazo) StdoutLine: {'line': b'running install_data\n'}
+[3.288494] (descripcion_brazo) StdoutLine: {'line': b'copying launch/display.launch.py -> /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/share/descripcion_brazo/launch\n'}
+[3.290128] (descripcion_brazo) StdoutLine: {'line': b'running install_egg_info\n'}
+[3.314975] (-) TimerEvent: {}
+[3.336209] (descripcion_brazo) StdoutLine: {'line': b"removing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info' (and everything under it)\n"}
+[3.336533] (descripcion_brazo) StdoutLine: {'line': b'Copying ../../build/descripcion_brazo/descripcion_brazo.egg-info to /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info\n'}
+[3.338841] (descripcion_brazo) StdoutLine: {'line': b'running install_scripts\n'}
+[3.415114] (-) TimerEvent: {}
+[3.515982] (-) TimerEvent: {}
+[3.606037] (descripcion_brazo) StdoutLine: {'line': b"writing list of installed files to '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log'\n"}
+[3.616159] (-) TimerEvent: {}
+[3.696475] (descripcion_brazo) CommandEnded: {'returncode': 0}
+[3.716950] (-) TimerEvent: {}
+[3.742374] (descripcion_brazo) JobEnded: {'identifier': 'descripcion_brazo', 'rc': 0}
+[3.817160] (-) TimerEvent: {}
+[3.917613] (-) TimerEvent: {}
+[4.018071] (-) TimerEvent: {}
+[4.118561] (-) TimerEvent: {}
+[4.218986] (-) TimerEvent: {}
+[4.319548] (-) TimerEvent: {}
+[4.420120] (-) TimerEvent: {}
+[4.520543] (-) TimerEvent: {}
+[4.620990] (-) TimerEvent: {}
+[4.721467] (-) TimerEvent: {}
+[4.821919] (-) TimerEvent: {}
+[4.922403] (-) TimerEvent: {}
+[5.022853] (-) TimerEvent: {}
+[5.123304] (-) TimerEvent: {}
+[5.223775] (-) TimerEvent: {}
+[5.324215] (-) TimerEvent: {}
+[5.424677] (-) TimerEvent: {}
+[5.525178] (-) TimerEvent: {}
+[5.625629] (-) TimerEvent: {}
+[5.726103] (-) TimerEvent: {}
+[5.826588] (-) TimerEvent: {}
+[5.927090] (-) TimerEvent: {}
+[6.027605] (-) TimerEvent: {}
+[6.128101] (-) TimerEvent: {}
+[6.228567] (-) TimerEvent: {}
+[6.329022] (-) TimerEvent: {}
+[6.429511] (-) TimerEvent: {}
+[6.530015] (-) TimerEvent: {}
+[6.630496] (-) TimerEvent: {}
+[6.730985] (-) TimerEvent: {}
+[6.832544] (-) TimerEvent: {}
+[6.933004] (-) TimerEvent: {}
+[7.033475] (-) TimerEvent: {}
+[7.134033] (-) TimerEvent: {}
+[7.202299] (control_brazo) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:9\x1b[m\x1b[K:\n'}
+[7.202664] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kcuaternion_t\x1b[01;32m\x1b[K inicializar_cuat\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.202831] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:16:35:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[KISO C++ forbids compound-literals [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic\x07-Wpedantic\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.202996] (control_brazo) StderrLine: {'line': b'   16 |   return (cuaternion_t){0, 0, 0, 0\x1b[01;35m\x1b[K}\x1b[m\x1b[K;\n'}
+[7.203197] (control_brazo) StderrLine: {'line': b'      |                                   \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[7.213355] (control_brazo) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:14\x1b[m\x1b[K:\n'}
+[7.213696] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t\x1b[01;32m\x1b[K Estado_Perfil_s\x1b[m\x1b[K(planificador_perfil_s_t*, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.213862] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::velocidad\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.214024] (control_brazo) StderrLine: {'line': b'  130 |   estado_perfil_s_t estado = {0\x1b[01;35m\x1b[K}\x1b[m\x1b[K;\n'}
+[7.214303] (control_brazo) StderrLine: {'line': b'      |                                \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[7.214478] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::aceleracion\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.214648] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::tiron\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.214896] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::termino\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.215065] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:158:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kv3\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.215238] (control_brazo) StderrLine: {'line': b'  158 |   float \x1b[01;35m\x1b[Kv3\x1b[m\x1b[K = v_m;\n'}
+[7.215389] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[7.234222] (-) TimerEvent: {}
+[7.334805] (-) TimerEvent: {}
+[7.435301] (-) TimerEvent: {}
+[7.535777] (-) TimerEvent: {}
+[7.636212] (-) TimerEvent: {}
+[7.736800] (-) TimerEvent: {}
+[7.837959] (-) TimerEvent: {}
+[7.938463] (-) TimerEvent: {}
+[8.038913] (-) TimerEvent: {}
+[8.139391] (-) TimerEvent: {}
+[8.239873] (-) TimerEvent: {}
+[8.340328] (-) TimerEvent: {}
+[8.440784] (-) TimerEvent: {}
+[8.541215] (-) TimerEvent: {}
+[8.641690] (-) TimerEvent: {}
+[8.742211] (-) TimerEvent: {}
+[8.842668] (-) TimerEvent: {}
+[8.943162] (-) TimerEvent: {}
+[9.043625] (-) TimerEvent: {}
+[9.144202] (-) TimerEvent: {}
+[9.244688] (-) TimerEvent: {}
+[9.345128] (-) TimerEvent: {}
+[9.445599] (-) TimerEvent: {}
+[9.546096] (-) TimerEvent: {}
+[9.646563] (-) TimerEvent: {}
+[9.747025] (-) TimerEvent: {}
+[9.847497] (-) TimerEvent: {}
+[9.947960] (-) TimerEvent: {}
+[10.048396] (-) TimerEvent: {}
+[10.148873] (-) TimerEvent: {}
+[10.249314] (-) TimerEvent: {}
+[10.349763] (-) TimerEvent: {}
+[10.450238] (-) TimerEvent: {}
+[10.550717] (-) TimerEvent: {}
+[10.651201] (-) TimerEvent: {}
+[10.751793] (-) TimerEvent: {}
+[10.852195] (-) TimerEvent: {}
+[10.952653] (-) TimerEvent: {}
+[11.053137] (-) TimerEvent: {}
+[11.153594] (-) TimerEvent: {}
+[11.254055] (-) TimerEvent: {}
+[11.354490] (-) TimerEvent: {}
+[11.454966] (-) TimerEvent: {}
+[11.555429] (-) TimerEvent: {}
+[11.656005] (-) TimerEvent: {}
+[11.756488] (-) TimerEvent: {}
+[11.856981] (-) TimerEvent: {}
+[11.957448] (-) TimerEvent: {}
+[12.057923] (-) TimerEvent: {}
+[12.158426] (-) TimerEvent: {}
+[12.258905] (-) TimerEvent: {}
+[12.359396] (-) TimerEvent: {}
+[12.459879] (-) TimerEvent: {}
+[12.560314] (-) TimerEvent: {}
+[12.660830] (-) TimerEvent: {}
+[12.762994] (-) TimerEvent: {}
+[12.863533] (-) TimerEvent: {}
+[12.963985] (-) TimerEvent: {}
+[13.064415] (-) TimerEvent: {}
+[13.164984] (-) TimerEvent: {}
+[13.202732] (control_brazo) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable nodo_control\x1b[0m\n'}
+[13.265449] (-) TimerEvent: {}
+[13.365953] (-) TimerEvent: {}
+[13.466473] (-) TimerEvent: {}
+[13.567208] (-) TimerEvent: {}
+[13.667962] (-) TimerEvent: {}
+[13.768929] (-) TimerEvent: {}
+[13.869568] (-) TimerEvent: {}
+[13.970294] (-) TimerEvent: {}
+[14.070902] (-) TimerEvent: {}
+[14.171370] (-) TimerEvent: {}
+[14.271886] (-) TimerEvent: {}
+[14.372358] (-) TimerEvent: {}
+[14.472885] (-) TimerEvent: {}
+[14.573330] (-) TimerEvent: {}
+[14.587823] (control_brazo) StdoutLine: {'line': b'[100%] Built target nodo_control\n'}
+[14.607970] (control_brazo) CommandEnded: {'returncode': 0}
+[14.613776] (control_brazo) JobProgress: {'identifier': 'control_brazo', 'progress': 'install'}
+[14.632569] (control_brazo) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo'], 'cwd': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', 'env': OrderedDict({'MAIL': '/var/spool/mail/agustin', 'USER': 'agustin', 'HYPRLAND_INSTANCE_SIGNATURE': 'efb50993780079460b0cbed1363e2166a2de1d9f_1790534518_531161191', 'HYPRLAND_CMD': 'Hyprland --watchdog-fd 5', 'HOSTNAME': 'David', 'XDG_SESSION_TYPE': 'wayland', 'CSF_TObjDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_XSMessage': '/usr/share/opencascade/resources/XSMessage', 'XDG_CACHE_HOME': '/home/agustin/.cache', 'SHLVL': '4', 'CSF_XCAFDefaults': '/usr/share/opencascade/resources/StdResource', 'XCURSOR_SIZE': '20', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/agustin', 'OLDPWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src', 'MMGT_CLEAR': '1', 'CSF_TObjMessage': '/usr/share/opencascade/resources/TObj', 'LESS': '-R', 'MOZ_ENABLE_WAYLAND': '1', 'TERMINFO': '/usr/lib/kitty/terminfo', 'MOTD_SHOWN': 'pam', 'KITTY_INSTALLATION_DIR': '/usr/lib/kitty', 'CSF_ShadersDirectory': '/usr/share/opencascade/resources/Shaders', 'LSCOLORS': 'Gxfxcxdxbxegedabagacad', 'ZSH': '/home/agustin/.oh-my-zsh', 'PAGER': 'less', 'CSF_MDTVTexturesDirectory': '/usr/share/opencascade/resources/Textures', 'ROS_PYTHON_VERSION': '3', 'KITTY_PID': '12681', 'DRAWHOME': '/usr/share/opencascade/resources/DrawResources', 'XDG_STATE_HOME': '/home/agustin/.local/state', 'CSF_IGESDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'DISTROBOX_ENTER_PATH': '/usr/sbin/distrobox-enter', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'SYSTEMD_EXEC_PID': '590', 'container': 'podman', 'COLORTERM': 'truecolor', 'CASROOT': '/usr', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'WAYLAND_DISPLAY': 'wayland-1', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'agustin', '_': '/usr/bin/colcon', 'TERMINFO_DIRS': '/usr/share/terminfo:/run/host/usr/share/terminfo', 'XDG_SESSION_CLASS': 'user', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/system.slice/system-ly.slice/ly@tty2.service/memory.pressure', 'CSF_LANGUAGE': 'us', 'ROS_VERSION': '2', 'TERM': 'xterm-kitty', 'XDG_SESSION_ID': 'c1', 'HL_INITIAL_WORKSPACE_TOKEN': 'f4208bd3-3415-404a-b1e2-b91893805bf5', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin', 'INVOCATION_ID': '334748335a464196ab3e4b191525393e', 'XDG_RUNTIME_DIR': '/run/user/1000', 'CSF_XmlOcafResource': '/usr/share/opencascade/resources/XmlOcafResource', 'HYPRCURSOR_SIZE': '20', 'DISPLAY': ':0', 'XDG_CURRENT_DESKTOP': 'Hyprland', 'LANG': 'en_US.UTF-8', 'XDG_DATA_HOME': '/home/agustin/.local/share', 'XDG_SESSION_DESKTOP': 'Hyprland', 'XDG_CONFIG_HOME': '/home/agustin/.config', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.jxl=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'CSF_StandardDefaults': '/usr/share/opencascade/resources/StdResource', 'CSF_PluginDefaults': '/usr/share/opencascade/resources/StdResource', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': 'zsh', 'CSF_SHMessage': '/usr/share/opencascade/resources/SHMessage', 'KITTY_WINDOW_ID': '1', 'CSF_STEPDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'VSSCRIPT_PATH': '/usr/lib/python3.14/site-packages/vapoursynth/libvsscript.so', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'CONTAINER_ID': 'ros2-env', 'PWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', 'CSF_StandardLiteDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_BACKEND': 'wayland', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share', 'XDG_CONFIG_DIRS': '/etc/xdg', 'CSF_DrawPluginDefaults': '/usr/share/opencascade/resources/DrawResources', 'CSF_MIGRATION_TYPES': '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt', 'CSF_OCCTResourcePath': '/usr/share/opencascade/resources', 'DRAWDEFAULT': '/usr/share/opencascade/resources/DrawResources/DrawDefault', 'PYTHONPATH': '/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CSF_EXCEPTION_PROMPT': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[14.662159] (control_brazo) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[14.665308] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/rosidl_interfaces/control_brazo\n'}
+[14.673530] (-) TimerEvent: {}
+[14.676525] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/action/MoverBrazo.json\n'}
+[14.677250] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo\n'}
+[14.677658] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg\n'}
+[14.678079] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_generator_c__visibility_control.h\n'}
+[14.678505] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action\n'}
+[14.678769] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/mover_brazo.h\n'}
+[14.679034] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail\n'}
+[14.679660] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__struct.h\n'}
+[14.679987] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.h\n'}
+[14.680256] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__functions.c\n'}
+[14.680568] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__description.c\n'}
+[14.680840] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.c\n'}
+[14.681211] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__functions.h\n'}
+[14.681470] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/library_path.sh\n'}
+[14.681731] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/library_path.dsv\n'}
+[14.683417] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_generator_c.so\n'}
+[14.683810] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo\n'}
+[14.684123] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg\n'}
+[14.684297] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[14.684460] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action\n'}
+[14.684664] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail\n'}
+[14.684904] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_fastrtps_c.h\n'}
+[14.685445] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_fastrtps_c.so\n'}
+[14.685818] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo\n'}
+[14.686208] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg\n'}
+[14.686557] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[14.686949] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action\n'}
+[14.687928] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/mover_brazo.hpp\n'}
+[14.688130] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail\n'}
+[14.688306] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__builder.hpp\n'}
+[14.688467] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__traits.hpp\n'}
+[14.688704] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__struct.hpp\n'}
+[14.689042] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.hpp\n'}
+[14.689272] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo\n'}
+[14.689465] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg\n'}
+[14.689655] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[14.690040] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action\n'}
+[14.690251] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail\n'}
+[14.690443] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/dds_fastrtps\n'}
+[14.690635] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.690803] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_fastrtps_cpp.so\n'}
+[14.690973] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo\n'}
+[14.691196] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg\n'}
+[14.691369] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[14.691543] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action\n'}
+[14.691686] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail\n'}
+[14.691854] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_introspection_c.h\n'}
+[14.692016] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.c\n'}
+[14.692507] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_introspection_c.so\n'}
+[14.694132] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_c.so\n'}
+[14.694546] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo\n'}
+[14.694814] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action\n'}
+[14.694966] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail\n'}
+[14.695167] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.695369] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.cpp\n'}
+[14.696463] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_introspection_cpp.so\n'}
+[14.698783] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_cpp.so\n'}
+[14.699301] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/pythonpath.sh\n'}
+[14.699589] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/pythonpath.dsv\n'}
+[14.699853] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info\n'}
+[14.700128] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/SOURCES.txt\n'}
+[14.700472] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/dependency_links.txt\n'}
+[14.700728] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/top_level.txt\n'}
+[14.700970] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/PKG-INFO\n'}
+[14.701314] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo\n'}
+[14.701612] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/_control_brazo_s.ep.rosidl_typesupport_c.c\n'}
+[14.701885] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/_control_brazo_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[14.702148] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_c.so\n'}
+[14.702609] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_introspection_c.so\n'}
+[14.702770] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/__init__.py\n'}
+[14.702923] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_fastrtps_c.so\n'}
+[14.703095] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action\n'}
+[14.703274] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action/_mover_brazo.py\n'}
+[14.703466] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action/_mover_brazo_s.c\n'}
+[14.703632] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action/__init__.py\n'}
+[14.703785] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/_control_brazo_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[14.773952] (-) TimerEvent: {}
+[14.779169] (control_brazo) StdoutLine: {'line': b"Listing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo'...\n"}
+[14.779505] (control_brazo) StdoutLine: {'line': b"Listing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action'...\n"}
+[14.802496] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_fastrtps_c.so\n'}
+[14.803663] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_introspection_c.so\n'}
+[14.805276] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_c.so\n'}
+[14.807409] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_generator_py.so\n'}
+[14.808352] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust\n'}
+[14.819611] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/build.rs\n'}
+[14.820872] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src\n'}
+[14.822100] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/action\n'}
+[14.823273] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/action/rmw.rs\n'}
+[14.823892] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/lib.rs\n'}
+[14.824524] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/action.rs\n'}
+[14.825089] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/Cargo.toml\n'}
+[14.825708] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/action/MoverBrazo.idl\n'}
+[14.826394] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/action/MoverBrazo.action\n'}
+[14.826560] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/control_brazo/nodo_control\n'}
+[14.830105] (control_brazo) StdoutLine: {'line': b'-- Set non-toolchain portion of runtime path of "/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/control_brazo/nodo_control" to ""\n'}
+[14.830568] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/package_run_dependencies/control_brazo\n'}
+[14.830858] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/parent_prefix_path/control_brazo\n'}
+[14.831819] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/ament_prefix_path.sh\n'}
+[14.832540] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/ament_prefix_path.dsv\n'}
+[14.833800] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/path.sh\n'}
+[14.834615] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/path.dsv\n'}
+[14.835223] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.bash\n'}
+[14.835825] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.sh\n'}
+[14.836172] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.zsh\n'}
+[14.836416] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.dsv\n'}
+[14.836630] (control_brazo) StdoutLine: {'line': b'-- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/package.dsv\n'}
+[14.836781] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/packages/control_brazo\n'}
+[14.838531] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_cExport.cmake\n'}
+[14.838950] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_cExport-noconfig.cmake\n'}
+[14.839398] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[14.839742] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[14.840534] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_cppExport.cmake\n'}
+[14.841429] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[14.841697] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[14.842587] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cExport.cmake\n'}
+[14.842995] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[14.843679] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cExport.cmake\n'}
+[14.844405] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[14.845158] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[14.845796] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[14.846937] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cppExport.cmake\n'}
+[14.847595] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[14.848279] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_pyExport.cmake\n'}
+[14.848485] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_pyExport-noconfig.cmake\n'}
+[14.848650] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake-extras.cmake\n'}
+[14.848884] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[14.849203] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[14.849438] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[14.849591] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[14.849766] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[14.849921] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[14.850084] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake_aggregate_target-extras.cmake\n'}
+[14.850263] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazoConfig.cmake\n'}
+[14.850426] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazoConfig-version.cmake\n'}
+[14.850577] (control_brazo) StdoutLine: {'line': b'-- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/package.xml\n'}
+[14.853958] (control_brazo) CommandEnded: {'returncode': 0}
+[14.874070] (-) TimerEvent: {}
+[14.941133] (control_brazo) JobEnded: {'identifier': 'control_brazo', 'rc': 0}
+[14.943559] (-) EventReactorShutdown: {}

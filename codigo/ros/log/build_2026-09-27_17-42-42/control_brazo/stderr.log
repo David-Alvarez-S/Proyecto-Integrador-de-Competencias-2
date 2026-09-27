@@ -1,0 +1,5 @@
+interrupted
+gmake[1]: *** [CMakeFiles/Makefile2:616: CMakeFiles/control_brazo_s__rosidl_typesupport_c.dir/all] Interrupt
+gmake[2]: *** [CMakeFiles/ament_cmake_python_build_control_brazo_egg.dir/build.make:70: CMakeFiles/ament_cmake_python_build_control_brazo_egg] Interrupt
+gmake[1]: *** [CMakeFiles/Makefile2:499: CMakeFiles/ament_cmake_python_build_control_brazo_egg.dir/all] Interrupt
+gmake: *** [Makefile:146: all] Interrupt

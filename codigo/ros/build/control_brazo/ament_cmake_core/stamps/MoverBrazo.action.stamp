@@ -1,11 +1,11 @@
-# 1. Goal (Lo que envía el cliente)
+# Objetivo
 float32 x
 float32 y
 float32 z
 ---
-# 2. Result (Lo que devuelve el servidor al finalizar)
+# Resultado
 bool exito
 string mensaje
 ---
-# 3. Feedback (Lo que informa el servidor durante la ejecución)
+# Retroalimentacion
 float32 progreso

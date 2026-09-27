@@ -1,0 +1,183 @@
+[0.029s] Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --build /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo -- -j2 -l2
+[0.134s] [  2%] Built target control_brazo__rs
+[0.171s] [  5%] Built target control_brazo__rosidl_generator_type_description
+[0.229s] [  5%] Built target ament_cmake_python_copy_control_brazo
+[0.270s] [ 18%] Built target control_brazo__rosidl_generator_c
+[0.342s] [ 21%] Built target control_brazo__cpp
+[0.886s] running egg_info
+[0.939s] writing control_brazo.egg-info/PKG-INFO
+[0.940s] writing dependency_links to control_brazo.egg-info/dependency_links.txt
+[0.941s] writing top-level names to control_brazo.egg-info/top_level.txt
+[1.112s] reading manifest file 'control_brazo.egg-info/SOURCES.txt'
+[1.115s] writing manifest file 'control_brazo.egg-info/SOURCES.txt'
+[1.203s] [ 21%] Built target ament_cmake_python_build_control_brazo_egg
+[1.259s] [ 29%] Built target control_brazo__rosidl_typesupport_fastrtps_c
+[1.316s] [ 37%] Built target control_brazo__rosidl_typesupport_fastrtps_cpp
+[1.367s] [ 45%] Built target control_brazo__rosidl_typesupport_introspection_c
+[1.419s] [ 54%] Built target control_brazo__rosidl_typesupport_c
+[1.477s] [ 62%] Built target control_brazo__rosidl_typesupport_introspection_cpp
+[1.533s] [ 70%] Built target control_brazo__rosidl_typesupport_cpp
+[1.581s] [ 70%] Built target control_brazo
+[1.667s] [ 72%] [32mBuilding CXX object CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o[0m
+[7.097s] In file included from [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:10[m[K:
+[7.097s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:[m[K In function ‘[01m[Kcuaternion_t[01;32m[K inicializar_cuat[m[K()[m[K’:
+[7.097s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:16:35:[m[K [01;35m[Kwarning: [m[KISO C++ forbids compound-literals [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+[7.098s]    16 |   return (cuaternion_t){0, 0, 0, 0[01;35m[K}[m[K;
+[7.098s]       |                                   [01;35m[K^[m[K
+[7.104s] In file included from [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:15[m[K:
+[7.104s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:[m[K In function ‘[01m[Kestado_perfil_s_t[01;32m[K Estado_Perfil_s[m[K(planificador_perfil_s_t*, float)[m[K’:
+[7.104s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::velocidad[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[7.105s]   130 |   estado_perfil_s_t estado = {0[01;35m[K}[m[K;
+[7.105s]       |                                [01;35m[K^[m[K
+[7.105s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::aceleracion[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[7.105s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::tiron[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[7.105s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:[m[K [01;35m[Kwarning: [m[Kmissing initializer for member ‘[01m[Kestado_perfil_s_t::termino[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers-Wmissing-field-initializers]8;;[m[K]
+[7.106s] [01m[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:158:9:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kv3[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[7.106s]   158 |   float [01;35m[Kv3[m[K = v_m;
+[7.106s]       |         [01;35m[K^~[m[K
+[13.525s] [ 75%] [32m[1mLinking CXX executable nodo_control[0m
+[14.222s] [ 75%] Built target nodo_control
+[14.263s] [ 78%] Built target control_brazo__py
+[14.314s] [ 83%] Built target control_brazo__rosidl_generator_py
+[14.359s] [ 89%] Built target control_brazo_s__rosidl_typesupport_fastrtps_c
+[14.402s] [ 94%] Built target control_brazo_s__rosidl_typesupport_introspection_c
+[14.445s] [100%] Built target control_brazo_s__rosidl_typesupport_c
+[14.467s] Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --build /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo -- -j2 -l2
+[14.485s] Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --install /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo
+[14.503s] -- Install configuration: ""
+[14.503s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/rosidl_interfaces/control_brazo
+[14.504s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/action/MoverBrazo.json
+[14.504s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo
+[14.504s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg
+[14.504s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_generator_c__visibility_control.h
+[14.505s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action
+[14.505s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/mover_brazo.h
+[14.505s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail
+[14.506s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__struct.h
+[14.506s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.h
+[14.506s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__functions.c
+[14.507s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__description.c
+[14.507s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.c
+[14.508s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__functions.h
+[14.508s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/library_path.sh
+[14.508s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/library_path.dsv
+[14.509s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_generator_c.so
+[14.509s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo
+[14.509s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg
+[14.509s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[14.510s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action
+[14.510s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail
+[14.510s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_fastrtps_c.h
+[14.511s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_fastrtps_c.so
+[14.511s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo
+[14.511s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg
+[14.511s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_generator_cpp__visibility_control.hpp
+[14.512s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action
+[14.514s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/mover_brazo.hpp
+[14.514s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail
+[14.515s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__builder.hpp
+[14.515s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__traits.hpp
+[14.515s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__struct.hpp
+[14.515s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.hpp
+[14.516s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo
+[14.516s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg
+[14.516s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[14.516s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action
+[14.516s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail
+[14.517s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/dds_fastrtps
+[14.517s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_fastrtps_cpp.hpp
+[14.517s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_fastrtps_cpp.so
+[14.517s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo
+[14.517s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg
+[14.518s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[14.518s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action
+[14.518s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail
+[14.518s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_introspection_c.h
+[14.518s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.c
+[14.519s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_introspection_c.so
+[14.519s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_c.so
+[14.519s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo
+[14.519s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action
+[14.519s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail
+[14.520s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__rosidl_typesupport_introspection_cpp.hpp
+[14.520s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/include/control_brazo/control_brazo/action/detail/mover_brazo__type_support.cpp
+[14.520s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_introspection_cpp.so
+[14.520s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_typesupport_cpp.so
+[14.520s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/pythonpath.sh
+[14.521s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/pythonpath.dsv
+[14.521s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info
+[14.521s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/SOURCES.txt
+[14.521s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/dependency_links.txt
+[14.521s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/top_level.txt
+[14.522s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo-0.0.0-py3.12.egg-info/PKG-INFO
+[14.522s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo
+[14.522s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/_control_brazo_s.ep.rosidl_typesupport_c.c
+[14.522s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/_control_brazo_s.ep.rosidl_typesupport_introspection_c.c
+[14.522s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_c.so
+[14.522s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_introspection_c.so
+[14.523s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/__init__.py
+[14.523s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_fastrtps_c.so
+[14.523s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action
+[14.523s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action/_mover_brazo.py
+[14.523s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action/_mover_brazo_s.c
+[14.524s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action/__init__.py
+[14.524s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/_control_brazo_s.ep.rosidl_typesupport_fastrtps_c.c
+[14.591s] Listing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo'...
+[14.591s] Listing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/action'...
+[14.603s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_fastrtps_c.so
+[14.603s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_introspection_c.so
+[14.604s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/python3.12/site-packages/control_brazo/control_brazo_s__rosidl_typesupport_c.so
+[14.604s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/libcontrol_brazo__rosidl_generator_py.so
+[14.605s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust
+[14.605s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/build.rs
+[14.605s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src
+[14.606s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/action
+[14.606s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/action/rmw.rs
+[14.606s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/lib.rs
+[14.606s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/src/action.rs
+[14.606s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/rust/Cargo.toml
+[14.607s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/action/MoverBrazo.idl
+[14.607s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/action/MoverBrazo.action
+[14.607s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/control_brazo/nodo_control
+[14.611s] -- Set non-toolchain portion of runtime path of "/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/lib/control_brazo/nodo_control" to ""
+[14.611s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/package_run_dependencies/control_brazo
+[14.611s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/parent_prefix_path/control_brazo
+[14.611s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/ament_prefix_path.sh
+[14.612s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/ament_prefix_path.dsv
+[14.612s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/path.sh
+[14.612s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/environment/path.dsv
+[14.613s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.bash
+[14.613s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.sh
+[14.613s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.zsh
+[14.614s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/local_setup.dsv
+[14.614s] -- Installing: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/package.dsv
+[14.614s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/ament_index/resource_index/packages/control_brazo
+[14.615s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_cExport.cmake
+[14.615s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_cExport-noconfig.cmake
+[14.615s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cExport.cmake
+[14.615s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[14.616s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_cppExport.cmake
+[14.616s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cppExport.cmake
+[14.616s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[14.617s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cExport.cmake
+[14.617s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[14.617s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cExport.cmake
+[14.617s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cExport-noconfig.cmake
+[14.618s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cppExport.cmake
+[14.618s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[14.618s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cppExport.cmake
+[14.618s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazo__rosidl_typesupport_cppExport-noconfig.cmake
+[14.618s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_pyExport.cmake
+[14.619s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/export_control_brazo__rosidl_generator_pyExport-noconfig.cmake
+[14.619s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake-extras.cmake
+[14.619s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_dependencies-extras.cmake
+[14.619s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_include_directories-extras.cmake
+[14.619s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_libraries-extras.cmake
+[14.619s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/ament_cmake_export_targets-extras.cmake
+[14.620s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[14.620s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[14.620s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/rosidl_cmake_aggregate_target-extras.cmake
+[14.620s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazoConfig.cmake
+[14.621s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/cmake/control_brazoConfig-version.cmake
+[14.621s] -- Up-to-date: /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/control_brazo/share/control_brazo/package.xml
+[14.622s] Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --install /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo

@@ -1,6 +1,7 @@
 #ifndef INTERPOLACIONES_H
 #define INTERPOLACIONES_H
 
+#include "Coordenadas_Cilindricas.h"
 #include "Cuaterniones.h"
 #include "Vectores.h"
 #include <math.h>
@@ -59,4 +60,20 @@ static inline void slerp(cuaternion_t *out, cuaternion_t c1,
   cuat_suma(out, a, b);
 }
 
+static inline coor_cilindricas_t
+lerp_cilindrico(coor_cilindricas_t c1, coor_cilindricas_t c2, float s) {
+  coor_cilindricas_t out;
+  out.r = c1.r + s * (c2.r - c1.r);
+  out.z = c1.z + s * (c2.z - c1.z);
+
+  // Camino angular más corto
+  float dtheta = wrap_to_pi(c2.theta - c1.theta);
+  out.theta = c1.theta + s * dtheta;
+
+  return out;
+}
+
+static inline float lerp_angulo(float ini, float fin, float s) {
+  return ini + (fin - ini) * s;
+}
 #endif // INTERPOLACIONES_H

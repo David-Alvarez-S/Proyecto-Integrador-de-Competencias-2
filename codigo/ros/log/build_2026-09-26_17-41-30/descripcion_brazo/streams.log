@@ -1,0 +1,19 @@
+[1.760s] Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/descripcion_brazo build --build-base /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build install --record /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log --install-scripts $base/lib/Descripcion_Brazo --single-version-externally-managed install_data
+[2.308s] running egg_info
+[2.348s] writing ../../build/descripcion_brazo/descripcion_brazo.egg-info/PKG-INFO
+[2.349s] writing dependency_links to ../../build/descripcion_brazo/descripcion_brazo.egg-info/dependency_links.txt
+[2.350s] writing requirements to ../../build/descripcion_brazo/descripcion_brazo.egg-info/requires.txt
+[2.351s] writing top-level names to ../../build/descripcion_brazo/descripcion_brazo.egg-info/top_level.txt
+[2.434s] reading manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'
+[2.436s] writing manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'
+[2.437s] running build
+[2.438s] running build_py
+[2.438s] running install
+[2.453s] running install_lib
+[2.493s] running install_data
+[2.495s] running install_egg_info
+[2.540s] removing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info' (and everything under it)
+[2.542s] Copying ../../build/descripcion_brazo/descripcion_brazo.egg-info to /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info
+[2.544s] running install_scripts
+[2.821s] writing list of installed files to '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log'
+[2.907s] Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo' returned '0': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/descripcion_brazo build --build-base /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build install --record /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log --install-scripts $base/lib/Descripcion_Brazo --single-version-externally-managed install_data

@@ -1199,16 +1199,16 @@ control_brazo__action__MoverBrazo_FeedbackMessage__get_type_description(
 }
 
 static char toplevel_type_raw_source[] =
-  "# 1. Goal (Lo que env\\xc3\\xada el cliente)\n"
+  "# Objetivo\n"
   "float32 x\n"
   "float32 y\n"
   "float32 z\n"
   "---\n"
-  "# 2. Result (Lo que devuelve el servidor al finalizar)\n"
+  "# Resultado\n"
   "bool exito\n"
   "string mensaje\n"
   "---\n"
-  "# 3. Feedback (Lo que informa el servidor durante la ejecuci\\xc3\\xb3n)\n"
+  "# Retroalimentacion\n"
   "float32 progreso";
 
 static char action_encoding[] = "action";
@@ -1224,7 +1224,7 @@ control_brazo__action__MoverBrazo__get_individual_type_description_source(
   static const rosidl_runtime_c__type_description__TypeSource source = {
     {control_brazo__action__MoverBrazo__TYPE_NAME, 31, 31},
     {action_encoding, 6, 6},
-    {toplevel_type_raw_source, 236, 236},
+    {toplevel_type_raw_source, 124, 124},
   };
   return &source;
 }

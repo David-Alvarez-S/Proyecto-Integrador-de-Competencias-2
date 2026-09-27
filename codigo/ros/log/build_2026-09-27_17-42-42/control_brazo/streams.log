@@ -1,0 +1,28 @@
+[0.031s] Invoking command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --build /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo -- -j2 -l2
+[0.169s] [  5%] Built target control_brazo__rs
+[0.169s] [  5%] Built target control_brazo__rosidl_generator_type_description
+[0.237s] [ 18%] Built target control_brazo__rosidl_generator_c
+[0.284s] [ 18%] Built target ament_cmake_python_copy_control_brazo
+[0.297s] [ 21%] Built target control_brazo__cpp
+[0.350s] [ 29%] Built target control_brazo__rosidl_typesupport_c
+[0.365s] [ 37%] Built target control_brazo__rosidl_typesupport_introspection_c
+[0.430s] [ 45%] Built target control_brazo__rosidl_typesupport_introspection_cpp
+[0.445s] [ 54%] Built target control_brazo__rosidl_typesupport_cpp
+[0.514s] [ 62%] Built target control_brazo__rosidl_typesupport_fastrtps_c
+[0.590s] [ 70%] Built target control_brazo__rosidl_typesupport_fastrtps_cpp
+[0.721s] [ 75%] Built target nodo_control
+[0.799s] [ 75%] Built target control_brazo
+[0.879s] [ 78%] Built target control_brazo__py
+[0.974s] [ 83%] Built target control_brazo__rosidl_generator_py
+[1.061s] [ 89%] Built target control_brazo_s__rosidl_typesupport_fastrtps_c
+[1.072s] running egg_info
+[1.129s] writing control_brazo.egg-info/PKG-INFO
+[1.129s] writing dependency_links to control_brazo.egg-info/dependency_links.txt
+[1.129s] writing top-level names to control_brazo.egg-info/top_level.txt
+[1.154s] [ 94%] Built target control_brazo_s__rosidl_typesupport_introspection_c
+[1.206s] interrupted
+[1.210s] gmake[1]: *** [CMakeFiles/Makefile2:616: CMakeFiles/control_brazo_s__rosidl_typesupport_c.dir/all] Interrupt
+[1.269s] gmake[2]: *** [CMakeFiles/ament_cmake_python_build_control_brazo_egg.dir/build.make:70: CMakeFiles/ament_cmake_python_build_control_brazo_egg] Interrupt
+[1.270s] gmake[1]: *** [CMakeFiles/Makefile2:499: CMakeFiles/ament_cmake_python_build_control_brazo_egg.dir/all] Interrupt
+[1.270s] gmake: *** [Makefile:146: all] Interrupt
+[1.273s] Invoked command in '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo' returned '-2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --build /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo -- -j2 -l2

@@ -6,7 +6,7 @@
 module control_brazo {
   module action {
     @verbatim (language="comment", text=
-      "1. Goal (Lo que envía el cliente)")
+      "Objetivo")
     struct MoverBrazo_Goal {
       float x;
 
@@ -15,14 +15,14 @@ module control_brazo {
       float z;
     };
     @verbatim (language="comment", text=
-      "2. Result (Lo que devuelve el servidor al finalizar)")
+      "Resultado")
     struct MoverBrazo_Result {
       boolean exito;
 
       string mensaje;
     };
     @verbatim (language="comment", text=
-      "3. Feedback (Lo que informa el servidor durante la ejecución)")
+      "Retroalimentacion")
     struct MoverBrazo_Feedback {
       float progreso;
     };

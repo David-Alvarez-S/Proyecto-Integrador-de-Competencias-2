@@ -47,4 +47,17 @@ static inline float vect_magnitud(vector_t in) {
   return sqrtf((in.x * in.x) + (in.y * in.y) + (in.z * in.z));
 }
 
+// Interpolación lineal entre 'ini' y 'fin'. t se espera en [0,1], pero
+// no se clampea acá a propósito: si el llamador se pasa (t<0 o t>1) por
+// error de redondeo en el lazo, prefiero que se note en el resultado
+// antes que esconderlo silenciosamente.
+static inline void vect_lerp(vector_t *out, vector_t ini, vector_t fin,
+                             float t) {
+  if (!out)
+    return;
+  out->x = ini.x + (fin.x - ini.x) * t;
+  out->y = ini.y + (fin.y - ini.y) * t;
+  out->z = ini.z + (fin.z - ini.z) * t;
+}
+
 #endif // VECTORES_H

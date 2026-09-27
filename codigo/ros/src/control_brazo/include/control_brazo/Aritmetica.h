@@ -18,4 +18,13 @@ typedef struct {
   float p;
   float y;
 } euler_grad_t;
+
+static inline float wrap_to_pi(float a) {
+  while (a > PI)
+    a -= 2.0f * PI;
+  while (a < -PI)
+    a += 2.0f * PI;
+  return a;
+}
+
 #endif // ARITMETICA_H

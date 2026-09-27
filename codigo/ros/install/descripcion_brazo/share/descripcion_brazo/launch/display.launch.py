@@ -13,7 +13,7 @@ def generate_launch_description():
     with open(urdf_path, 'r') as infp:
         robot_desc = infp.read()
 
-    # 1. Publicador del estado del robot
+    # Publicador del estado del robot
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -21,14 +21,14 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_desc}]
     )
 
-    # 2. Tu nodo de control C++ traído desde el otro paquete ('control_brazo')
+    #  Nodo de control C++ ('control_brazo')
     nodo_control_node = Node(
         package='control_brazo',
         executable='nodo_control',
         name='nodo_control'
     )
 
-    # 3. RViz2
+    # RViz2
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',

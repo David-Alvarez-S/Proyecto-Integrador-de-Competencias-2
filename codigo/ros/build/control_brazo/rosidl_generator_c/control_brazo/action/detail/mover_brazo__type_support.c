@@ -5,9 +5,9 @@
 #include <string.h>
 
 #include "control_brazo/action/detail/mover_brazo__functions.h"
-#include "rosidl_typesupport_interface/macros.h"
 #include "control_brazo/action/detail/mover_brazo__struct.h"
 #include "control_brazo/action/detail/mover_brazo__type_support.h"
+#include "rosidl_typesupport_interface/macros.h"
 
 #ifdef __cplusplus
 extern "C"
