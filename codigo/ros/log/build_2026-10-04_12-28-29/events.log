@@ -1,0 +1,256 @@
+[0.000000] (-) TimerEvent: {}
+[0.000347] (control_brazo) JobQueued: {'identifier': 'control_brazo', 'dependencies': OrderedDict()}
+[0.000423] (descripcion_brazo) JobQueued: {'identifier': 'descripcion_brazo', 'dependencies': OrderedDict()}
+[0.000576] (control_brazo) JobStarted: {'identifier': 'control_brazo'}
+[0.010583] (descripcion_brazo) JobStarted: {'identifier': 'descripcion_brazo'}
+[0.022733] (control_brazo) JobProgress: {'identifier': 'control_brazo', 'progress': 'cmake'}
+[0.023949] (control_brazo) JobProgress: {'identifier': 'control_brazo', 'progress': 'build'}
+[0.025313] (control_brazo) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', '--', '-j2', '-l2'], 'cwd': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', 'env': OrderedDict({'MAIL': '/var/spool/mail/agustin', 'USER': 'agustin', 'HYPRLAND_INSTANCE_SIGNATURE': 'efb50993780079460b0cbed1363e2166a2de1d9f_1791125776_1417065882', 'HYPRLAND_CMD': 'Hyprland --watchdog-fd 5', 'HOSTNAME': 'David', 'XDG_SESSION_TYPE': 'wayland', 'CSF_TObjDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_CACHE_HOME': '/home/agustin/.cache', 'CSF_XCAFDefaults': '/usr/share/opencascade/resources/StdResource', 'SHLVL': '4', 'XCURSOR_SIZE': '20', 'CSF_XSMessage': '/usr/share/opencascade/resources/XSMessage', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/agustin', 'LESS': '-R', 'CSF_TObjMessage': '/usr/share/opencascade/resources/TObj', 'TERMINFO': '/usr/lib/kitty/terminfo', 'MOTD_SHOWN': 'pam', 'OLDPWD': '/home/agustin', 'MMGT_CLEAR': '1', 'MOZ_ENABLE_WAYLAND': '1', 'KITTY_INSTALLATION_DIR': '/usr/lib/kitty', 'LSCOLORS': 'Gxfxcxdxbxegedabagacad', 'ZSH': '/home/agustin/.oh-my-zsh', 'CSF_ShadersDirectory': '/usr/share/opencascade/resources/Shaders', 'PAGER': 'less', 'CSF_MDTVTexturesDirectory': '/usr/share/opencascade/resources/Textures', 'ROS_PYTHON_VERSION': '3', 'KITTY_PID': '3582', 'DRAWHOME': '/usr/share/opencascade/resources/DrawResources', 'DISTROBOX_ENTER_PATH': '/usr/sbin/distrobox-enter', 'CSF_IGESDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'SYSTEMD_EXEC_PID': '595', 'XDG_STATE_HOME': '/home/agustin/.local/state', 'container': 'podman', 'CASROOT': '/usr', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'WAYLAND_DISPLAY': 'wayland-1', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'agustin', '_': '/usr/bin/colcon', 'TERMINFO_DIRS': '/usr/share/terminfo:/run/host/usr/share/terminfo', 'XDG_SESSION_CLASS': 'user', 'CSF_LANGUAGE': 'us', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/system.slice/system-ly.slice/ly@tty2.service/memory.pressure', 'ROS_VERSION': '2', 'XDG_SESSION_ID': 'c1', 'KITTY_PUBLIC_KEY': '1:F5MP21x%)Gn%@_5IrFkLniK;9P2edB#71OFHH#}f', 'TERM': 'xterm-kitty', 'HL_INITIAL_WORKSPACE_TOKEN': 'bfc986b4-8be2-4b4e-9836-163b2f5c40d1', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin', 'INVOCATION_ID': '8754668949f44de49f19bf07e7da8687', 'XDG_RUNTIME_DIR': '/run/user/1000', 'HYPRCURSOR_SIZE': '20', 'DISPLAY': ':0', 'CSF_XmlOcafResource': '/usr/share/opencascade/resources/XmlOcafResource', 'XDG_CURRENT_DESKTOP': 'Hyprland', 'LANG': 'en_US.UTF-8', 'XDG_CONFIG_HOME': '/home/agustin/.config', 'XDG_DATA_HOME': '/home/agustin/.local/share', 'CSF_StandardDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_SESSION_DESKTOP': 'Hyprland', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.jxl=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'CSF_PluginDefaults': '/usr/share/opencascade/resources/StdResource', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': 'zsh', 'CSF_SHMessage': '/usr/share/opencascade/resources/SHMessage', 'KITTY_WINDOW_ID': '1', 'VSSCRIPT_PATH': '/usr/lib/python3.14/site-packages/vapoursynth/libvsscript.so', 'CSF_STEPDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'CONTAINER_ID': 'ros2-env', 'CSF_StandardLiteDefaults': '/usr/share/opencascade/resources/StdResource', 'PWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo', 'CSF_DrawPluginDefaults': '/usr/share/opencascade/resources/DrawResources', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share', 'XDG_BACKEND': 'wayland', 'CSF_MIGRATION_TYPES': '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt', 'XDG_CONFIG_DIRS': '/etc/xdg', 'CSF_OCCTResourcePath': '/usr/share/opencascade/resources', 'DRAWDEFAULT': '/usr/share/opencascade/resources/DrawResources/DrawDefault', 'PYTHONPATH': '/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CSF_EXCEPTION_PROMPT': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.098729] (-) TimerEvent: {}
+[0.131525] (control_brazo) StdoutLine: {'line': b'[  2%] Built target control_brazo__rosidl_generator_type_description\n'}
+[0.172751] (control_brazo) StdoutLine: {'line': b'[  5%] Built target control_brazo__rs\n'}
+[0.199156] (-) TimerEvent: {}
+[0.208194] (control_brazo) StdoutLine: {'line': b'[  5%] Built target ament_cmake_python_copy_control_brazo\n'}
+[0.273291] (control_brazo) StdoutLine: {'line': b'[ 18%] Built target control_brazo__rosidl_generator_c\n'}
+[0.292798] (control_brazo) StdoutLine: {'line': b'[ 21%] Built target control_brazo__cpp\n'}
+[0.300312] (-) TimerEvent: {}
+[0.352270] (control_brazo) StdoutLine: {'line': b'[ 29%] Built target control_brazo__rosidl_typesupport_fastrtps_c\n'}
+[0.400733] (-) TimerEvent: {}
+[0.409614] (control_brazo) StdoutLine: {'line': b'[ 37%] Built target control_brazo__rosidl_typesupport_fastrtps_cpp\n'}
+[0.462056] (control_brazo) StdoutLine: {'line': b'[ 45%] Built target control_brazo__rosidl_typesupport_introspection_c\n'}
+[0.501594] (-) TimerEvent: {}
+[0.515959] (control_brazo) StdoutLine: {'line': b'[ 54%] Built target control_brazo__rosidl_typesupport_c\n'}
+[0.571788] (control_brazo) StdoutLine: {'line': b'[ 62%] Built target control_brazo__rosidl_typesupport_introspection_cpp\n'}
+[0.602530] (-) TimerEvent: {}
+[0.627734] (control_brazo) StdoutLine: {'line': b'[ 70%] Built target control_brazo__rosidl_typesupport_cpp\n'}
+[0.675484] (control_brazo) StdoutLine: {'line': b'[ 70%] Built target control_brazo\n'}
+[0.703225] (-) TimerEvent: {}
+[0.759795] (control_brazo) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o\x1b[0m\n'}
+[0.804812] (-) TimerEvent: {}
+[0.905248] (-) TimerEvent: {}
+[1.006319] (-) TimerEvent: {}
+[1.106749] (-) TimerEvent: {}
+[1.207322] (-) TimerEvent: {}
+[1.308985] (-) TimerEvent: {}
+[1.409442] (-) TimerEvent: {}
+[1.492522] (control_brazo) StdoutLine: {'line': b'running egg_info\n'}
+[1.510501] (-) TimerEvent: {}
+[1.550523] (control_brazo) StdoutLine: {'line': b'writing control_brazo.egg-info/PKG-INFO\n'}
+[1.551788] (control_brazo) StdoutLine: {'line': b'writing dependency_links to control_brazo.egg-info/dependency_links.txt\n'}
+[1.552763] (control_brazo) StdoutLine: {'line': b'writing top-level names to control_brazo.egg-info/top_level.txt\n'}
+[1.611325] (-) TimerEvent: {}
+[1.712201] (-) TimerEvent: {}
+[1.812321] (control_brazo) StdoutLine: {'line': b"reading manifest file 'control_brazo.egg-info/SOURCES.txt'\n"}
+[1.814257] (-) TimerEvent: {}
+[1.816924] (control_brazo) StdoutLine: {'line': b"writing manifest file 'control_brazo.egg-info/SOURCES.txt'\n"}
+[1.915018] (-) TimerEvent: {}
+[1.923684] (control_brazo) StdoutLine: {'line': b'[ 72%] Built target ament_cmake_python_build_control_brazo_egg\n'}
+[1.977838] (control_brazo) StdoutLine: {'line': b'[ 75%] Built target control_brazo__py\n'}
+[2.015918] (-) TimerEvent: {}
+[2.036495] (control_brazo) StdoutLine: {'line': b'[ 81%] Built target control_brazo__rosidl_generator_py\n'}
+[2.098048] (control_brazo) StdoutLine: {'line': b'[ 86%] Built target control_brazo_s__rosidl_typesupport_fastrtps_c\n'}
+[2.116136] (-) TimerEvent: {}
+[2.155538] (control_brazo) StdoutLine: {'line': b'[ 91%] Built target control_brazo_s__rosidl_typesupport_introspection_c\n'}
+[2.212043] (control_brazo) StdoutLine: {'line': b'[ 97%] Built target control_brazo_s__rosidl_typesupport_c\n'}
+[2.216271] (-) TimerEvent: {}
+[2.317850] (-) TimerEvent: {}
+[2.418341] (-) TimerEvent: {}
+[2.519336] (-) TimerEvent: {}
+[2.620328] (-) TimerEvent: {}
+[2.720799] (-) TimerEvent: {}
+[2.821256] (-) TimerEvent: {}
+[2.922792] (-) TimerEvent: {}
+[3.023247] (-) TimerEvent: {}
+[3.124294] (-) TimerEvent: {}
+[3.224915] (-) TimerEvent: {}
+[3.247429] (descripcion_brazo) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/descripcion_brazo', 'build', '--build-base', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/build', 'install', '--record', '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log', '--install-scripts', '$base/lib/Descripcion_Brazo', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/Descripcion_Brazo', 'env': OrderedDict({'MAIL': '/var/spool/mail/agustin', 'USER': 'agustin', 'HYPRLAND_INSTANCE_SIGNATURE': 'efb50993780079460b0cbed1363e2166a2de1d9f_1791125776_1417065882', 'HYPRLAND_CMD': 'Hyprland --watchdog-fd 5', 'HOSTNAME': 'David', 'XDG_SESSION_TYPE': 'wayland', 'CSF_TObjDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_CACHE_HOME': '/home/agustin/.cache', 'CSF_XCAFDefaults': '/usr/share/opencascade/resources/StdResource', 'SHLVL': '4', 'XCURSOR_SIZE': '20', 'CSF_XSMessage': '/usr/share/opencascade/resources/XSMessage', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/agustin', 'LESS': '-R', 'CSF_TObjMessage': '/usr/share/opencascade/resources/TObj', 'TERMINFO': '/usr/lib/kitty/terminfo', 'MOTD_SHOWN': 'pam', 'OLDPWD': '/home/agustin', 'MMGT_CLEAR': '1', 'MOZ_ENABLE_WAYLAND': '1', 'KITTY_INSTALLATION_DIR': '/usr/lib/kitty', 'LSCOLORS': 'Gxfxcxdxbxegedabagacad', 'ZSH': '/home/agustin/.oh-my-zsh', 'CSF_ShadersDirectory': '/usr/share/opencascade/resources/Shaders', 'PAGER': 'less', 'CSF_MDTVTexturesDirectory': '/usr/share/opencascade/resources/Textures', 'ROS_PYTHON_VERSION': '3', 'KITTY_PID': '3582', 'DRAWHOME': '/usr/share/opencascade/resources/DrawResources', 'DISTROBOX_ENTER_PATH': '/usr/sbin/distrobox-enter', 'CSF_IGESDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'SYSTEMD_EXEC_PID': '595', 'XDG_STATE_HOME': '/home/agustin/.local/state', 'container': 'podman', 'CASROOT': '/usr', 'COLORTERM': 'truecolor', 'DEBUGINFOD_URLS': 'https://debuginfod.archlinux.org', 'WAYLAND_DISPLAY': 'wayland-1', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'agustin', '_': '/usr/bin/colcon', 'TERMINFO_DIRS': '/usr/share/terminfo:/run/host/usr/share/terminfo', 'XDG_SESSION_CLASS': 'user', 'CSF_LANGUAGE': 'us', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/system.slice/system-ly.slice/ly@tty2.service/memory.pressure', 'ROS_VERSION': '2', 'XDG_SESSION_ID': 'c1', 'KITTY_PUBLIC_KEY': '1:F5MP21x%)Gn%@_5IrFkLniK;9P2edB#71OFHH#}f', 'TERM': 'xterm-kitty', 'HL_INITIAL_WORKSPACE_TOKEN': 'bfc986b4-8be2-4b4e-9836-163b2f5c40d1', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin:/sbin:/bin', 'INVOCATION_ID': '8754668949f44de49f19bf07e7da8687', 'XDG_RUNTIME_DIR': '/run/user/1000', 'HYPRCURSOR_SIZE': '20', 'DISPLAY': ':0', 'CSF_XmlOcafResource': '/usr/share/opencascade/resources/XmlOcafResource', 'XDG_CURRENT_DESKTOP': 'Hyprland', 'LANG': 'en_US.UTF-8', 'XDG_CONFIG_HOME': '/home/agustin/.config', 'XDG_DATA_HOME': '/home/agustin/.local/share', 'CSF_StandardDefaults': '/usr/share/opencascade/resources/StdResource', 'XDG_SESSION_DESKTOP': 'Hyprland', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.jxl=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'CSF_PluginDefaults': '/usr/share/opencascade/resources/StdResource', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': 'zsh', 'CSF_SHMessage': '/usr/share/opencascade/resources/SHMessage', 'KITTY_WINDOW_ID': '1', 'VSSCRIPT_PATH': '/usr/lib/python3.14/site-packages/vapoursynth/libvsscript.so', 'CSF_STEPDefaults': '/usr/share/opencascade/resources/XSTEPResource', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'CONTAINER_ID': 'ros2-env', 'CSF_StandardLiteDefaults': '/usr/share/opencascade/resources/StdResource', 'PWD': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo', 'CSF_DrawPluginDefaults': '/usr/share/opencascade/resources/DrawResources', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share', 'XDG_BACKEND': 'wayland', 'CSF_MIGRATION_TYPES': '/usr/share/opencascade/resources/StdResource/MigrationSheet.txt', 'XDG_CONFIG_DIRS': '/etc/xdg', 'CSF_OCCTResourcePath': '/usr/share/opencascade/resources', 'DRAWDEFAULT': '/usr/share/opencascade/resources/DrawResources/DrawDefault', 'PYTHONPATH': '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages:/opt/ros/jazzy/opt/gz_math_vendor/lib/python:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CSF_EXCEPTION_PROMPT': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[3.325046] (-) TimerEvent: {}
+[3.426175] (-) TimerEvent: {}
+[3.527629] (-) TimerEvent: {}
+[3.629318] (-) TimerEvent: {}
+[3.729819] (-) TimerEvent: {}
+[3.830324] (-) TimerEvent: {}
+[3.931981] (-) TimerEvent: {}
+[4.032479] (-) TimerEvent: {}
+[4.086500] (descripcion_brazo) StdoutLine: {'line': b'running egg_info\n'}
+[4.134519] (-) TimerEvent: {}
+[4.165490] (descripcion_brazo) StdoutLine: {'line': b'writing ../../build/descripcion_brazo/descripcion_brazo.egg-info/PKG-INFO\n'}
+[4.166639] (descripcion_brazo) StdoutLine: {'line': b'writing dependency_links to ../../build/descripcion_brazo/descripcion_brazo.egg-info/dependency_links.txt\n'}
+[4.167462] (descripcion_brazo) StdoutLine: {'line': b'writing requirements to ../../build/descripcion_brazo/descripcion_brazo.egg-info/requires.txt\n'}
+[4.167783] (descripcion_brazo) StdoutLine: {'line': b'writing top-level names to ../../build/descripcion_brazo/descripcion_brazo.egg-info/top_level.txt\n'}
+[4.235373] (-) TimerEvent: {}
+[4.286539] (descripcion_brazo) StdoutLine: {'line': b"reading manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'\n"}
+[4.289047] (descripcion_brazo) StdoutLine: {'line': b"writing manifest file '../../build/descripcion_brazo/descripcion_brazo.egg-info/SOURCES.txt'\n"}
+[4.292576] (descripcion_brazo) StdoutLine: {'line': b'running build\n'}
+[4.292879] (descripcion_brazo) StdoutLine: {'line': b'running build_py\n'}
+[4.293112] (descripcion_brazo) StdoutLine: {'line': b'running install\n'}
+[4.310229] (descripcion_brazo) StdoutLine: {'line': b'running install_lib\n'}
+[4.336089] (-) TimerEvent: {}
+[4.375339] (descripcion_brazo) StdoutLine: {'line': b'running install_data\n'}
+[4.375864] (descripcion_brazo) StdoutLine: {'line': b'running install_egg_info\n'}
+[4.436228] (-) TimerEvent: {}
+[4.438016] (descripcion_brazo) StdoutLine: {'line': b"removing '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info' (and everything under it)\n"}
+[4.439336] (descripcion_brazo) StdoutLine: {'line': b'Copying ../../build/descripcion_brazo/descripcion_brazo.egg-info to /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/install/descripcion_brazo/lib/python3.12/site-packages/descripcion_brazo-0.0.0-py3.12.egg-info\n'}
+[4.440622] (descripcion_brazo) StdoutLine: {'line': b'running install_scripts\n'}
+[4.536373] (-) TimerEvent: {}
+[4.638209] (-) TimerEvent: {}
+[4.739246] (-) TimerEvent: {}
+[4.829964] (descripcion_brazo) StdoutLine: {'line': b"writing list of installed files to '/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/descripcion_brazo/install.log'\n"}
+[4.839433] (-) TimerEvent: {}
+[4.927300] (descripcion_brazo) CommandEnded: {'returncode': 0}
+[4.940653] (-) TimerEvent: {}
+[4.958099] (descripcion_brazo) JobEnded: {'identifier': 'descripcion_brazo', 'rc': 0}
+[5.040843] (-) TimerEvent: {}
+[5.141325] (-) TimerEvent: {}
+[5.241890] (-) TimerEvent: {}
+[5.342378] (-) TimerEvent: {}
+[5.442869] (-) TimerEvent: {}
+[5.543348] (-) TimerEvent: {}
+[5.643834] (-) TimerEvent: {}
+[5.744325] (-) TimerEvent: {}
+[5.844836] (-) TimerEvent: {}
+[5.945341] (-) TimerEvent: {}
+[6.045958] (-) TimerEvent: {}
+[6.146508] (-) TimerEvent: {}
+[6.247682] (-) TimerEvent: {}
+[6.348175] (-) TimerEvent: {}
+[6.448685] (-) TimerEvent: {}
+[6.549170] (-) TimerEvent: {}
+[6.649698] (-) TimerEvent: {}
+[6.750301] (-) TimerEvent: {}
+[6.850831] (-) TimerEvent: {}
+[6.951346] (-) TimerEvent: {}
+[7.052077] (-) TimerEvent: {}
+[7.152566] (-) TimerEvent: {}
+[7.253045] (-) TimerEvent: {}
+[7.353540] (-) TimerEvent: {}
+[7.454132] (-) TimerEvent: {}
+[7.554693] (-) TimerEvent: {}
+[7.655167] (-) TimerEvent: {}
+[7.755667] (-) TimerEvent: {}
+[7.778218] (control_brazo) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:10\x1b[m\x1b[K:\n'}
+[7.778673] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kcuaternion_t\x1b[01;32m\x1b[K inicializar_cuat\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.778899] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h:16:35:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[KISO C++ forbids compound-literals [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic\x07-Wpedantic\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.779122] (control_brazo) StderrLine: {'line': b'   16 |   return (cuaternion_t){0, 0, 0, 0\x1b[01;35m\x1b[K}\x1b[m\x1b[K;\n'}
+[7.779324] (control_brazo) StderrLine: {'line': b'      |                                   \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[7.785596] (control_brazo) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h:5\x1b[m\x1b[K,\n'}
+[7.786130] (control_brazo) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:12\x1b[m\x1b[K:\n'}
+[7.786346] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kbool\x1b[01;32m\x1b[K IK\x1b[m\x1b[K(servomotores_h*, vector_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.786623] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h:324:16:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktoo few arguments to function \xe2\x80\x98\x1b[01m\x1b[Kbool\x1b[01;32m\x1b[K IK_ext\x1b[m\x1b[K(servomotores_h*, vector_t, float, float, ik_continuidad_t*, float*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.786860] (control_brazo) StderrLine: {'line': b'  324 |   return \x1b[01;31m\x1b[KIK_ext(out, a, 0.0f, 0.0f, NULL)\x1b[m\x1b[K;\n'}
+[7.787096] (control_brazo) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.787307] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h:159:20:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[7.787559] (control_brazo) StderrLine: {'line': b'  159 | static inline bool \x1b[01;36m\x1b[KIK_ext\x1b[m\x1b[K(servomotores_h *out, vector_t a, float error_max,\n'}
+[7.787826] (control_brazo) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[7.789548] (control_brazo) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h:7\x1b[m\x1b[K:\n'}
+[7.789825] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t\x1b[01;32m\x1b[K Estado_Perfil_s\x1b[m\x1b[K(planificador_perfil_s_t*, float)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.790049] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::velocidad\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.790295] (control_brazo) StderrLine: {'line': b'  130 |   estado_perfil_s_t estado = {0\x1b[01;35m\x1b[K}\x1b[m\x1b[K;\n'}
+[7.790544] (control_brazo) StderrLine: {'line': b'      |                                \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[7.790764] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::aceleracion\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.790984] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::tiron\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.791301] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:130:32:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kmissing initializer for member \xe2\x80\x98\x1b[01m\x1b[Kestado_perfil_s_t::termino\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wmissing-field-initializers\x07-Wmissing-field-initializers\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.791668] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:158:9:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kv3\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.791910] (control_brazo) StderrLine: {'line': b'  158 |   float \x1b[01;35m\x1b[Kv3\x1b[m\x1b[K = v_m;\n'}
+[7.792172] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[7.794822] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kbool\x1b[01;32m\x1b[K Movimiento_Iniciar\x1b[m\x1b[K(movimiento_t*, servomotores_h, vector_t, limites_perfil_s_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.795078] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h:62:14:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktoo few arguments to function \xe2\x80\x98\x1b[01m\x1b[Kbool\x1b[01;32m\x1b[K IK_ext\x1b[m\x1b[K(servomotores_h*, vector_t, float, float, ik_continuidad_t*, float*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.795298] (control_brazo) StderrLine: {'line': b'   62 |   if (!\x1b[01;31m\x1b[KIK_ext(&fin, destino, 0.0f, 0.0f, NULL)\x1b[m\x1b[K)\n'}
+[7.796154] (control_brazo) StderrLine: {'line': b'      |        \x1b[01;31m\x1b[K~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.796379] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h:159:20:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[7.796621] (control_brazo) StderrLine: {'line': b'  159 | static inline bool \x1b[01;36m\x1b[KIK_ext\x1b[m\x1b[K(servomotores_h *out, vector_t a, float error_max,\n'}
+[7.796979] (control_brazo) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[7.797195] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:\x1b[m\x1b[K At global scope:\n'}
+[7.797464] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:105:3:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[KISO C++ forbids declaration of \xe2\x80\x98\x1b[01m\x1b[Khandle_cancel\x1b[m\x1b[K\xe2\x80\x99 with no type [\x1b[01;31m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive\x07-fpermissive\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[7.797714] (control_brazo) StderrLine: {'line': b'  105 |   \x1b[01;31m\x1b[Khandle_cancel\x1b[m\x1b[K(const std::shared_ptr<GoalHandleMoverBrazo> goal_handle) {\n'}
+[7.797923] (control_brazo) StderrLine: {'line': b'      |   \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.855836] (-) TimerEvent: {}
+[7.889786] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[KControlBrazoNode::\x1b[01;32m\x1b[KControlBrazoNode\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.890226] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:35:62:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kcreate_server<ControlBrazoNode::MoverBrazo>(ControlBrazoNode*, const char [12], std::_Bind_helper<false, rclcpp_action::GoalResponse (ControlBrazoNode::*)(const std::array<unsigned char, 16>&, std::shared_ptr<const control_brazo::action::MoverBrazo_Goal_<std::allocator<void> > >), ControlBrazoNode*, const std::_Placeholder<1>&, const std::_Placeholder<2>&>::type, std::_Bind_helper<false, int (ControlBrazoNode::*)(std::shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >), ControlBrazoNode*, const std::_Placeholder<1>&>::type, std::_Bind_helper<false, void (ControlBrazoNode::*)(std::shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >), ControlBrazoNode*, const std::_Placeholder<1>&>::type)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.890871] (control_brazo) StderrLine: {'line': b'   35 |     action_server_ = \x1b[01;31m\x1b[Krclcpp_action::create_server<MoverBrazo>(\x1b[m\x1b[K\n'}
+[7.891097] (control_brazo) StderrLine: {'line': b'      |                      \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[7.891332] (control_brazo) StderrLine: {'line': b'   36 | \x1b[01;31m\x1b[K        this, "mover_brazo",\x1b[m\x1b[K\n'}
+[7.891665] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                                  \n'}
+[7.891880] (control_brazo) StderrLine: {'line': b'   37 | \x1b[01;31m\x1b[K        std::bind(&ControlBrazoNode::handle_goal, this, std::placeholders::_1,\x1b[m\x1b[K\n'}
+[7.892093] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.892314] (control_brazo) StderrLine: {'line': b'   38 | \x1b[01;31m\x1b[K                  std::placeholders::_2),\x1b[m\x1b[K\n'}
+[7.892759] (control_brazo) StderrLine: {'line': b'      |                   \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[7.892995] (control_brazo) StderrLine: {'line': b'   39 | \x1b[01;31m\x1b[K        std::bind(&ControlBrazoNode::handle_cancel, this,\x1b[m\x1b[K\n'}
+[7.893208] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K     \n'}
+[7.893436] (control_brazo) StderrLine: {'line': b'   40 | \x1b[01;31m\x1b[K                  std::placeholders::_1),\x1b[m\x1b[K\n'}
+[7.893664] (control_brazo) StderrLine: {'line': b'      |                   \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[7.893874] (control_brazo) StderrLine: {'line': b'   41 | \x1b[01;31m\x1b[K        std::bind(&ControlBrazoNode::handle_accepted, this,\x1b[m\x1b[K\n'}
+[7.894083] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K   \n'}
+[7.894288] (control_brazo) StderrLine: {'line': b'   42 | \x1b[01;31m\x1b[K                  std::placeholders::_1))\x1b[m\x1b[K;\n'}
+[7.894519] (control_brazo) StderrLine: {'line': b'      |                   \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[7.894736] (control_brazo) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/rclcpp_action.hpp:39\x1b[m\x1b[K,\n'}
+[7.894944] (control_brazo) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:2\x1b[m\x1b[K:\n'}
+[7.895155] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/create_server.hpp:58:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class ActionT> typename rclcpp_action::Server<ActionT>::SharedPtr rclcpp_action::\x1b[01;32m\x1b[Kcreate_server\x1b[m\x1b[K(rclcpp::node_interfaces::NodeBaseInterface::SharedPtr, rclcpp::node_interfaces::NodeClockInterface::SharedPtr, rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr, rclcpp::node_interfaces::NodeWaitablesInterface::SharedPtr, const std::string&, typename Server<ActionT>::GoalCallback, typename Server<ActionT>::CancelCallback, typename Server<ActionT>::AcceptedCallback, const rcl_action_server_options_t&, rclcpp::CallbackGroup::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.895392] (control_brazo) StderrLine: {'line': b'   58 | \x1b[01;36m\x1b[Kcreate_server\x1b[m\x1b[K(\n'}
+[7.895632] (control_brazo) StderrLine: {'line': b'      | \x1b[01;36m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.895843] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/create_server.hpp:58:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 8 arguments, 5 provided\n'}
+[7.896080] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/create_server.hpp:132:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class ActionT, class NodeT> typename rclcpp_action::Server<ActionT>::SharedPtr rclcpp_action::\x1b[01;32m\x1b[Kcreate_server\x1b[m\x1b[K(NodeT, const std::string&, typename Server<ActionT>::GoalCallback, typename Server<ActionT>::CancelCallback, typename Server<ActionT>::AcceptedCallback, const rcl_action_server_options_t&, rclcpp::CallbackGroup::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.896298] (control_brazo) StderrLine: {'line': b'  132 | \x1b[01;36m\x1b[Kcreate_server\x1b[m\x1b[K(\n'}
+[7.896572] (control_brazo) StderrLine: {'line': b'      | \x1b[01;36m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.896789] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/create_server.hpp:132:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[7.897000] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:39:18:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  cannot convert \xe2\x80\x98\x1b[01m\x1b[Kstd::bind(_Func&&, _BoundArgs&& ...) [with _Func = int (ControlBrazoNode::*)(shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >); _BoundArgs = {ControlBrazoNode*, const _Placeholder<1>&}; typename _Bind_helper<__is_socketlike<_Func>::value, _Func, _BoundArgs ...>::type = _Bind_helper<false, int (ControlBrazoNode::*)(shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >), ControlBrazoNode*, const _Placeholder<1>&>::type; __is_socketlike<_Func> = __is_socketlike<int (ControlBrazoNode::*)(shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >), int (ControlBrazoNode::*)(shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >)>; typename decay<_Tp>::type = int (ControlBrazoNode::*)(shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >)](((ControlBrazoNode*)this), std::placeholders::_1)\x1b[m\x1b[K\xe2\x80\x99 (type \xe2\x80\x98\x1b[01m\x1b[Kstd::_Bind_helper<false, int (ControlBrazoNode::*)(std::shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >), ControlBrazoNode*, const std::_Placeholder<1>&>::type\x1b[m\x1b[K\xe2\x80\x99) to type \xe2\x80\x98\x1b[01m\x1b[Krclcpp_action::Server<control_brazo::action::MoverBrazo>::CancelCallback\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kstd::function<rclcpp_action::CancelResponse(std::shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >)>\x1b[m\x1b[K\xe2\x80\x99}\n'}
+[7.897268] (control_brazo) StderrLine: {'line': b'   39 |         \x1b[01;36m\x1b[Kstd::bind(&ControlBrazoNode::handle_cancel, this,\x1b[m\x1b[K\n'}
+[7.897489] (control_brazo) StderrLine: {'line': b'      |         \x1b[01;36m\x1b[K~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.897748] (control_brazo) StderrLine: {'line': b'   40 | \x1b[01;36m\x1b[K                  std::placeholders::_1)\x1b[m\x1b[K,\n'}
+[7.897957] (control_brazo) StderrLine: {'line': b'      |                   \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.898167] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:48:16:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktoo few arguments to function \xe2\x80\x98\x1b[01m\x1b[Kbool\x1b[01;32m\x1b[K IK_ext\x1b[m\x1b[K(servomotores_h*, vector_t, float, float, ik_continuidad_t*, float*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[7.898394] (control_brazo) StderrLine: {'line': b'   48 |     if (!\x1b[01;31m\x1b[KIK_ext(&servos_validos_, v_inicial, 0.0f, 0.0f, nullptr)\x1b[m\x1b[K) {\n'}
+[7.898639] (control_brazo) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[7.898852] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h:159:20:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kdeclared here\n'}
+[7.899062] (control_brazo) StderrLine: {'line': b'  159 | static inline bool \x1b[01;36m\x1b[KIK_ext\x1b[m\x1b[K(servomotores_h *out, vector_t a, float error_max,\n'}
+[7.899268] (control_brazo) StderrLine: {'line': b'      |                    \x1b[01;36m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[7.918266] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kint ControlBrazoNode::\x1b[01;32m\x1b[Khandle_cancel\x1b[m\x1b[K(std::shared_ptr<rclcpp_action::ServerGoalHandle<control_brazo::action::MoverBrazo> >)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[7.919857] (control_brazo) StderrLine: {'line': b'\x1b[01m\x1b[K/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:108:43:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kcannot convert \xe2\x80\x98\x1b[01m\x1b[Krclcpp_action::CancelResponse\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 in return\n'}
+[7.921238] (control_brazo) StderrLine: {'line': b'  108 |     return \x1b[01;31m\x1b[Krclcpp_action::CancelResponse::ACCEPT\x1b[m\x1b[K;\n'}
+[7.921528] (control_brazo) StderrLine: {'line': b'      |            \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[7.921762] (control_brazo) StderrLine: {'line': b'      |                                           \x1b[01;31m\x1b[K|\x1b[m\x1b[K\n'}
+[7.921978] (control_brazo) StderrLine: {'line': b'      |                                           \x1b[01;31m\x1b[Krclcpp_action::CancelResponse\x1b[m\x1b[K\n'}
+[7.956004] (-) TimerEvent: {}
+[8.056562] (-) TimerEvent: {}
+[8.157047] (-) TimerEvent: {}
+[8.257529] (-) TimerEvent: {}
+[8.358023] (-) TimerEvent: {}
+[8.458535] (-) TimerEvent: {}
+[8.559460] (-) TimerEvent: {}
+[8.659947] (-) TimerEvent: {}
+[8.760487] (-) TimerEvent: {}
+[8.860989] (-) TimerEvent: {}
+[8.961486] (-) TimerEvent: {}
+[9.061977] (-) TimerEvent: {}
+[9.162533] (-) TimerEvent: {}
+[9.263337] (-) TimerEvent: {}
+[9.363862] (-) TimerEvent: {}
+[9.464804] (-) TimerEvent: {}
+[9.565831] (-) TimerEvent: {}
+[9.666303] (-) TimerEvent: {}
+[9.766844] (-) TimerEvent: {}
+[9.867332] (-) TimerEvent: {}
+[9.967994] (-) TimerEvent: {}
+[10.068490] (-) TimerEvent: {}
+[10.169148] (-) TimerEvent: {}
+[10.269608] (-) TimerEvent: {}
+[10.370086] (-) TimerEvent: {}
+[10.470560] (-) TimerEvent: {}
+[10.571045] (-) TimerEvent: {}
+[10.671567] (-) TimerEvent: {}
+[10.772044] (-) TimerEvent: {}
+[10.872558] (-) TimerEvent: {}
+[10.973007] (-) TimerEvent: {}
+[11.073495] (-) TimerEvent: {}
+[11.174079] (-) TimerEvent: {}
+[11.281008] (-) TimerEvent: {}
+[11.381521] (-) TimerEvent: {}
+[11.481969] (-) TimerEvent: {}
+[11.582451] (-) TimerEvent: {}
+[11.682950] (-) TimerEvent: {}
+[11.731772] (control_brazo) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/nodo_control.dir/build.make:76: CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o] Error 1\n'}
+[11.732306] (control_brazo) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:644: CMakeFiles/nodo_control.dir/all] Error 2\n'}
+[11.733884] (control_brazo) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[11.737038] (control_brazo) CommandEnded: {'returncode': 2}
+[11.761081] (control_brazo) JobEnded: {'identifier': 'control_brazo', 'rc': 2}
+[11.763967] (-) EventReactorShutdown: {}

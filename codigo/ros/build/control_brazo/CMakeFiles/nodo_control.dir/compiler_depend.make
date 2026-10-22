@@ -14,6 +14,7 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Global_Config.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Interpolaciones.h \
+  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/PID.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h \
   /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Vectores.h \
@@ -468,8 +469,18 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
   /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/detail/statistic_data_point__traits.hpp \
   /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/metrics_message.hpp \
   /opt/ros/jazzy/include/statistics_msgs/statistics_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__struct.hpp \
   /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
+  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
   /opt/ros/jazzy/include/tracetools/tracetools/config.h \
   /opt/ros/jazzy/include/tracetools/tracetools/tracetools.h \
   /opt/ros/jazzy/include/tracetools/tracetools/utils.hpp \
@@ -929,8 +940,6 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
 
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigstksz.h:
@@ -1249,7 +1258,25 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: /home/agustin/Proyectos/Proy
 
 /usr/include/c++/13/bits/memoryfwd.h:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/macros.hpp:
+/usr/include/c++/13/bits/localefwd.h:
+
+/usr/include/c++/13/bits/locale_facets_nonio.h:
+
+/usr/include/c++/13/bits/locale_facets.tcc:
+
+/usr/include/c++/13/bits/locale_facets.h:
+
+/usr/include/c++/13/bits/locale_classes.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/features-time64.h:
+
+/usr/include/c++/13/type_traits:
+
+/usr/include/c++/13/bits/list.tcc:
+
+/usr/include/c++/13/bits/istream.tcc:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
@@ -1359,6 +1386,12 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__struct.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/node_parameters_interface_traits.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/c++/13/bits/locale_conv.h:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/get_parameters.hpp:
+
 /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/src/nodo_control.cpp:
 
 /opt/ros/jazzy/include/rcutils/rcutils/types/array_list.h:
@@ -1421,6 +1454,10 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__struct.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/parameter.hpp:
 
+/usr/include/c++/13/bits/locale_facets_nonio.tcc:
+
+/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/exceptions.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
@@ -1434,8 +1471,6 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__struct.hpp:
 /opt/ros/jazzy/include/action_msgs/action_msgs/msg/goal_status_array.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/describe_parameters.hpp:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/detail/rmw_implementation_specific_payload.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp:
 
@@ -1485,9 +1520,19 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__struct.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_type__builder.hpp:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/13/deque:
+
+/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__traits.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /opt/ros/jazzy/include/rmw/rmw/incompatible_qos_events_statuses.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp:
 
 /opt/ros/jazzy/include/type_description_interfaces/type_description_interfaces/msg/rosidl_generator_c__visibility_control.h:
 
@@ -1533,6 +1578,12 @@ rosidl_generator_cpp/control_brazo/action/mover_brazo.hpp:
 
 /opt/ros/jazzy/include/action_msgs/action_msgs/msg/goal_status.hpp:
 
+/opt/ros/jazzy/include/action_msgs/action_msgs/srv/detail/cancel_goal__struct.hpp:
+
+/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/parameter_value.hpp:
+
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/set_parameters__type_support.hpp:
 
 /usr/include/c++/13/bits/stl_multiset.h:
@@ -1556,6 +1607,12 @@ rosidl_generator_cpp/control_brazo/action/mover_brazo.hpp:
 /opt/ros/jazzy/include/action_msgs/action_msgs/msg/detail/goal_status_array__functions.h:
 
 /opt/ros/jazzy/include/rcl/rcl/node.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/subscription_intra_process_buffer.hpp:
+
+/opt/ros/jazzy/include/rcl/rcl/event.h:
 
 /opt/ros/jazzy/include/rcl_yaml_param_parser/rcl_yaml_param_parser/parser.h:
 
@@ -1626,12 +1683,6 @@ rosidl_generator_cpp/control_brazo/action/mover_brazo.hpp:
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/floating_point_range__traits.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/rate.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/experimental/subscription_intra_process_buffer.hpp:
-
-/opt/ros/jazzy/include/rcl/rcl/event.h:
 
 /opt/ros/jazzy/include/tracetools/tracetools/visibility_control.hpp:
 
@@ -1787,10 +1838,6 @@ rosidl_generator_cpp/control_brazo/msg/rosidl_generator_cpp__visibility_control.
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/memory_strategy.hpp:
 
-/opt/ros/jazzy/include/rclcpp/rclcpp/is_ros_compatible_type.hpp:
-
-/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__type_support.hpp:
-
 /opt/ros/jazzy/include/action_msgs/action_msgs/msg/detail/goal_status__type_support.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter__builder.hpp:
@@ -1865,12 +1912,6 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /opt/ros/jazzy/include/rcl/rcl/domain_id.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/c++/13/deque:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__traits.hpp:
-
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/detail/describe_parameters__struct.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/experimental/ros_message_intra_process_buffer.hpp:
@@ -1906,12 +1947,6 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 /opt/ros/jazzy/include/rcl/rcl/subscription.h:
 
 /opt/ros/jazzy/include/rosidl_dynamic_typesupport/rosidl_dynamic_typesupport/identifier.h:
-
-/opt/ros/jazzy/include/action_msgs/action_msgs/srv/detail/cancel_goal__struct.hpp:
-
-/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h:
-
-/opt/ros/jazzy/include/rclcpp/rclcpp/parameter_value.hpp:
 
 /opt/ros/jazzy/include/rmw/rmw/publisher_options.h:
 
@@ -1981,6 +2016,8 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
+/home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/experimental/timers_manager.hpp:
 
 /opt/ros/jazzy/include/rcl_action/rcl_action/action_client.h:
@@ -1993,15 +2030,13 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_descriptor__type_support.hpp:
 
+/opt/ros/jazzy/include/rclcpp/rclcpp/macros.hpp:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/message_info.hpp:
 
 /usr/include/c++/13/cmath:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/message_memory_strategy.hpp:
-
-/opt/ros/jazzy/include/rclcpp_action/rclcpp_action/exceptions.hpp:
-
-/usr/include/c++/13/bits/locale_facets_nonio.tcc:
 
 /opt/ros/jazzy/include/rosidl_runtime_cpp/rosidl_typesupport_cpp/action_type_support.hpp:
 
@@ -2020,14 +2055,6 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 /opt/ros/jazzy/include/rclcpp/rclcpp/visibility_control.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/node_interfaces/get_node_base_interface.hpp:
-
-/usr/include/c++/13/bits/istream.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/srv/get_parameters.hpp:
-
-/usr/include/c++/13/bits/locale_conv.h:
 
 /opt/ros/jazzy/include/rcutils/rcutils/visibility_control.h:
 
@@ -2179,6 +2206,8 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /opt/ros/jazzy/include/libstatistics_collector/libstatistics_collector/moving_average_statistics/types.hpp:
 
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/float32_multi_array.hpp:
+
 /opt/ros/jazzy/include/rclcpp/rclcpp/waitable.hpp:
 
 /opt/ros/jazzy/include/rcl_interfaces/rcl_interfaces/msg/set_parameters_result.hpp:
@@ -2207,7 +2236,7 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /opt/ros/jazzy/include/rclcpp_action/rclcpp_action/visibility_control.hpp:
 
-/usr/include/c++/13/bits/locale_facets.tcc:
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/event_handler.hpp:
 
@@ -2273,9 +2302,9 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /usr/include/c++/13/pstl/glue_memory_defs.h:
 
-/opt/ros/jazzy/include/action_msgs/action_msgs/msg/detail/goal_info__struct.hpp:
-
 /usr/include/c++/13/bits/memory_resource.h:
+
+/opt/ros/jazzy/include/action_msgs/action_msgs/msg/detail/goal_info__struct.hpp:
 
 /opt/ros/jazzy/include/rmw/rmw/events_statuses/matched.h:
 
@@ -2362,6 +2391,14 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 /usr/include/c++/13/cstdio:
 
 /opt/ros/jazzy/include/rmw/rmw/topic_endpoint_info_array.h:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/is_ros_compatible_type.hpp:
+
+/opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/time__type_support.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp:
 
 /opt/ros/jazzy/include/rclcpp/rclcpp/subscription_traits.hpp:
 
@@ -2453,6 +2490,16 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 
 /usr/include/c++/13/bits/erase_if.h:
 
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp:
+
+/opt/ros/jazzy/include/rclcpp/rclcpp/detail/rmw_implementation_specific_payload.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp:
+
 /usr/include/c++/13/bits/stl_bvector.h:
 
 /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:
@@ -2466,6 +2513,8 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__traits.hpp:
 /opt/ros/jazzy/include/rclcpp/rclcpp/topic_statistics_state.hpp:
 
 /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__traits.hpp:
+
+/opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp:
 
 /opt/ros/jazzy/include/tracetools/tracetools/config.h:
 
@@ -2530,19 +2579,3 @@ rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__type_support.hpp:
 /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__type_support.hpp:
 
 /usr/include/c++/13/bits/invoke.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/features-time64.h:
-
-/usr/include/c++/13/type_traits:
-
-/usr/include/c++/13/bits/list.tcc:
-
-/usr/include/c++/13/bits/locale_classes.h:
-
-/usr/include/c++/13/bits/locale_facets.h:
-
-/usr/include/c++/13/bits/locale_facets_nonio.h:
-
-/usr/include/c++/13/bits/localefwd.h:

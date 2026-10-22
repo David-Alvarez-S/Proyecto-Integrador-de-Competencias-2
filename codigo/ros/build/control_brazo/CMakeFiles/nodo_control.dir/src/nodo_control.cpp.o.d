@@ -757,6 +757,16 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: \
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__traits.hpp \
  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/detail/joint_state__type_support.hpp \
  /opt/ros/jazzy/include/sensor_msgs/sensor_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/float32_multi_array.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__struct.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__struct.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__struct.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__builder.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__traits.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_layout__traits.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/multi_array_dimension__traits.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float32_multi_array__type_support.hpp \
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo/rosidl_generator_cpp/control_brazo/action/mover_brazo.hpp \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/build/control_brazo/rosidl_generator_cpp/control_brazo/action/detail/mover_brazo__struct.hpp \
  /opt/ros/jazzy/include/action_msgs/action_msgs/msg/goal_status_array.hpp \
@@ -773,12 +783,14 @@ CMakeFiles/nodo_control.dir/src/nodo_control.cpp.o: \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Aritmetica.h \
  /usr/include/c++/13/math.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Global_Config.h \
- /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h \
+ /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Movimiento.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Global_Config.h \
+ /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/IK.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Vectores.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Interpolaciones.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Coordenadas_Cilindricas.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Cuaterniones.h \
+ /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/PID.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Perfil_S.h \
  /home/agustin/Proyectos/Proyecto-Integrador-de-Competencias-2/codigo/ros/src/control_brazo/include/control_brazo/Vectores.h

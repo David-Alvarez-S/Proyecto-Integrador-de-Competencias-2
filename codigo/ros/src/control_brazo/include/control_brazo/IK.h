@@ -9,6 +9,12 @@
 #define IK_D_EPS 1e-4f
 
 #define IK_D_SINGULAR_EPS 1e-4f
+
+typedef struct {
+  float base_ang;
+  bool base_init;
+} ik_continuidad_t;
+
 static inline bool IK_es_alcanzable(vector_t a) {
   float az = a.z - L_SHOULDER_Z;
   float r_total = sqrtf((a.x * a.x) + (a.y * a.y));
@@ -19,25 +25,58 @@ static inline bool IK_es_alcanzable(vector_t a) {
   float r_muneca = r_total - L_ESLABON_3 - L_HERRAMIENTA;
   float D = sqrtf((r_muneca * r_muneca) + (az * az));
 
-  return (D <= (L_ESLABON_1 + L_ESLABON_2)) &&
-         (D >= fabsf(L_ESLABON_1 - L_ESLABON_2));
+  float D_max = L_ESLABON_1 + L_ESLABON_2;
+  float D_min = fabsf(L_ESLABON_1 - L_ESLABON_2);
+  if (D > D_max || D < D_min)
+    return false;
+
+  float aux3 =
+      ((L_ESLABON_1 * L_ESLABON_1) + (L_ESLABON_2 * L_ESLABON_2) - (D * D)) /
+      (2.0f * L_ESLABON_1 * L_ESLABON_2);
+  if (aux3 > 1.0f)
+    aux3 = 1.0f;
+  if (aux3 < -1.0f)
+    aux3 = -1.0f;
+  float angulo3 = PI - acosf(aux3);
+
+  float aux2 =
+      ((L_ESLABON_1 * L_ESLABON_1) + (D * D) - (L_ESLABON_2 * L_ESLABON_2)) /
+      (2.0f * L_ESLABON_1 * D);
+  if (aux2 > 1.0f)
+    aux2 = 1.0f;
+  if (aux2 < -1.0f)
+    aux2 = -1.0f;
+  float angulo2 = atan2f(az, r_muneca) + acosf(aux2);
+
+  float sm2_cmd = (PI / 2.0f) - angulo2;
+  float sm3_cmd = angulo3;
+  float sm4_cmd = angulo2 - angulo3;
+
+  if (sm2_cmd > SM2_ANG_MAX || sm2_cmd < SM2_ANG_MIN)
+    return false;
+  if (sm3_cmd > SM3_ANG_MAX || sm3_cmd < SM3_ANG_MIN)
+    return false;
+  if (sm4_cmd > SM4_ANG_MAX || sm4_cmd < SM4_ANG_MIN)
+    return false;
+
+  return true;
 }
 
 static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
-                          float dt, float *error_out) {
-  if (!out)
+                          float dt, ik_continuidad_t *continuidad,
+                          float *error_out) {
+  if (!out || !continuidad)
     return false;
 
   float angulo1, angulo2, angulo3, aux;
   float error_total = 0.0f;
+
+  // Pasar de "altura sobre base_link" a "altura sobre hombro (SM2)"
   float az = a.z - L_SHOULDER_Z;
   float ax = a.x;
   float ay = a.y;
 
   float r_total = sqrtf((ax * ax) + (ay * ay));
-
-  static float base_ang = 0.0f;
-  static bool base_init = false;
 
   float a1;
 
@@ -50,7 +89,7 @@ static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
       return false;
     }
 
-    a1 = base_init ? base_ang : atan2f(ay, ax);
+    a1 = continuidad->base_init ? continuidad->base_ang : atan2f(ay, ax);
 
     ax = RADIO_MIN_IK * cosf(a1);
     ay = RADIO_MIN_IK * sinf(a1);
@@ -59,9 +98,9 @@ static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
     a1 = atan2f(ay, ax);
   }
 
-  // Ángulo de la base con continuidad
-  if (base_init) {
-    float d = a1 - base_ang;
+  // --- Ángulo de la base con continuidad (unwrap) ---
+  if (continuidad->base_init) {
+    float d = a1 - continuidad->base_ang;
     while (d > PI) {
       a1 -= 2.0f * PI;
       d -= 2.0f * PI;
@@ -71,19 +110,23 @@ static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
       d += 2.0f * PI;
     }
 
-    // Límite de velocidad angular de la base
+    // --- Límite de velocidad angular de la base ---
+    // d ya está en (-PI, PI]. Si el giro pedido este ciclo excede lo
+    // que SM1_VEL_MAX permite en dt segundos, se recorta: la base
+    // avanza lo máximo seguro hacia el objetivo en vez de saltar de
+    // golpe. Los ciclos siguientes la siguen acercando.
     if (dt > 0.0f) {
       float d_max = SM1_VEL_MAX * dt;
       if (d > d_max)
         d = d_max;
       if (d < -d_max)
         d = -d_max;
-      a1 = base_ang + d;
+      a1 = continuidad->base_ang + d;
     }
   }
-  base_ang = a1;
-  base_init = true;
-  angulo1 = base_ang;
+  continuidad->base_ang = a1;
+  continuidad->base_init = true;
+  angulo1 = continuidad->base_ang;
 
   float r_muneca = r_total - L_ESLABON_3 - L_HERRAMIENTA;
   float D = sqrtf((r_muneca * r_muneca) + (az * az));
@@ -103,10 +146,15 @@ static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
     }
 
     if (D > IK_D_SINGULAR_EPS) {
+      // Escalar (r_muñeca, az) por el mismo factor preserva
+      // atan2(az, r_muñeca): la dirección hombro->muñeca no cambia,
+      // el brazo se estira/pliega en línea recta hacia el objetivo.
       float k = D_clamped / D;
       r_muneca *= k;
       az *= k;
     } else {
+      // D degenerado (objetivo prácticamente sobre el hombro): no hay
+      // dirección previa que preservar; se elige estirar horizontal.
       r_muneca = D_clamped;
       az = 0.0f;
     }
@@ -131,31 +179,18 @@ static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
     aux = -1.0f;
   angulo2 = atan2f(az, r_muneca) + acosf(aux);
 
-  // Ángulo de la Muñeca (Servomotor 4)
+  // --- Ángulo de la Muñeca (Servomotor 4) ---
   // sm2 + sm3 + sm4 - PI/2 = 0  =>  sm4 = angulo2 - angulo3
   float sm2_cmd = (PI / 2.0f) - angulo2;
   float sm3_cmd = angulo3;
   float sm4_cmd = angulo2 - angulo3;
 
-  // Clamp final a los límites físicos del servo (Global_Config.h).
-  // Esto es independiente del presupuesto de error_max: la solución
-  // geométrica puede ser válida en el espacio de trabajo (D dentro de
-  // rango) y aun así pedir un ángulo que el servo no puede alcanzar.
-  // No se clampea sm1 porque su unwrap es deliberado para dar
-  // continuidad de giro de la base, no representa el rango físico
-  // ±PI de forma directa.
-  if (sm2_cmd > SM2_ANG_MAX)
-    sm2_cmd = SM2_ANG_MAX;
-  if (sm2_cmd < SM2_ANG_MIN)
-    sm2_cmd = SM2_ANG_MIN;
-  if (sm3_cmd > SM3_ANG_MAX)
-    sm3_cmd = SM3_ANG_MAX;
-  if (sm3_cmd < SM3_ANG_MIN)
-    sm3_cmd = SM3_ANG_MIN;
-  if (sm4_cmd > SM4_ANG_MAX)
-    sm4_cmd = SM4_ANG_MAX;
-  if (sm4_cmd < SM4_ANG_MIN)
-    sm4_cmd = SM4_ANG_MIN;
+  if (sm2_cmd > SM2_ANG_MAX || sm2_cmd < SM2_ANG_MIN || sm3_cmd > SM3_ANG_MAX ||
+      sm3_cmd < SM3_ANG_MIN || sm4_cmd > SM4_ANG_MAX || sm4_cmd < SM4_ANG_MIN) {
+    if (error_out)
+      *error_out = error_total;
+    return false;
+  }
 
   out->sm1.angulo_objetivo = angulo1;
   out->sm2.angulo_objetivo = sm2_cmd;
@@ -166,9 +201,9 @@ static inline bool IK_ext(servomotores_h *out, vector_t a, float error_max,
     *error_out = error_total;
   return true;
 }
-
-static inline bool IK(servomotores_h *out, vector_t a) {
-  return IK_ext(out, a, 0.0f, 0.0f, NULL);
+static inline bool IK(servomotores_h *out, vector_t a,
+                      ik_continuidad_t *continuidad) {
+  return IK_ext(out, a, 0.0f, 0.0f, continuidad, NULL);
 }
 
 #endif // IK_H
