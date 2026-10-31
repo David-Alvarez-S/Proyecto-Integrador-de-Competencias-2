@@ -1,0 +1,28 @@
+[project]
+name = "PySide QtQuick Project"
+
+[tool.pyside6-project]
+files = ["main.py",
+"interfaz_de_usuario_qt_python/Main.qml",
+"interfaz_de_usuario_qt_python/qmldir",
+"interfaz_de_usuario_qt_python/Brazo_Robotico.qml",
+"interfaz_de_usuario_qt_python/meshes/mg90s_servo_mesh.mesh",
+"interfaz_de_usuario_qt_python/meshes/mg90s_servo_mesh16.mesh",
+"interfaz_de_usuario_qt_python/meshes/mg90s_servo_mesh31.mesh",
+"interfaz_de_usuario_qt_python/meshes/mg90s_servo_mesh59.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh20.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh24.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh28.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh35.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh39.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh42.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh46.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh50.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh53.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh56.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh62.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh65.mesh",
+"interfaz_de_usuario_qt_python/meshes/part_1_mesh68.mesh"
+]
+
