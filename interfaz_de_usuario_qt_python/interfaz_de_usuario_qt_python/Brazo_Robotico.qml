@@ -4,116 +4,117 @@ import QtQuick3D
 Node {
     id: root
     objectName: "Root"
+
     property real anguloBase: 0
     property real anguloHombro: 0
     property real anguloCodo: 0
     property real anguloGarra: 0
 
     // Resources
-    PrincipledMaterial { //
+    PrincipledMaterial {
         id: node0_647059_0_647059_0_647059_0_000000_0_000000_material
         objectName: "0.647059_0.647059_0.647059_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#ffd2d2d2"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_537255_0_854902_0_827451_0_000000_0_000000_material
         objectName: "0.537255_0.854902_0.827451_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.0
-        roughness: 0.5
+        baseColor: "#ffc1eeea"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_764706_0_545098_0_803922_0_000000_0_000000_material
         objectName: "0.764706_0.545098_0.803922_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.0
-        roughness: 0.5
+        baseColor: "#ffe2c3e7"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
-    PrincipledMaterial { // Acoples
+    PrincipledMaterial {
         id: node0_262745_0_282353_0_301961_0_000000_0_000000_material
         objectName: "0.262745_0.282353_0.301961_0.000000_0.000000"
-
-        baseColor: "#222222"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#ff8c9195"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
-    PrincipledMaterial { // Servomotores
+    PrincipledMaterial {
         id: node0_615686_0_811765_0_929412_0_000000_0_000000_material
         objectName: "0.615686_0.811765_0.929412_0.000000_0.000000"
-
-        baseColor: "#111111"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#ffcee8f7"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
-    PrincipledMaterial { // Herramienta
+    PrincipledMaterial {
         id: node0_760784_0_839216_0_925490_0_000000_0_000000_material
         objectName: "0.760784_0.839216_0.925490_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.0
-        roughness: 0.5
+        baseColor: "#ffe2ecf6"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
-    PrincipledMaterial { // Eslabon 2
+    PrincipledMaterial {
         id: node0_874510_0_447059_0_317647_0_000000_0_000000_material
-
-        baseColor: "#e0e0e0"
-        metalness: 0.0
-        roughness: 0.5
+        objectName: "0.874510_0.447059_0.317647_0.000000_0.000000"
+        baseColor: "#fff0b299"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_654902_0_823529_0_576471_0_000000_0_000000_material
         objectName: "0.654902_0.823529_0.576471_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.0
-        roughness: 0.5
+        baseColor: "#ffd3eac8"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_917647_0_725490_0_490196_0_000000_0_000000_material
         objectName: "0.917647_0.725490_0.490196_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#fff5ddba"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_301961_0_301961_0_301961_0_000000_0_000000_material
         objectName: "0.301961_0.301961_0.301961_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#ff959595"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_941176_0_874510_0_678431_0_000000_0_000000_material
         objectName: "0.941176_0.874510_0.678431_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#fff8f0d7"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_976471_0_972549_0_972549_0_000000_0_000000_material
         objectName: "0.976471_0.972549_0.972549_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#fffcfcfc"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
     PrincipledMaterial {
         id: node0_901961_0_901961_0_901961_0_000000_0_000000_material
         objectName: "0.901961_0.901961_0.901961_0.000000_0.000000"
-
-        baseColor: "#e0e0e0"
-        metalness: 0.1
-        roughness: 0.8
+        baseColor: "#fff4f4f4"
+        roughness: 1
+        cullMode: PrincipledMaterial.NoCulling
+        alphaMode: PrincipledMaterial.Opaque
     }
-
 
     // Nodes:
     Node {
@@ -122,8 +123,8 @@ Node {
         Node {
             id: occurrence_of_mg90s_servo
             objectName: "occurrence of mg90s servo"
-            position: Qt.vector3d(-0.0841503, -0.000213042, 0.0081)
-            rotation: Qt.quaternion(0.000391648, 0.707107, -0.000391648, 0.707107)
+            position: Qt.vector3d(-0.0841488, -0.000529034, 0.0081)
+            rotation: Qt.quaternion(-0.00103155, 0.707106, 0.00103155, 0.707106)
             Model {
                 id: mg90s_servo
                 objectName: "mg90s servo"
@@ -182,8 +183,9 @@ Node {
         Node {
             id: occurrence_of_Part_1
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.01415, 9.41585e-06, 0.265772)
-            rotation: Qt.quaternion(0.707107, 0.000391648, 0.707107, -0.000391648)
+            position: Qt.vector3d(-0.0171499, -3.37892e-05, 0.265272)
+            rotation: Qt.quaternion(0.707106, -0.000930512, 0.707106, 0.00113258)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: part_1
                 objectName: "Part 1"
@@ -304,8 +306,9 @@ Node {
         Node {
             id: occurrence_of_mg90s_servo14
             objectName: "occurrence of mg90s servo"
-            position: Qt.vector3d(0.0678503, 0.00021858, 0.2238)
-            rotation: Qt.quaternion(0.707107, -0.000391648, -0.707107, -0.000391648)
+            position: Qt.vector3d(0.0678488, 0.000526061, 0.2238)
+            rotation: Qt.quaternion(0.707106, 0.00113258, -0.707106, 0.000930512)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: mg90s_servo15
                 objectName: "mg90s servo"
@@ -364,8 +367,8 @@ Node {
         Node {
             id: occurrence_of_Part_117
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.00565, -3.1984e-18, 0.0165)
-            rotation: Qt.quaternion(0.706715, 2.12166e-16, 3.10927e-16, -0.707498)
+            position: Qt.vector3d(-0.00565, -2.60209e-18, 0.0165)
+            rotation: Qt.quaternion(0.708138, 2.38084e-16, 3.52662e-16, -0.706074)
             Model {
                 id: part_118
                 objectName: "Part 1"
@@ -431,8 +434,9 @@ Node {
         Node {
             id: occurrence_of_Part_121
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(0.00684999, -1.38468e-05, 0.1552)
-            rotation: Qt.quaternion(1, 1.14698e-15, 6.9385e-17, -0.000553874)
+            position: Qt.vector3d(0.00684986, 6.76896e-05, 0.1552)
+            rotation: Qt.quaternion(0.999999, 0.000142884, 2.08443e-07, 0.00145883)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: part_122
                 objectName: "Part 1"
@@ -497,8 +501,8 @@ Node {
         Node {
             id: occurrence_of_Part_125
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.00665, 1.10775e-06, 0.26455)
-            rotation: Qt.quaternion(0.000553874, 7.11361e-17, 1.82014e-15, 1)
+            position: Qt.vector3d(-0.01265, -2.04533e-05, 0.26455)
+            rotation: Qt.quaternion(0.999999, -6.60777e-07, -9.6396e-10, 0.00145883)
             Model {
                 id: part_126
                 objectName: "Part 1"
@@ -615,8 +619,8 @@ Node {
         Node {
             id: occurrence_of_Part_132
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.00565, -4.4062e-16, 0.26455)
-            rotation: Qt.quaternion(0.500277, -0.500277, -0.499723, 0.499723)
+            position: Qt.vector3d(-0.00964998, -1.17003e-05, 0.26455)
+            rotation: Qt.quaternion(0.500729, -0.500729, 0.49927, -0.49927)
             Model {
                 id: part_133
                 objectName: "Part 1"
@@ -652,16 +656,14 @@ Node {
         Node {
             id: occurrence_of_Part_136
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.00965, 4.43099e-06, 0.04885)
-            rotation: Qt.quaternion(1, 8.27459e-16, 6.96042e-17, -0.000553874)
+            position: Qt.vector3d(-0.00964998, -1.16706e-05, 0.04885)
+            rotation: Qt.quaternion(0.999999, -0.000146775, -2.14119e-07, 0.00145883)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: part_137
                 objectName: "Part 1"
                 source: "meshes/part_1_mesh39.mesh"
                 materials: [
-                    node0_764706_0_545098_0_803922_0_000000_0_000000_material,
-                    node0_764706_0_545098_0_803922_0_000000_0_000000_material,
-                    node0_764706_0_545098_0_803922_0_000000_0_000000_material,
                     node0_764706_0_545098_0_803922_0_000000_0_000000_material,
                     node0_764706_0_545098_0_803922_0_000000_0_000000_material,
                     node0_764706_0_545098_0_803922_0_000000_0_000000_material,
@@ -730,8 +732,9 @@ Node {
         Node {
             id: occurrence_of_Part_140
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(0.01735, -2.54782e-05, 0.155085)
-            rotation: Qt.quaternion(0.707107, -0.000391648, -0.707107, -0.000391648)
+            position: Qt.vector3d(0.0183498, 0.000114453, 0.154581)
+            rotation: Qt.quaternion(0.707106, 0.000927761, -0.707106, 0.00113533)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: part_141
                 objectName: "Part 1"
@@ -930,8 +933,9 @@ Node {
         Node {
             id: occurrence_of_Part_151
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(0.00584999, -1.27391e-05, 0.1552)
-            rotation: Qt.quaternion(0.499723, -0.499723, 0.500277, -0.500277)
+            position: Qt.vector3d(0.00584986, 6.47719e-05, 0.1552)
+            rotation: Qt.quaternion(0.5008, -0.500658, 0.499342, -0.499199)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: part_152
                 objectName: "Part 1"
@@ -967,8 +971,8 @@ Node {
         Node {
             id: occurrence_of_Part_154
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.00565, -2.33103e-18, 0.0155)
-            rotation: Qt.quaternion(0.706715, 2.12166e-16, 3.10927e-16, -0.707498)
+            position: Qt.vector3d(-0.00565, -1.89735e-18, 0.0155)
+            rotation: Qt.quaternion(0.708138, 2.38084e-16, 3.52662e-16, -0.706074)
             Model {
                 id: part_155
                 objectName: "Part 1"
@@ -1004,8 +1008,9 @@ Node {
         Node {
             id: occurrence_of_mg90s_servo57
             objectName: "occurrence of mg90s servo"
-            position: Qt.vector3d(-0.0676503, -0.000231319, 0.11445)
-            rotation: Qt.quaternion(0.000391648, 0.707107, -0.000391648, 0.707107)
+            position: Qt.vector3d(-0.0676489, -0.000461636, 0.11445)
+            rotation: Qt.quaternion(-0.000927761, 0.707106, 0.00113533, 0.707106)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: mg90s_servo58
                 objectName: "mg90s servo"
@@ -1064,8 +1069,9 @@ Node {
         Node {
             id: occurrence_of_Part_160
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.00865, 3.32324e-06, 0.04885)
-            rotation: Qt.quaternion(0.500277, -0.500277, -0.499723, 0.499723)
+            position: Qt.vector3d(-0.00864999, -8.75295e-06, 0.04885)
+            rotation: Qt.quaternion(0.499197, -0.499344, -0.500656, 0.500802)
+            scale: Qt.vector3d(1, 1, 1)
             Model {
                 id: part_161
                 objectName: "Part 1"
@@ -1101,8 +1107,8 @@ Node {
         Node {
             id: occurrence_of_Part_163
             objectName: "occurrence of Part 1"
-            position: Qt.vector3d(-0.04335, 4.17621e-05, 0.04885)
-            rotation: Qt.quaternion(0.707107, -0.000391648, -0.707107, -0.000391648)
+            position: Qt.vector3d(-0.0433498, -0.000109995, 0.04885)
+            rotation: Qt.quaternion(0.707106, 0.00103155, -0.707106, 0.00103155)
             Model {
                 id: part_164
                 objectName: "Part 1"
