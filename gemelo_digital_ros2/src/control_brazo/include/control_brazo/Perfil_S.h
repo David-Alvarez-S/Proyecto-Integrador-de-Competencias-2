@@ -27,7 +27,7 @@ typedef struct {
   float target_dist;
   float direccion;
 
-  float t_j; // Tiempo de subida de aceleración (Jerk)
+  float t_j; // Tiempo de subida de aceleración 
   float t_a; // Tiempo de aceleración constante
   float t_v; // Tiempo de velocidad constante
 
@@ -155,7 +155,7 @@ static inline estado_perfil_s_t Estado_Perfil_s(planificador_perfil_s_t *p,
 
   float x3 = x2 + v2 * t_j + 0.5f * a_m * t_j * t_j -
              (1.0f / 6.0f) * j_m * t_j * t_j * t_j;
-  float v3 = v_m;
+  //float v3 = v_m;
 
   float x4 = x3 + v_m * p->t_v;
 

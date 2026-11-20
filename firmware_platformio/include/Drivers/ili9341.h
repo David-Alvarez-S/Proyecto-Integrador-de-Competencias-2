@@ -24,15 +24,10 @@ extern "C" {
 #include "tft_common.h"
 #include "tft_font5x7.h"
 
-/* ---------- */
-/* Parametros */
-/* ---------- */
-
 #ifndef ILI9341_DEFAULT_CLOCK_HZ
 #define ILI9341_DEFAULT_CLOCK_HZ 26000000
 #endif
-/** Tamano del buffer DMA en bytes (par). Tambien es el max_transfer_sz del bus.
- */
+
 #ifndef ILI9341_DEFAULT_DMA_BYTES
 #define ILI9341_DEFAULT_DMA_BYTES 4096U
 #endif
@@ -43,11 +38,9 @@ extern "C" {
 #define ILI9341_BL_PWM_FREQ_HZ 5000U
 #endif
 
-/** Usar como 'bg' en draw_char/draw_string para texto con fondo transparente.
- */
+
 #define ILI9341_TRANSPARENT (-1)
 
-/* Colores RGB565 (orden del host) */
 #define ILI9341_RGB565(r, g, b)                                                \
   ((uint16_t)((((uint16_t)(r) & 0xF8U) << 8) |                                 \
               (((uint16_t)(g) & 0xFCU) << 3) | ((uint16_t)(b) >> 3)))
@@ -77,33 +70,32 @@ extern "C" {
 #define ILI9341_CMD_MADCTL 0x36
 #define ILI9341_CMD_PIXFMT 0x3A
 
-/* ----- */
-/* Tipos */
-/* ----- */
+// ----- 
+// Tipos 
+// ----- 
 
 typedef struct {
-  spi_host_device_t host; /**< SPI2_HOST (HSPI) o SPI3_HOST (VSPI)      */
-  bool init_bus;          /**< true: esta libreria inicializa el bus    */
-  gpio_num_t mosi;        /**< Solo si init_bus                         */
-  gpio_num_t miso;        /**< Solo si init_bus (GPIO_NUM_NC si no hay) */
-  gpio_num_t sclk;        /**< Solo si init_bus                         */
+  spi_host_device_t host; 
+  bool init_bus;          
+  gpio_num_t mosi;        
+  gpio_num_t miso;        
+  gpio_num_t sclk;        
   gpio_num_t cs;
   gpio_num_t dc;
-  gpio_num_t rst; /**< GPIO_NUM_NC si RESET va a EN/3V3         */
-  gpio_num_t bl;  /**< Backlight; GPIO_NUM_NC si no se controla */
+  gpio_num_t rst;
+  gpio_num_t bl;  
   bool bl_active_high;
-  bool bl_pwm; /**< true: brillo por LEDC; false: on/off     */
+  bool bl_pwm; 
   ledc_timer_t bl_timer;
   ledc_channel_t bl_channel;
-  uint8_t bl_initial;   /**< Brillo inicial 0..100 al terminar init   */
-  int clock_hz;         /**< 0 = ILI9341_DEFAULT_CLOCK_HZ             */
-  size_t dma_buf_bytes; /**< 0 = ILI9341_DEFAULT_DMA_BYTES         */
+  uint8_t bl_initial;   
+  int clock_hz;         
+  size_t dma_buf_bytes; 
   tft_rotation_t rotation;
-  bool bgr;    /**< true: orden BGR (tipico en estos modulos)*/
-  bool invert; /**< true: inversion de colores (INVON)       */
+  bool bgr;    
+  bool invert; 
 } ili9341_config_t;
 
-/** Config tipica. Ajusta el resto de campos si hace falta. */
 #define ILI9341_CONFIG_DEFAULT(_mosi, _miso, _sclk, _cs, _dc, _rst, _bl)       \
   {                                                                            \
       .host = SPI2_HOST,                                                       \
@@ -133,27 +125,19 @@ typedef struct {
   SemaphoreHandle_t lock;
   uint8_t *dma_buf;
   size_t dma_buf_bytes;
-  uint16_t width; /**< Ancho con la rotacion actual */
-  uint16_t height;
+  uint16_t width;   uint16_t height;
   tft_rotation_t rotation;
   bool bus_owned;
   bool bl_ready;
   bool initialized;
 } ili9341_t;
 
-/** Transaccion SPI + nivel del pin DC (t DEBE ser el primer miembro). */
 typedef struct {
   spi_transaction_t t;
   gpio_num_t dc_pin;
   uint8_t dc;
 } ili9341_txn_t;
 
-/* ------------------------------------------------------------------------- */
-/* Capa baja (internas)                                                      */
-/* ------------------------------------------------------------------------- */
-
-/** Pone DC antes de cada transaccion. Se ejecuta en contexto de interrupcion.
- */
 __attribute__((unused)) static void IRAM_ATTR
 ili9341_pre_cb_(spi_transaction_t *t) {
   const ili9341_txn_t *x = (const ili9341_txn_t *)t;
@@ -184,28 +168,29 @@ static inline esp_err_t ili9341_tx_cmd_(ili9341_t *d, uint8_t cmd) {
   return spi_device_polling_transmit(d->spi, &x.t);
 }
 
-/** Datos de parametros (<= 16 bytes). Copia a pila: seguro con tablas en flash.
- */
-static inline esp_err_t ili9341_tx_params_(ili9341_t *d, const uint8_t *p,
-                                           size_t n) {
-  uint8_t tmp[16];
-  if (n == 0 || n > sizeof(tmp)) {
-    return ESP_ERR_INVALID_ARG;
-  }
-  memcpy(tmp, p, n);
+static inline esp_err_t ili9341_tx_params_(ili9341_t *d, const uint8_t *p, size_t n) {
+    if (n == 0) {
+        return ESP_OK;
+    }
 
-  ili9341_txn_t x;
-  memset(&x, 0, sizeof(x));
-  x.t.length = n * 8;
-  if (n <= 4) {
-    x.t.flags = SPI_TRANS_USE_TXDATA;
-    memcpy(x.t.tx_data, tmp, n);
-  } else {
-    x.t.tx_buffer = tmp;
-  }
-  x.dc_pin = d->cfg.dc;
-  x.dc = 1;
-  return spi_device_polling_transmit(d->spi, &x.t);
+    size_t offset = 0;
+    while (offset < n) {
+        size_t chunk = (n - offset > 4) ? 4 : (n - offset);
+        ili9341_txn_t x;
+        memset(&x, 0, sizeof(x));
+        x.t.length = chunk * 8;
+        x.t.flags = SPI_TRANS_USE_TXDATA;
+        memcpy(x.t.tx_data, p + offset, chunk);
+        x.dc_pin = d->cfg.dc;
+        x.dc = 1;
+
+        esp_err_t err = spi_device_polling_transmit(d->spi, &x.t);
+        if (err != ESP_OK) {
+            return err;
+        }
+        offset += chunk;
+    }
+    return ESP_OK;
 }
 
 static inline esp_err_t ili9341_tx_cmd_params_(ili9341_t *d, uint8_t cmd,
@@ -217,7 +202,6 @@ static inline esp_err_t ili9341_tx_cmd_params_(ili9341_t *d, uint8_t cmd,
   return ili9341_tx_params_(d, p, n);
 }
 
-/** Envia 'bytes' del buffer DMA (pixeles) por DMA; la tarea duerme mientras. */
 static inline esp_err_t ili9341_tx_pixels_(ili9341_t *d, size_t bytes) {
   ili9341_txn_t x;
   memset(&x, 0, sizeof(x));
@@ -225,10 +209,9 @@ static inline esp_err_t ili9341_tx_pixels_(ili9341_t *d, size_t bytes) {
   x.t.tx_buffer = d->dma_buf;
   x.dc_pin = d->cfg.dc;
   x.dc = 1;
-  return spi_device_transmit(d->spi, &x.t);
+  return spi_device_polling_transmit(d->spi, &x.t);
 }
 
-/** Define la ventana de escritura y deja el controlador listo para RAMWR. */
 static inline esp_err_t ili9341_set_window_locked_(ili9341_t *d, int x0, int y0,
                                                    int x1, int y1) {
   uint8_t c[4] = {(uint8_t)(x0 >> 8), (uint8_t)x0, (uint8_t)(x1 >> 8),
@@ -246,7 +229,6 @@ static inline esp_err_t ili9341_set_window_locked_(ili9341_t *d, int x0, int y0,
   return ili9341_tx_cmd_(d, ILI9341_CMD_RAMWR);
 }
 
-/** Recorta un rectangulo a la pantalla. false si queda vacio. */
 static inline bool ili9341_clip_(const ili9341_t *d, int *x, int *y, int *w,
                                  int *h, int *skip_x, int *skip_y) {
   int sx = 0, sy = 0;
@@ -337,8 +319,6 @@ static inline esp_err_t ili9341_draw_char_locked_(ili9341_t *d, int x, int y,
     return ESP_OK;
   }
 
-  /* Camino rapido: fondo opaco, celda completa en pantalla y cabe en el buffer
-   */
   if (bg >= 0 && x >= 0 && y >= 0 && x + cw <= (int)d->width &&
       y + ch <= (int)d->height && cell_px * 2 <= d->dma_buf_bytes) {
     uint16_t *b = (uint16_t *)d->dma_buf;
@@ -359,7 +339,6 @@ static inline esp_err_t ili9341_draw_char_locked_(ili9341_t *d, int x, int y,
     return ili9341_tx_pixels_(d, cell_px * 2);
   }
 
-  /* Camino general: fondo (si lo hay) + pixeles encendidos como rectangulos */
   esp_err_t err = ESP_OK;
   if (bg >= 0) {
     err = ili9341_fill_rect_locked_(d, x, y, cw, ch, (uint16_t)bg);
@@ -369,7 +348,7 @@ static inline esp_err_t ili9341_draw_char_locked_(ili9341_t *d, int x, int y,
   }
   for (int gx = 0; gx < TFT_FONT_GLYPH_W; gx++) {
     int gy = 0;
-    while (gy < 8) { /* agrupa pixeles verticales contiguos */
+    while (gy < 8) { 
       if (!((g[gx] >> gy) & 1U)) {
         gy++;
         continue;
@@ -416,7 +395,7 @@ static inline esp_err_t ili9341_backlight_init_(ili9341_t *d) {
         .channel = d->cfg.bl_channel,
         .intr_type = LEDC_INTR_DISABLE,
         .timer_sel = d->cfg.bl_timer,
-        .duty = d->cfg.bl_active_high ? 0U : 1023U, /* apagado */
+        .duty = d->cfg.bl_active_high ? 0U : 1023U, // apagado 
         .hpoint = 0,
     };
     err = ledc_channel_config(&cc);
@@ -437,7 +416,6 @@ static inline esp_err_t ili9341_backlight_init_(ili9341_t *d) {
   return err;
 }
 
-/** Brillo 0..100 (sin PWM: 0 = apagado, >0 = encendido). */
 static inline esp_err_t ili9341_set_backlight(ili9341_t *d, uint8_t percent) {
   if (d == NULL || d->lock == NULL) {
     return ESP_ERR_INVALID_STATE;
@@ -499,15 +477,15 @@ static inline esp_err_t ili9341_run_init_seq_(ili9341_t *d) {
       {0xCB, 5, {0x39, 0x2C, 0x00, 0x34, 0x02}},
       {0xF7, 1, {0x20}},
       {0xEA, 2, {0x00, 0x00}},
-      {0xC0, 1, {0x23}},             /* Power control 1 */
-      {0xC1, 1, {0x10}},             /* Power control 2 */
-      {0xC5, 2, {0x3E, 0x28}},       /* VCOM 1 */
-      {0xC7, 1, {0x86}},             /* VCOM 2 */
-      {0x3A, 1, {0x55}},             /* 16 bits/pixel (RGB565) */
-      {0xB1, 2, {0x00, 0x18}},       /* Frame rate */
-      {0xB6, 3, {0x08, 0x82, 0x27}}, /* Display function */
-      {0xF2, 1, {0x00}},             /* 3-gamma off */
-      {0x26, 1, {0x01}},             /* Gamma curve */
+      {0xC0, 1, {0x23}},             
+      {0xC1, 1, {0x10}},             
+      {0xC5, 2, {0x3E, 0x28}},       
+      {0xC7, 1, {0x86}},             
+      {0x3A, 1, {0x55}},             
+      {0xB1, 2, {0x00, 0x18}},       
+      {0xB6, 3, {0x08, 0x82, 0x27}}, 
+      {0xF2, 1, {0x00}},             
+      {0x26, 1, {0x01}},             
       {0xE0,
        15,
        {0x0F, 0x31, 0x2B, 0x0C, 0x0E, 0x08, 0x4E, 0xF1, 0x37, 0x07, 0x10, 0x03,
@@ -550,7 +528,7 @@ static inline esp_err_t ili9341_init(ili9341_t *d,
   if (d->cfg.dma_buf_bytes == 0) {
     d->cfg.dma_buf_bytes = ILI9341_DEFAULT_DMA_BYTES;
   }
-  d->cfg.dma_buf_bytes &= ~(size_t)1; /* par */
+  d->cfg.dma_buf_bytes &= ~(size_t)1; 
   if (d->cfg.dma_buf_bytes < 128) {
     return ESP_ERR_INVALID_ARG;
   }
@@ -568,7 +546,6 @@ static inline esp_err_t ili9341_init(ili9341_t *d,
     goto fail;
   }
 
-  /* GPIO de control: DC y RST */
   uint64_t mask = 1ULL << d->cfg.dc;
   if (d->cfg.rst != GPIO_NUM_NC) {
     mask |= 1ULL << d->cfg.rst;
@@ -583,8 +560,6 @@ static inline esp_err_t ili9341_init(ili9341_t *d,
   if ((err = gpio_config(&io)) != ESP_OK) {
     goto fail;
   }
-
-  /* Bus SPI (opcional) y dispositivo */
   if (d->cfg.init_bus) {
     spi_bus_config_t bus = {
         .mosi_io_num = d->cfg.mosi,
@@ -598,7 +573,7 @@ static inline esp_err_t ili9341_init(ili9341_t *d,
     if (err == ESP_OK) {
       d->bus_owned = true;
     } else if (err !=
-               ESP_ERR_INVALID_STATE) { /* ya inicializado: se reutiliza */
+               ESP_ERR_INVALID_STATE) { 
       goto fail;
     }
   }
@@ -613,16 +588,15 @@ static inline esp_err_t ili9341_init(ili9341_t *d,
     goto fail;
   }
 
-  (void)ili9341_backlight_init_(d); /* si falla, la pantalla funciona igual */
+  (void)ili9341_backlight_init_(d); 
 
-  /* Reset por hardware y por software */
   if (d->cfg.rst != GPIO_NUM_NC) {
     gpio_set_level(d->cfg.rst, 0);
     vTaskDelay(pdMS_TO_TICKS(20));
     gpio_set_level(d->cfg.rst, 1);
     vTaskDelay(pdMS_TO_TICKS(130));
   }
-  d->initialized = true; /* a partir de aqui se usan las funciones normales */
+  d->initialized = true; 
 
   if ((err = ili9341_tx_cmd_(d, ILI9341_CMD_SWRESET)) != ESP_OK) {
     goto fail_init;
@@ -645,7 +619,6 @@ static inline esp_err_t ili9341_init(ili9341_t *d,
       (err = ili9341_tx_cmd_(d, ILI9341_CMD_INVON)) != ESP_OK) {
     goto fail_init;
   }
-  /* Limpiar la RAM antes de encender para no mostrar basura */
   if ((err = ili9341_fill_rect_locked_(d, 0, 0, d->width, d->height,
                                        ILI9341_BLACK)) != ESP_OK) {
     goto fail_init;
@@ -664,7 +637,6 @@ fail:
   return err;
 }
 
-/** Apaga el backlight y libera todo (incluido el bus si lo inicializo init). */
 static inline esp_err_t ili9341_deinit(ili9341_t *d) {
   esp_err_t err = ili9341_check_(d);
   if (err != ESP_OK) {
@@ -680,10 +652,6 @@ static inline esp_err_t ili9341_deinit(ili9341_t *d) {
   ili9341_cleanup_(d);
   return ESP_OK;
 }
-
-/* ------------------------------------------------------------------------- */
-/* Control del panel                                                         */
-/* ------------------------------------------------------------------------- */
 
 static inline uint16_t ili9341_width(const ili9341_t *d) {
   return d ? d->width : 0;
@@ -742,16 +710,10 @@ static inline esp_err_t ili9341_invert(ili9341_t *d, bool on) {
   return ili9341_simple_cmd_(d, on ? ILI9341_CMD_INVON : ILI9341_CMD_INVOFF, 0);
 }
 
-/** Modo de bajo consumo: true = dormir (la RAM se conserva), false = despertar.
- */
 static inline esp_err_t ili9341_sleep(ili9341_t *d, bool sleep) {
   return ili9341_simple_cmd_(d, sleep ? ILI9341_CMD_SLPIN : ILI9341_CMD_SLPOUT,
                              120);
 }
-
-/* ------------------------------------------------------------------------- */
-/* Dibujo                                                                    */
-/* ------------------------------------------------------------------------- */
 
 static inline esp_err_t ili9341_fill_rect(ili9341_t *d, int x, int y, int w,
                                           int h, uint16_t color) {
@@ -814,7 +776,7 @@ static inline esp_err_t ili9341_draw_line(ili9341_t *d, int x0, int y0, int x1,
     return err;
   }
   int dx = x1 > x0 ? x1 - x0 : x0 - x1;
-  int dy = y1 > y0 ? y0 - y1 : y1 - y0; /* -|dy| */
+  int dy = y1 > y0 ? y0 - y1 : y1 - y0; 
   int sx = x0 < x1 ? 1 : -1;
   int sy = y0 < y1 ? 1 : -1;
   int e = dx + dy;
@@ -883,7 +845,6 @@ static inline esp_err_t ili9341_fill_circle(ili9341_t *d, int cx, int cy, int r,
   return err;
 }
 
-/** Circunferencia (algoritmo del punto medio). */
 static inline esp_err_t ili9341_draw_circle(ili9341_t *d, int cx, int cy, int r,
                                             uint16_t color) {
   esp_err_t err = ili9341_check_(d);
@@ -972,11 +933,6 @@ static inline esp_err_t ili9341_draw_bitmap(ili9341_t *d, int x, int y, int w,
   return err;
 }
 
-/* ------------------------------------------------------------------------- */
-/* Texto                                                                     */
-/* ------------------------------------------------------------------------- */
-
-/** Dibuja un caracter. bg = color RGB565 o ILI9341_TRANSPARENT. scale >= 1. */
 static inline esp_err_t ili9341_draw_char(ili9341_t *d, int x, int y, char c,
                                           uint16_t fg, int32_t bg, int scale) {
   esp_err_t err = ili9341_check_(d);
@@ -991,7 +947,6 @@ static inline esp_err_t ili9341_draw_char(ili9341_t *d, int x, int y, char c,
   return err;
 }
 
-/** Ancho en pixeles de la primera linea de 's'. */
 static inline int ili9341_text_width(const char *s, int scale) {
   if (s == NULL) {
     return 0;

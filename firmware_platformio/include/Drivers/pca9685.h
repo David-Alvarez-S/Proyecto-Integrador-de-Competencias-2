@@ -29,10 +29,6 @@ typedef i2c_port_t pca9685_bus_t;
 typedef i2c_master_bus_handle_t pca9685_bus_t;
 #endif
 
-/* ------------------------------------------------------------------------- */
-/* Constantes del chip                                                       */
-/* ------------------------------------------------------------------------- */
-
 #define PCA9685_NUM_CHANNELS 16
 #define PCA9685_RESOLUTION 4096U
 
@@ -47,11 +43,7 @@ typedef i2c_master_bus_handle_t pca9685_bus_t;
 #define PCA9685_MODE1_SLEEP 0x10
 #define PCA9685_MODE2_INVRT 0x10
 #define PCA9685_MODE2_OUTDRV 0x04
-#define PCA9685_FULL_BIT 0x10 /* bit 4 de ON_H / OFF_H: "siempre on/off" */
-
-/* ------------------------------------------------------------------------- */
-/* Parametros (sobrescribibles con #define antes del #include)               */
-/* ------------------------------------------------------------------------- */
+#define PCA9685_FULL_BIT 0x10 
 
 #ifndef PCA9685_DEFAULT_ADDR
 #define PCA9685_DEFAULT_ADDR 0x40
@@ -71,12 +63,12 @@ typedef i2c_master_bus_handle_t pca9685_bus_t;
 #ifndef PCA9685_DEFAULT_LOCK_TIMEOUT_MS
 #define PCA9685_DEFAULT_LOCK_TIMEOUT_MS 200U
 #endif
-/** Desfase (en cuentas) entre canales cuando stagger = true. */
+
 #ifndef PCA9685_STAGGER_STEP
 #define PCA9685_STAGGER_STEP 200U
 #endif
 
-/* Valores por defecto de servos */
+
 #ifndef PCA9685_SERVO_MIN_US
 #define PCA9685_SERVO_MIN_US 500U
 #endif
@@ -99,22 +91,18 @@ typedef i2c_master_bus_handle_t pca9685_bus_t;
 #define PCA9685_CR_DEADBAND_US 30U
 #endif
 
-/* ------------------------------------------------------------------------- */
-/* Tipos                                                                     */
-/* ------------------------------------------------------------------------- */
-
 typedef struct {
-  pca9685_bus_t bus; /**< i2c_master_bus_handle_t (IDF>=5.2) o i2c_port_t */
-  uint8_t addr;      /**< 0x40..0x7F                               */
-  uint32_t i2c_hz;   /**< Solo backend nuevo                       */
+  pca9685_bus_t bus;        // i2c_master_bus_handle_t (IDF>=5.2) o i2c_port_t 
+  uint8_t addr;             // 0x40..0x7F                               
+  uint32_t i2c_hz;          // Solo backend nuevo                       
   uint32_t i2c_timeout_ms;
-  uint32_t freq_hz;     /**< Frecuencia PWM (50 Hz para servos)       */
-  uint32_t osc_hz;      /**< Oscilador real (~25 MHz, ajustable)      */
-  gpio_num_t oe_pin;    /**< GPIO_NUM_NC si no esta conectado         */
-  bool stagger;         /**< Desfasa los canales (menos pico de corriente) */
-  bool invert;          /**< Salidas invertidas (INVRT)               */
-  bool open_drain;      /**< false = totem-pole (lo normal)           */
-  bool all_off_on_init; /**< Apaga todos los canales al iniciar       */
+  uint32_t freq_hz;         // Frecuencia PWM (50 Hz para servos)    
+  uint32_t osc_hz;          // Oscilador real (~25 MHz, ajustable)   
+  gpio_num_t oe_pin;        // GPIO_NUM_NC si no esta conectado      
+  bool stagger;             // Desfasa los canales (menos pico de corriente) 
+  bool invert;              // Salidas invertidas (INVRT)               
+  bool open_drain;          // false = totem-pole (lo normal)           
+  bool all_off_on_init;     // Apaga todos los canales al iniciar       
   uint32_t lock_timeout_ms;
 } pca9685_config_t;
 
@@ -134,12 +122,11 @@ typedef struct {
       .lock_timeout_ms = PCA9685_DEFAULT_LOCK_TIMEOUT_MS,                      \
   }
 
-/** Servo de posicion (SG90, MG90S de 180 grados, etc.). */
 typedef struct {
-  uint16_t min_us;     /**< Pulso para 0 grados                          */
-  uint16_t max_us;     /**< Pulso para max_angle_deg                     */
-  float max_angle_deg; /**< Recorrido total                              */
-  bool reversed;       /**< Invierte el sentido                          */
+  uint16_t min_us;     // Pulso para 0 grados                          
+  uint16_t max_us;     // Pulso para max_angle_deg                     
+  float max_angle_deg; // Recorrido total                              
+  bool reversed;       // Invierte el sentido                          
 } pca9685_servo_config_t;
 
 #define PCA9685_SERVO_CONFIG_DEFAULT()                                         \
@@ -152,10 +139,10 @@ typedef struct {
 
 /** Servo de giro continuo (el pulso fija velocidad y sentido). */
 typedef struct {
-  uint16_t min_us;      /**< Velocidad maxima en sentido negativo         */
-  uint16_t neutral_us;  /**< Parado                                       */
-  uint16_t max_us;      /**< Velocidad maxima en sentido positivo         */
-  uint16_t deadband_us; /**< Desplazamiento minimo para que empiece a girar */
+  uint16_t min_us;      // Velocidad maxima en sentido negativo         
+  uint16_t neutral_us;  // Parado                                       
+  uint16_t max_us;      // Velocidad maxima en sentido positivo         
+  uint16_t deadband_us; // Desplazamiento minimo para que empiece a girar 
   bool reversed;
 } pca9685_cr_config_t;
 
@@ -170,8 +157,8 @@ typedef struct {
 
 typedef enum {
   PCA9685_CH_NONE = 0,
-  PCA9685_CH_SERVO, /**< 180 grados                                   */
-  PCA9685_CH_CR,    /**< Giro continuo                                */
+  PCA9685_CH_SERVO, // 180 grados                                 
+  PCA9685_CH_CR,    // Giro continuo
 } pca9685_chan_type_t;
 
 typedef struct {
@@ -180,9 +167,9 @@ typedef struct {
     pca9685_servo_config_t servo;
     pca9685_cr_config_t cr;
   } cfg;
-  uint32_t last_us; /**< Ultimo pulso aplicado                        */
-  float value;      /**< Angulo (servo) o velocidad % (cr)            */
-  bool active;      /**< true = el canal esta emitiendo pulsos        */
+  uint32_t last_us; // Ultimo pulso aplicado                        
+  float value;      // Angulo  o velocidad        
+  bool active;      // true = el canal esta emitiendo pulsos        
 } pca9685_channel_t;
 
 typedef struct {
@@ -193,14 +180,10 @@ typedef struct {
 #endif
   uint32_t osc_hz;
   uint8_t prescale;
-  uint32_t i2c_errors; /**< Transacciones I2C fallidas (diagnostico) */
+  uint32_t i2c_errors; 
   pca9685_channel_t ch[PCA9685_NUM_CHANNELS];
   bool initialized;
 } pca9685_t;
-
-/* ------------------------------------------------------------------------- */
-/* Internas: I2C                                                             */
-/* ------------------------------------------------------------------------- */
 
 static inline bool pca9685_ready_(const pca9685_t *d) {
   return d != NULL && d->initialized;
@@ -253,16 +236,11 @@ static inline esp_err_t pca9685_wr_(pca9685_t *d, uint8_t reg, uint8_t val) {
   return pca9685_i2c_write_(d, b, 2);
 }
 
-/* ------------------------------------------------------------------------- */
-/* Internas: conversion de unidades y escritura de canales                   */
-/* ------------------------------------------------------------------------- */
-
 static inline float pca9685_actual_freq_(const pca9685_t *d) {
   return (float)d->osc_hz /
          ((float)PCA9685_RESOLUTION * (float)(d->prescale + 1U));
 }
 
-/** Microsegundos -> cuentas de 12 bits segun prescaler y oscilador reales. */
 static inline uint32_t pca9685_us_to_ticks_(const pca9685_t *d, uint32_t us) {
   uint64_t num = (uint64_t)us * (uint64_t)d->osc_hz;
   uint64_t den = 1000000ULL * (uint64_t)(d->prescale + 1U);
@@ -270,16 +248,14 @@ static inline uint32_t pca9685_us_to_ticks_(const pca9685_t *d, uint32_t us) {
   return (t > PCA9685_RESOLUTION) ? PCA9685_RESOLUTION : (uint32_t)t;
 }
 
-/** Rellena los 4 bytes ON_L, ON_H, OFF_L, OFF_H de un canal para un ancho dado
- * en cuentas. */
 static inline void pca9685_fill_channel_(const pca9685_t *d, uint8_t ch,
                                          uint32_t ticks, uint8_t out[4]) {
-  if (ticks == 0) { /* siempre apagado */
+  if (ticks == 0) { // siempre apagado 
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
     out[3] = PCA9685_FULL_BIT;
-  } else if (ticks >= PCA9685_RESOLUTION) { /* siempre encendido */
+  } else if (ticks >= PCA9685_RESOLUTION) { // siempre encendido 
     out[0] = 0;
     out[1] = PCA9685_FULL_BIT;
     out[2] = 0;
@@ -289,7 +265,7 @@ static inline void pca9685_fill_channel_(const pca9685_t *d, uint8_t ch,
     if (d->cfg.stagger) {
       on = (uint32_t)ch * PCA9685_STAGGER_STEP;
       if (on + ticks >
-          PCA9685_RESOLUTION - 1U) { /* nunca cruzar el final del periodo */
+          PCA9685_RESOLUTION - 1U) { // nunca cruzar el final del periodo 
         on = PCA9685_RESOLUTION - 1U - ticks;
       }
     }
@@ -301,7 +277,6 @@ static inline void pca9685_fill_channel_(const pca9685_t *d, uint8_t ch,
   }
 }
 
-/** Escribe un canal (mutex tomado). */
 static inline esp_err_t pca9685_write_ticks_locked_(pca9685_t *d, uint8_t ch,
                                                     uint32_t ticks) {
   uint8_t buf[5];
@@ -310,7 +285,6 @@ static inline esp_err_t pca9685_write_ticks_locked_(pca9685_t *d, uint8_t ch,
   return pca9685_i2c_write_(d, buf, sizeof(buf));
 }
 
-/** Aplica un pulso en us a un canal y actualiza su estado (mutex tomado). */
 static inline esp_err_t pca9685_write_us_locked_(pca9685_t *d, uint8_t ch,
                                                  uint32_t us) {
   esp_err_t err =
@@ -321,9 +295,6 @@ static inline esp_err_t pca9685_write_us_locked_(pca9685_t *d, uint8_t ch,
   }
   return err;
 }
-
-/** Re-aplica los pulsos de los canales activos (tras cambiar
- * frecuencia/oscilador). */
 static inline esp_err_t pca9685_reapply_locked_(pca9685_t *d) {
   for (uint8_t ch = 0; ch < PCA9685_NUM_CHANNELS; ch++) {
     if (d->ch[ch].active) {
@@ -343,17 +314,13 @@ static inline esp_err_t pca9685_calc_prescale_(uint32_t osc_hz,
   }
   float p = (float)osc_hz / ((float)PCA9685_RESOLUTION * (float)freq_hz) - 1.0f;
   int v = (int)(p + 0.5f);
-  if (v < 3 || v > 255) { /* limites del chip: ~24 Hz .. ~1526 Hz */
+  if (v < 3 || v > 255) { 
     return ESP_ERR_INVALID_ARG;
   }
   *out = (uint8_t)v;
   return ESP_OK;
 }
 
-/**
- * Programa el prescaler (el chip debe estar dormido) y lo reactiva con RESTART.
- * Mutex tomado.
- */
 static inline esp_err_t pca9685_apply_freq_locked_(pca9685_t *d,
                                                    uint32_t freq_hz) {
   uint8_t pre;
@@ -370,7 +337,7 @@ static inline esp_err_t pca9685_apply_freq_locked_(pca9685_t *d,
   if (err != ESP_OK) {
     return err;
   }
-  vTaskDelay(2); /* el oscilador necesita >= 500 us */
+  vTaskDelay(2); 
   err = pca9685_wr_(d, PCA9685_REG_MODE1,
                     PCA9685_MODE1_AI | PCA9685_MODE1_RESTART);
   if (err == ESP_OK) {
@@ -388,7 +355,7 @@ static inline esp_err_t pca9685_chan_check_(const pca9685_t *d, uint8_t ch,
     return ESP_ERR_INVALID_ARG;
   }
   if (d->ch[ch].type != type) {
-    return ESP_ERR_INVALID_STATE; /* sin attach o de otro tipo */
+    return ESP_ERR_INVALID_STATE; 
   }
   return ESP_OK;
 }
@@ -397,11 +364,6 @@ static inline TickType_t pca9685_ticks_min1_(uint32_t ms) {
   TickType_t t = pdMS_TO_TICKS(ms);
   return (t == 0) ? 1 : t;
 }
-
-/* ------------------------------------------------------------------------- */
-/* API: ciclo de vida y chip                                                 */
-/* ------------------------------------------------------------------------- */
-
 static inline esp_err_t pca9685_init(pca9685_t *d,
                                      const pca9685_config_t *cfg) {
   if (d == NULL || cfg == NULL) {
@@ -446,7 +408,6 @@ static inline esp_err_t pca9685_init(pca9685_t *d,
   }
 #endif
 
-  /* OE: activo en bajo. Se deja deshabilitado hasta tener todo configurado. */
   if (cfg->oe_pin >= 0) {
     gpio_config_t io = {
         .pin_bit_mask = 1ULL << cfg->oe_pin,
@@ -461,19 +422,12 @@ static inline esp_err_t pca9685_init(pca9685_t *d,
     }
     gpio_set_level(cfg->oe_pin, 1);
   }
-
-  /* Deteccion: leer MODE1 */
   uint8_t m1;
   err = pca9685_i2c_read_(d, PCA9685_REG_MODE1, &m1, 1);
   if (err != ESP_OK) {
     err = ESP_ERR_NOT_FOUND;
     goto fail_dev;
   }
-
-  /* Auto-incremento ANTES de cualquier escritura en rafaga (el valor por
-   * defecto del chip es AI = 0). Se deja dormido y con ALLCALL desactivado
-   * (evita respuestas a broadcasts a 0x70); apply_freq lo despierta al final.
-   */
   err =
       pca9685_wr_(d, PCA9685_REG_MODE1, PCA9685_MODE1_AI | PCA9685_MODE1_SLEEP);
 
@@ -489,14 +443,14 @@ static inline esp_err_t pca9685_init(pca9685_t *d,
   }
   if (err == ESP_OK) {
     err = pca9685_apply_freq_locked_(
-        d, cfg->freq_hz); /* tambien deja AI activo, ALLCALL off */
+        d, cfg->freq_hz);
   }
   if (err != ESP_OK) {
     goto fail_dev;
   }
 
   if (cfg->oe_pin >= 0) {
-    gpio_set_level(cfg->oe_pin, 0); /* habilita salidas */
+    gpio_set_level(cfg->oe_pin, 0); // habilita salidas 
   }
   d->initialized = true;
   return ESP_OK;
@@ -511,7 +465,6 @@ fail_lock:
   return err;
 }
 
-/** Apaga todos los canales, duerme el chip y libera recursos. */
 static inline esp_err_t pca9685_deinit(pca9685_t *d) {
   if (!pca9685_ready_(d)) {
     return ESP_ERR_INVALID_STATE;
@@ -540,8 +493,7 @@ static inline esp_err_t pca9685_deinit(pca9685_t *d) {
   return ESP_OK;
 }
 
-/** Cambia la frecuencia PWM (24..1526 Hz). Conserva los anchos de pulso
- * activos. */
+
 static inline esp_err_t pca9685_set_frequency(pca9685_t *d, uint32_t freq_hz) {
   if (!pca9685_ready_(d)) {
     return ESP_ERR_INVALID_STATE;
@@ -559,7 +511,7 @@ static inline esp_err_t pca9685_set_frequency(pca9685_t *d, uint32_t freq_hz) {
   return err;
 }
 
-/** Frecuencia PWM real (Hz) segun el prescaler y el oscilador configurados. */
+
 static inline esp_err_t pca9685_get_frequency(pca9685_t *d, float *hz) {
   if (!pca9685_ready_(d) || hz == NULL) {
     return ESP_ERR_INVALID_ARG;
@@ -594,8 +546,7 @@ static inline esp_err_t pca9685_set_oscillator_hz(pca9685_t *d,
   return err;
 }
 
-/** Habilita/deshabilita TODAS las salidas por el pin OE (parada de emergencia
- * por hardware). */
+
 static inline esp_err_t pca9685_set_output_enabled(pca9685_t *d, bool enabled) {
   if (!pca9685_ready_(d)) {
     return ESP_ERR_INVALID_STATE;
@@ -606,7 +557,7 @@ static inline esp_err_t pca9685_set_output_enabled(pca9685_t *d, bool enabled) {
   return gpio_set_level(d->cfg.oe_pin, enabled ? 0 : 1);
 }
 
-/** Duerme/despierta el chip (dormido: oscilador parado y servos sin pulsos). */
+
 static inline esp_err_t pca9685_sleep(pca9685_t *d, bool sleep) {
   if (!pca9685_ready_(d)) {
     return ESP_ERR_INVALID_STATE;
@@ -630,8 +581,6 @@ static inline esp_err_t pca9685_sleep(pca9685_t *d, bool sleep) {
   return err;
 }
 
-/** Apaga TODOS los canales de golpe (una sola transaccion) y los marca
- * inactivos. */
 static inline esp_err_t pca9685_all_off(pca9685_t *d) {
   if (!pca9685_ready_(d)) {
     return ESP_ERR_INVALID_STATE;
@@ -687,10 +636,6 @@ static inline esp_err_t pca9685_set_pwm_raw(pca9685_t *d, uint8_t ch,
   return err;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: servo de 180 grados (SG90)                                           */
-/* ------------------------------------------------------------------------- */
-
 static inline uint32_t
 pca9685_servo_angle_to_us_(const pca9685_servo_config_t *c, float angle) {
   if (angle < 0.0f) {
@@ -744,7 +689,6 @@ pca9685_servo_attach(pca9685_t *d, uint8_t ch,
   return err;
 }
 
-/** Pulso directo en us (limitado a [min_us, max_us]). */
 static inline esp_err_t pca9685_servo_write_us(pca9685_t *d, uint8_t ch,
                                                uint32_t us) {
   esp_err_t err = pca9685_chan_check_(d, ch, PCA9685_CH_SERVO);
@@ -767,7 +711,6 @@ static inline esp_err_t pca9685_servo_write_us(pca9685_t *d, uint8_t ch,
   return err;
 }
 
-/** Mueve el servo a un angulo en grados (se limita a [0, max_angle_deg]). */
 static inline esp_err_t pca9685_servo_write_angle(pca9685_t *d, uint8_t ch,
                                                   float angle_deg) {
   esp_err_t err = pca9685_chan_check_(d, ch, PCA9685_CH_SERVO);
@@ -827,8 +770,6 @@ static inline esp_err_t pca9685_servo_write_angles(pca9685_t *d,
   return err;
 }
 
-/** Ultimo angulo ordenado (el SG90 no tiene realimentacion, no es una
- * medicion). */
 static inline esp_err_t pca9685_servo_get_angle(pca9685_t *d, uint8_t ch,
                                                 float *angle_deg) {
   esp_err_t err = pca9685_chan_check_(d, ch, PCA9685_CH_SERVO);
@@ -891,10 +832,6 @@ static inline esp_err_t pca9685_servo_move_smooth(pca9685_t *d, uint8_t ch,
   return ESP_OK;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: servo de giro continuo (MG90S modificado, FS90R...)                  */
-/* ------------------------------------------------------------------------- */
-
 static inline float pca9685_cr_clamp_(float s) {
   return (s > 100.0f) ? 100.0f : ((s < -100.0f) ? -100.0f : s);
 }
@@ -950,8 +887,6 @@ static inline esp_err_t pca9685_cr_attach(pca9685_t *d, uint8_t ch,
   return err;
 }
 
-/** Velocidad en % [-100, +100]; 0 = parado (pulso neutro, la senal sigue
- * activa). */
 static inline esp_err_t pca9685_cr_set_speed(pca9685_t *d, uint8_t ch,
                                              float speed_pct) {
   esp_err_t err = pca9685_chan_check_(d, ch, PCA9685_CH_CR);
@@ -971,8 +906,6 @@ static inline esp_err_t pca9685_cr_set_speed(pca9685_t *d, uint8_t ch,
   return err;
 }
 
-/** Para el servo con el pulso neutro. Para paro garantizado usa
- * pca9685_release(). */
 static inline esp_err_t pca9685_cr_stop(pca9685_t *d, uint8_t ch) {
   return pca9685_cr_set_speed(d, ch, 0.0f);
 }
@@ -994,8 +927,7 @@ static inline esp_err_t pca9685_cr_get_speed(pca9685_t *d, uint8_t ch,
   return ESP_OK;
 }
 
-/** Ajusta el neutro en caliente (calibracion). Si esta parado y activo, lo
- * reaplica. */
+// Calibracion
 static inline esp_err_t pca9685_cr_set_neutral_us(pca9685_t *d, uint8_t ch,
                                                   uint16_t neutral_us) {
   esp_err_t err = pca9685_chan_check_(d, ch, PCA9685_CH_CR);

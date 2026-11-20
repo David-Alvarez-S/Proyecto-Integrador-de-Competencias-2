@@ -27,7 +27,7 @@ typedef struct {
   float target_dist;
   float direccion;
 
-  float t_j; // Tiempo de subida de aceleración (Jerk)
+  float t_j; // Tiempo de subida de aceleración 
   float t_a; // Tiempo de aceleración constante
   float t_v; // Tiempo de velocidad constante
 
@@ -70,7 +70,6 @@ static inline uint8_t Planificar_Perfil_s(planificador_perfil_s_t *p,
   float a_m = p->limites.a_max;
   float j_m = p->limites.j_max;
 
-  // Verificación de aceleración máxima alcanzable
   if (v_m * j_m < a_m * a_m) {
     a_m = sqrtf(v_m * j_m);
   }
@@ -78,13 +77,11 @@ static inline uint8_t Planificar_Perfil_s(planificador_perfil_s_t *p,
   float t_j = a_m / j_m;
   float t_a = (v_m - a_m * t_j) / a_m;
 
-  // Distancia mínima para alcanzar v_max (acelerar + desacelerar)
   float L_v = 2.0f * a_m * t_j * t_j + 3.0f * a_m * t_j * t_a + a_m * t_a * t_a;
 
   float t_v = 0.0f;
 
   if (L >= L_v) {
-    // Alcanza velocidad crucero
     t_v = (L - L_v) / v_m;
   } else {
     // No alcanza v_max, recalcular
@@ -155,7 +152,7 @@ static inline estado_perfil_s_t Estado_Perfil_s(planificador_perfil_s_t *p,
 
   float x3 = x2 + v2 * t_j + 0.5f * a_m * t_j * t_j -
              (1.0f / 6.0f) * j_m * t_j * t_j * t_j;
-  float v3 = v_m;
+  //float v3 = v_m;
 
   float x4 = x3 + v_m * p->t_v;
 

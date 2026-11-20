@@ -1,0 +1,365 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/986fddab399fa99c501ce587/w/aebd2b3a2e37adc9e113121a/e/773e8b154009b5c2da8b7f3d -->
+<robot name="Descripcion_Brazo">
+  <!-- Link base_link -->
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-09"/>
+      <inertia ixx="1e-09" ixy="0" ixz="0" iyy="1e-09" iyz="0" izz="1e-09"/>
+    </inertial>
+  </link>
+  <!-- Link base -->
+  <link name="base">
+    <inertial>
+      <origin xyz="-0.00248406 -1.55409e-07 0.00043412" rpy="0 0 0"/>
+      <mass value="0.04247"/>
+      <inertia ixx="1.7463e-05" ixy="-2.4e-11" ixz="-1.14779e-06" iyy="1.98907e-05" iyz="-5.1e-11" izz="2.6402e-05"/>
+    </inertial>
+    <!-- Part base -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/base.stl"/>
+      </geometry>
+      <material name="base_material">
+        <color rgba="0.647059 0.647059 0.647059 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/base.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part part_1 -->
+    <visual>
+      <origin xyz="-0.00565 0 0.0255" rpy="3.14159 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+      <material name="part_1_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.00565 0 0.0255" rpy="3.14159 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part part_1_2 -->
+    <visual>
+      <origin xyz="0.0285 0 0.017" rpy="1.5708 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1__2.stl"/>
+      </geometry>
+      <material name="part_1_2_material">
+        <color rgba="0.537255 0.854902 0.827451 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0285 0 0.017" rpy="1.5708 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1__2.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part mg90s_servo -->
+    <visual>
+      <origin xyz="0.0351 -0.0003 -0.058" rpy="0 -0 -3.14159"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg90s_servo.stl"/>
+      </geometry>
+      <material name="mg90s_servo_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0351 -0.0003 -0.058" rpy="0 -0 -3.14159"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg90s_servo.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link acople -->
+  <link name="acople">
+    <inertial>
+      <origin xyz="3.48891e-06 0.0322874 -0.030239" rpy="0 0 0"/>
+      <mass value="0.01194"/>
+      <inertia ixx="1.48171e-05" ixy="-8.51e-10" ixz="8.07e-10" iyy="9.60516e-06" iyz="4.42983e-06" izz="6.27059e-06"/>
+    </inertial>
+    <!-- Part acople -->
+    <visual>
+      <origin xyz="0 0 0" rpy="3.14159 -0 -0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/acople.stl"/>
+      </geometry>
+      <material name="acople_material">
+        <color rgba="0.262745 0.282353 0.301961 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="3.14159 -0 -0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/acople.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part mg996r_servo -->
+    <visual>
+      <origin xyz="-0 0.0486 -0.0541" rpy="1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg996r_servo.stl"/>
+      </geometry>
+      <material name="mg996r_servo_material">
+        <color rgba="0.647059 0.647059 0.647059 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0 0.0486 -0.0541" rpy="1.5708 -1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg996r_servo.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part part_1_3 -->
+    <visual>
+      <origin xyz="-0 0 -0.001" rpy="3.14159 0 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1__3.stl"/>
+      </geometry>
+      <material name="part_1_3_material">
+        <color rgba="0.654902 0.823529 0.576471 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0 0 -0.001" rpy="3.14159 0 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1__3.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part part_1_4 -->
+    <visual>
+      <origin xyz="-1.3392e-05 0.0540068 -0.0642463" rpy="-1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+      <material name="part_1_4_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-1.3392e-05 0.0540068 -0.0642463" rpy="-1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link eslabon_2 -->
+  <link name="eslabon_2">
+    <inertial>
+      <origin xyz="0.000608762 -0.0817993 0.00157991" rpy="0 0 0"/>
+      <mass value="0.0217"/>
+      <inertia ixx="3.62708e-05" ixy="3.21514e-07" ixz="2.11161e-07" iyy="8.79156e-06" iyz="-7.69031e-06" izz="2.90106e-05"/>
+    </inertial>
+    <!-- Part mg90s_servo_2 -->
+    <visual>
+      <origin xyz="-0.0003 -0.0656 0.059" rpy="-3.14159 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg90s_servo.stl"/>
+      </geometry>
+      <material name="mg90s_servo_2_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0003 -0.0656 0.059" rpy="-3.14159 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg90s_servo.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part eslabon_2 -->
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/eslabon_2.stl"/>
+      </geometry>
+      <material name="eslabon_2_material">
+        <color rgba="0.764706 0.545098 0.803922 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/eslabon_2.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part part_1_5 -->
+    <visual>
+      <origin xyz="1.3392e-05 -0.105731 -0.03" rpy="-0 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+      <material name="part_1_5_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="1.3392e-05 -0.105731 -0.03" rpy="-0 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link acople_2 -->
+  <link name="acople_2">
+    <inertial>
+      <origin xyz="-1.84541e-05 0.0862495 0.000669402" rpy="0 0 0"/>
+      <mass value="0.0216"/>
+      <inertia ixx="3.08275e-05" ixy="-1.6492e-08" ixz="-1.716e-09" iyy="3.49995e-06" iyz="-8.66621e-07" izz="2.83988e-05"/>
+    </inertial>
+    <!-- Part acople_2 -->
+    <visual>
+      <origin xyz="0 0 0" rpy="-3.14159 0 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/acople.stl"/>
+      </geometry>
+      <material name="acople_2_material">
+        <color rgba="0.262745 0.282353 0.301961 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="-3.14159 0 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/acople.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part mg90s_servo_3 -->
+    <visual>
+      <origin xyz="-0.0003 0.0686 -0.062" rpy="-0 -0 1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg90s_servo.stl"/>
+      </geometry>
+      <material name="mg90s_servo_3_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.0003 0.0686 -0.062" rpy="-0 -0 1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/mg90s_servo.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part eslabon_2_2 -->
+    <visual>
+      <origin xyz="-0 -0 -0.001" rpy="-1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/eslabon_2__2.stl"/>
+      </geometry>
+      <material name="eslabon_2_2_material">
+        <color rgba="0.87451 0.447059 0.317647 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0 -0 -0.001" rpy="-1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/eslabon_2__2.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part part_1_6 -->
+    <visual>
+      <origin xyz="0 0.110073 0.025" rpy="-3.14159 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+      <material name="part_1_6_material">
+        <color rgba="0.615686 0.811765 0.929412 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0.110073 0.025" rpy="-3.14159 0 -1.5708"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/part_1.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Link acople_3 -->
+  <link name="acople_3">
+    <inertial>
+      <origin xyz="0.00261703 0.0198372 0.00249116" rpy="0 0 0"/>
+      <mass value="0.0039"/>
+      <inertia ixx="3.45266e-06" ixy="-4.42856e-07" ixz="-5.193e-09" iyy="2.77323e-07" iyz="-3.9366e-08" izz="3.55508e-06"/>
+    </inertial>
+    <!-- Part herramienta -->
+    <visual>
+      <origin xyz="0 0 0.004" rpy="-1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/herramienta.stl"/>
+      </geometry>
+      <material name="herramienta_material">
+        <color rgba="0.760784 0.839216 0.92549 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.004" rpy="-1.5708 1.5708 0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/herramienta.stl"/>
+      </geometry>
+    </collision>
+    <!-- Part acople_3 -->
+    <visual>
+      <origin xyz="0 0 0.002" rpy="3.14159 -0 -0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/acople.stl"/>
+      </geometry>
+      <material name="acople_3_material">
+        <color rgba="0.262745 0.282353 0.301961 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.002" rpy="3.14159 -0 -0"/>
+      <geometry>
+        <mesh filename="package://descripcion_brazo/assets/acople.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Joint from acople_2 to acople_3 -->
+  <joint name="Muñeca" type="continuous">
+    <origin xyz="0 0.10935 0.0135" rpy="0 -0 0.208798"/>
+    <parent link="acople_2"/>
+    <child link="acople_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+  <!-- Joint from eslabon_2 to acople_2 -->
+  <joint name="Codo" type="continuous">
+    <origin xyz="-0 -0.10635 -0.0165" rpy="-0 0 3.14159"/>
+    <parent link="eslabon_2"/>
+    <child link="acople_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+  <!-- Joint from acople to eslabon_2 -->
+  <joint name="Hombro" type="continuous">
+    <origin xyz="-0 0.007 -0.0643" rpy="1.5708 0 -3.14159"/>
+    <parent link="acople"/>
+    <child link="eslabon_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+  <!-- Joint from base to acople -->
+  <joint name="Base" type="continuous">
+    <origin xyz="-0.00565 -0 0.0175" rpy="-3.14159 0 0"/>
+    <parent link="base"/>
+    <child link="acople"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+  <!-- Joint from base_link to base -->
+  <joint name="base_link_to_base" type="fixed">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <parent link="base_link"/>
+    <child link="base"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10"/>
+  </joint>
+</robot>

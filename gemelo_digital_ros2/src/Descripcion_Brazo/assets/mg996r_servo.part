@@ -1,0 +1,14 @@
+{
+    "configuration": "default",
+    "documentId": "56d153886894aab58979cd1c",
+    "documentMicroversion": "466ba1dcea7829b93367d720",
+    "documentVersion": "13564075d544e07c0aadb315",
+    "elementId": "980be561eb7e9b24edc89f15",
+    "fullConfiguration": "default",
+    "id": "MBtLkCLHVSMxdrX+I",
+    "isStandardContent": false,
+    "name": "MG996R Servo <1>",
+    "partId": "JHD",
+    "suppressed": false,
+    "type": "Part"
+}

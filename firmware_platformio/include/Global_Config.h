@@ -1,11 +1,15 @@
 #ifndef GLOBAL_CONFIG_H
 #define GLOBAL_CONFIG_H
 
-#include "Aritmetica.h"
+#include "Control_Brazo_Robotico/Aritmetica.h"
 #include <stdint.h>
 
-#define RADIO_MIN_IK 40
-
+//==========================================
+// LIMITES ESPACIALES DEL ESPACIO DE TRABAJO
+//==========================================
+#define R_MIN_ALCANCE   0.090f
+#define R_MAX_ALCANCE   0.360f  
+#define Z_MIN_MESA      0.040f  
 //==========================================
 //  VELOCIDAD , ACELERACION Y TIRON MAXIMO
 //==========================================
@@ -16,11 +20,11 @@
 //===================================
 // LONGITUD DE LAS PARTES DEL BRAZO
 //===================================
-#define L_ESLABON_1 100.0f
-#define L_ESLABON_2 106.35f
-#define L_ESLABON_3 109.35f
-#define L_SHOULDER_Z 13.5f
-#define L_HERRAMIENTA 74.99f
+#define L_ESLABON_1 0.16f
+#define L_ESLABON_2 0.109f
+#define L_ESLABON_3 0.10f
+#define L_SHOULDER_Z 0.099f
+#define L_HERRAMIENTA 0.0f
 
 //==========================================
 // LIMITES ANGULARES DE LAS ARTICULACIONES
@@ -51,4 +55,4 @@ typedef struct {
   Servomotor_t sm3;
   Servomotor_t sm4;
 } servomotores_h;
-#endif // GLOBAL_CONFIG_H
+#endif // GLOBAL_CONFIG_H 

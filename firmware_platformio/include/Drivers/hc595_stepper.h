@@ -19,18 +19,13 @@ extern "C" {
 #include "freertos/task.h"
 #include "hc595.h"
 
-/* ----------- */
-/* Parametros  */
-/* ----------- */
-
 #ifndef HC595_STEPPER_STEPS_PER_REV_FULL
-#define HC595_STEPPER_STEPS_PER_REV_FULL 2048.0f /* modos WAVE y FULL */
+#define HC595_STEPPER_STEPS_PER_REV_FULL 2048.0f
 #endif
 #ifndef HC595_STEPPER_STEPS_PER_REV_HALF
 #define HC595_STEPPER_STEPS_PER_REV_HALF 4096.0f
 #endif
 
-/** Tope duro de velocidad (pasos/s) para proteger contra valores grandes. */
 #ifndef HC595_STEPPER_MAX_STEP_RATE
 #define HC595_STEPPER_MAX_STEP_RATE 1500.0f
 #endif
@@ -42,15 +37,13 @@ extern "C" {
 #define HC595_STEPPER_DEFAULT_ACCEL 1000.0f
 #endif
 #ifndef HC595_STEPPER_DEFAULT_SETTLE_MS
-#define HC595_STEPPER_DEFAULT_SETTLE_MS 15U /* espera tras el ultimo paso */
+#define HC595_STEPPER_DEFAULT_SETTLE_MS 15U 
 #endif
 
-/** Espera maxima por el mutex del motor (ms). */
 #ifndef HC595_STEPPER_LOCK_TIMEOUT_MS
 #define HC595_STEPPER_LOCK_TIMEOUT_MS 100U
 #endif
 
-/** Tiempo de gracia al hacer deinit para que termine un callback en vuelo. */
 #ifndef HC595_STEPPER_DEINIT_GRACE_MS
 #define HC595_STEPPER_DEINIT_GRACE_MS 20U
 #endif
@@ -59,40 +52,31 @@ extern "C" {
 #define HC595_STEPPER_START_DELAY_US 100
 #define HC595_STEPPER_MIN_WAIT_US 50
 
-/* ------------------------------------------------------------------------- */
-/* Tipos                                                                     */
-/* ------------------------------------------------------------------------- */
-
 typedef enum {
-  HC595_STEPPER_MODE_WAVE = 0, /**< 1 bobina a la vez (4 fases) - menos par */
-  HC595_STEPPER_MODE_FULL, /**< 2 bobinas a la vez (4 fases) - mas par        */
-  HC595_STEPPER_MODE_HALF, /**< Medios pasos (8 fases) - mas resolucion       */
+  HC595_STEPPER_MODE_WAVE = 0,
+  HC595_STEPPER_MODE_FULL, 
+  HC595_STEPPER_MODE_HALF, 
 } hc595_stepper_mode_t;
 
 typedef enum {
-  HC595_STEPPER_RUN_POSITION = 0, /**< Ir a una posicion objetivo */
-  HC595_STEPPER_RUN_VELOCITY,     /**< Girar continuamente a una velocidad */
+  HC595_STEPPER_RUN_POSITION = 0, 
+  HC595_STEPPER_RUN_VELOCITY,     
 } hc595_stepper_run_mode_t;
 
 typedef struct hc595_stepper hc595_stepper_t;
-
-/** Se llama al terminar un movimiento (motor en reposo). Debe ser corta. */
 typedef void (*hc595_stepper_done_cb_t)(hc595_stepper_t *motor, void *ctx);
 
 typedef struct {
-  hc595_t *chain; /**< Cadena 74HC595 YA inicializada   */
-  uint8_t pin[4]; /**< Salidas (0..15) de IN1..IN4      */
+  hc595_t *chain; 
+  uint8_t pin[4]; 
   hc595_stepper_mode_t mode;
-  float steps_per_rev;             /**< 0 = automatico segun el modo     */
-  float max_speed;                 /**< pasos/s (0 < v <= MAX_STEP_RATE) */
-  float accel;                     /**< pasos/s^2 (0 = sin rampa)        */
-  bool reversed;                   /**< Invierte el sentido fisico       */
-  bool hold_when_idle;             /**< true: mantiene bobinas (par de
-                                        retencion, pero calienta y gasta);
-                                        false: las apaga al terminar     */
-  uint32_t settle_ms;              /**< Espera tras el ultimo paso antes
-                                        de dar el movimiento por acabado */
-  hc595_stepper_done_cb_t on_done; /**< Opcional                         */
+  float steps_per_rev;            
+  float max_speed;                
+  float accel;                    
+  bool reversed;                  
+  bool hold_when_idle;            
+  uint32_t settle_ms;              
+  hc595_stepper_done_cb_t on_done; 
   void *cb_ctx;
 } hc595_stepper_config_t;
 
@@ -114,37 +98,36 @@ typedef struct {
 struct hc595_stepper {
   hc595_stepper_config_t cfg;
   hc595_t *chain;
-  uint16_t pin_mask; /**< Salidas reservadas por este motor      */
+  uint16_t pin_mask; 
   uint8_t pin[4];
-  esp_err_t fault; /**< Ultimo error de escritura a la cadena  */
+  esp_err_t fault; 
   const uint8_t *seq;
   uint8_t seq_len;
   float steps_per_rev;
 
-  SemaphoreHandle_t lock;    /**< Protege todo el estado de abajo        */
-  EventGroupHandle_t events; /**< HC595_STEPPER_EVT_IDLE = motor en reposo */
+  SemaphoreHandle_t lock;    
+  EventGroupHandle_t events; 
   esp_timer_handle_t timer;
 
-  int32_t position; /**< Posicion actual (pasos, con signo)     */
+  int32_t position; 
   int32_t target;
-  float vel_target; /**< Modo velocidad: pasos/s con signo      */
+  float vel_target; 
   float max_speed;
   float accel;
-  float v;         /**< Velocidad actual (modulo, pasos/s)     */
-  int8_t dir;      /**< Sentido actual: +1 / -1 / 0            */
-  uint8_t phase;   /**< Indice en la secuencia                 */
-  int64_t next_us; /**< Instante programado del proximo paso   */
+  float v;         
+  int8_t dir;      
+  uint8_t phase;   
+  int64_t next_us; 
   hc595_stepper_run_mode_t run_mode;
   bool running;
   bool closing;
   bool initialized;
 };
 
-/* --------- */
-/* Internas  */
-/* --------- */
+// --------- 
+// Internas  
+// --------- 
 
-/** Mascaras de bobinas: bit0 = IN1 ... bit3 = IN4. */
 static inline const uint8_t *hc595_stepper_sequence_(hc595_stepper_mode_t mode,
                                                      uint8_t *len) {
   static const uint8_t wave[] = {0x1, 0x2, 0x4, 0x8};
@@ -190,7 +173,6 @@ static inline void hc595_stepper_unlock_(hc595_stepper_t *m) {
   xSemaphoreGive(m->lock);
 }
 
-/** Termina el movimiento (llamar con el mutex tomado). */
 static inline void hc595_stepper_finalize_locked_(hc595_stepper_t *m) {
   m->v = 0.0f;
   m->dir = 0;
@@ -204,26 +186,18 @@ static inline void hc595_stepper_finalize_locked_(hc595_stepper_t *m) {
   xEventGroupSetBits(m->events, HC595_STEPPER_EVT_IDLE);
 }
 
-/** Frenado: baja v por un paso de aceleracion, con suelo 'floor'. */
 static inline float hc595_stepper_decel_(float v, float a, float floor_v) {
   float v2 = v * v - 2.0f * a;
   float f2 = floor_v * floor_v;
   return sqrtf(v2 > f2 ? v2 : f2);
 }
-
-/**
- * Decide, ejecuta el siguiente paso y calcula cuanto esperar al siguiente.
- * Llamar con el mutex tomado.
- * return true: re-armar el timer con *wait_us; false: movimiento terminado.
- */
 static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
                                                  int64_t now,
                                                  int64_t *wait_us) {
   const float a = m->accel;
   const bool ramp = a > 0.0f;
-  const float v0 = ramp ? sqrtf(2.0f * a) : 0.0f; /* velocidad desde reposo */
+  const float v0 = ramp ? sqrtf(2.0f * a) : 0.0f; 
 
-  /* Que se quiere: sentido y velocidad de crucero */
   int8_t want_dir;
   float want_speed;
   int32_t dist = 0;
@@ -245,7 +219,6 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
   int8_t dir = m->dir;
   bool was_at_rest = (v <= 0.0f);
 
-  /* Nuevo (v, dir) para este paso */
   if (was_at_rest) {
     if (want_speed <= 0.0f) {
       hc595_stepper_finalize_locked_(m);
@@ -265,20 +238,19 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
     const bool wrong_dir = (want_dir != 0) && (want_dir != dir);
 
     if (wrong_dir) {
-      if (can_stop) { /* invertir sentido a v0 */
+      if (can_stop) { 
         dir = want_dir;
         v = fminf(v0, want_speed);
       } else {
         v = hc595_stepper_decel_(v, a, v0);
       }
     } else if (want_speed <= 0.0f) {
-      if (can_stop) { /* ya esta lo bastante lento */
+      if (can_stop) { 
         hc595_stepper_finalize_locked_(m);
         return false;
       }
       v = hc595_stepper_decel_(v, a, v0);
     } else {
-      /* Velocidad candidata si NO se frena en este paso */
       float v_nb = v;
       if (v < want_speed) {
         v_nb = fminf(sqrtf(v * v + 2.0f * a), want_speed);
@@ -286,10 +258,6 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
         float v2 = v * v - 2.0f * a;
         v_nb = fmaxf(sqrtf(v2 > 0.0f ? v2 : 0.0f), want_speed);
       }
-
-      /* Modo posicion: tras este paso quedan (dist-1) pasos; si no bastan
-       * para bajar de v_nb a v0, hay que frenar ya. Asi se llega al
-       * objetivo a velocidad de arranque y no hay sobrepaso. */
       bool brake = false;
       if (m->run_mode == HC595_STEPPER_RUN_POSITION) {
         float need = (v_nb * v_nb - v0 * v0) / (2.0f * a);
@@ -302,8 +270,6 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
     v = 0.5f;
   }
 
-  /*  Ejecutar el paso: primero se escribe a la cadena; solo si sale bien
-   *    se confirma el nuevo estado (posicion, fase, velocidad). */
   int ph = (int)m->phase + (m->cfg.reversed ? -(int)dir : (int)dir);
   ph %= (int)m->seq_len;
   if (ph < 0) {
@@ -319,8 +285,6 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
   m->v = v;
   m->position += dir;
   m->phase = (uint8_t)ph;
-
-  /*  Tiempo hasta el siguiente paso (referencia absoluta: sin deriva) */
   int64_t delay = (int64_t)(1000000.0f / v);
 
   bool will_stop = (m->run_mode == HC595_STEPPER_RUN_POSITION)
@@ -330,8 +294,7 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
   if (will_stop && can_stop_now) {
     int64_t settle = (int64_t)m->cfg.settle_ms * 1000;
     if (delay < settle) {
-      delay = settle; /* dar tiempo al rotor a asentarse */
-    }
+      delay = settle; 
   }
 
   if (was_at_rest) {
@@ -339,8 +302,7 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
   }
   m->next_us += delay;
   int64_t wait = m->next_us - now;
-  if (wait <
-      HC595_STEPPER_MIN_WAIT_US) { /* nos quedamos atrasados: resincronizar */
+  if (wait < HC595_STEPPER_MIN_WAIT_US) { 
     wait = HC595_STEPPER_MIN_WAIT_US;
     m->next_us = now + wait;
   }
@@ -348,7 +310,6 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
   return true;
 }
 
-/** Callback del esp_timer: un paso por invocacion. */
 static inline void hc595_stepper_timer_cb_(void *arg) {
   hc595_stepper_t *m = (hc595_stepper_t *)arg;
 
@@ -365,11 +326,11 @@ static inline void hc595_stepper_timer_cb_(void *arg) {
 
   if (hc595_stepper_advance_locked_(m, esp_timer_get_time(), &wait_us)) {
     esp_err_t err = esp_timer_start_once(m->timer, (uint64_t)wait_us);
-    if (err == ESP_ERR_INVALID_STATE) { /* otro hilo ya lo habia armado */
+    if (err == ESP_ERR_INVALID_STATE) { /
       (void)esp_timer_stop(m->timer);
       err = esp_timer_start_once(m->timer, (uint64_t)wait_us);
     }
-    if (err != ESP_OK) { /* no se puede continuar */
+    if (err != ESP_OK) { 
       hc595_stepper_finalize_locked_(m);
       done_cb = m->cfg.on_done;
     }
@@ -384,7 +345,6 @@ static inline void hc595_stepper_timer_cb_(void *arg) {
   }
 }
 
-/** Arranca el motor si estaba en reposo (mutex tomado). */
 static inline esp_err_t hc595_stepper_kick_locked_(hc595_stepper_t *m) {
   if (m->running) {
     return ESP_OK;
@@ -404,10 +364,6 @@ static inline esp_err_t hc595_stepper_check_(const hc595_stepper_t *m) {
                                                       : ESP_ERR_INVALID_STATE;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: ciclo de vida                                                        */
-/* ------------------------------------------------------------------------- */
-
 static inline esp_err_t hc595_stepper_init(hc595_stepper_t *m,
                                            const hc595_stepper_config_t *cfg) {
   if (m == NULL || cfg == NULL) {
@@ -425,7 +381,7 @@ static inline esp_err_t hc595_stepper_init(hc595_stepper_t *m,
     if (cfg->pin[i] >= HC595_MAX_OUTPUTS ||
         !((cfg->chain->valid_mask >> cfg->pin[i]) & 1U) ||
         ((pmask >> cfg->pin[i]) & 1U)) {
-      return ESP_ERR_INVALID_ARG; /* fuera de la cadena o repetido */
+      return ESP_ERR_INVALID_ARG; 
     }
     pmask |= (uint16_t)(1U << cfg->pin[i]);
   }
@@ -463,10 +419,9 @@ static inline esp_err_t hc595_stepper_init(hc595_stepper_t *m,
   }
   xEventGroupSetBits(m->events, HC595_STEPPER_EVT_IDLE);
 
-  /* Reservar las 4 salidas en la cadena y dejar las bobinas apagadas */
   esp_err_t err = hc595_claim(m->chain, m->pin_mask);
   if (err != ESP_OK) {
-    goto fail_res; /* p. ej. otro motor ya usa esos pines */
+    goto fail_res; 
   }
   if ((err = hc595_stepper_write_phase_(m, 0)) != ESP_OK) {
     (void)hc595_unclaim(m->chain, m->pin_mask);
@@ -498,8 +453,6 @@ fail_res:
   memset(m, 0, sizeof(*m));
   return err;
 }
-
-/** Detiene el motor, apaga bobinas y libera recursos. */
 static inline esp_err_t hc595_stepper_deinit(hc595_stepper_t *m) {
   if (m == NULL || !m->initialized || m->closing) {
     return ESP_ERR_INVALID_STATE;
@@ -513,12 +466,11 @@ static inline esp_err_t hc595_stepper_deinit(hc595_stepper_t *m) {
   (void)hc595_stepper_write_phase_(m, 0);
   hc595_stepper_unlock_(m);
 
-  /* Un callback ya despachado puede estar ejecutandose: dale tiempo a salir. */
   vTaskDelay(pdMS_TO_TICKS(HC595_STEPPER_DEINIT_GRACE_MS) + 1);
 
   esp_timer_delete(m->timer);
   (void)hc595_unclaim(m->chain,
-                      m->pin_mask); /* las salidas vuelven a ser genericas */
+                      m->pin_mask); 
   vSemaphoreDelete(m->lock);
   vEventGroupDelete(m->events);
   m->lock = NULL;
@@ -528,11 +480,6 @@ static inline esp_err_t hc595_stepper_deinit(hc595_stepper_t *m) {
   return ESP_OK;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: configuracion en caliente                                            */
-/* ------------------------------------------------------------------------- */
-
-/** Velocidad maxima en pasos/s. Puede cambiarse con el motor en marcha. */
 static inline esp_err_t hc595_stepper_set_max_speed(hc595_stepper_t *m,
                                                     float steps_per_s) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -550,7 +497,6 @@ static inline esp_err_t hc595_stepper_set_max_speed(hc595_stepper_t *m,
   return ESP_OK;
 }
 
-/** Aceleracion en pasos/s^2 (0 = sin rampa). */
 static inline esp_err_t hc595_stepper_set_acceleration(hc595_stepper_t *m,
                                                        float steps_per_s2) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -568,11 +514,6 @@ static inline esp_err_t hc595_stepper_set_acceleration(hc595_stepper_t *m,
   return ESP_OK;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: movimiento (no bloqueante)                                           */
-/* ------------------------------------------------------------------------- */
-
-/** Va a una posicion absoluta (en pasos). */
 static inline esp_err_t hc595_stepper_move_to(hc595_stepper_t *m,
                                               int32_t target_steps) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -592,8 +533,6 @@ static inline esp_err_t hc595_stepper_move_to(hc595_stepper_t *m,
   return err;
 }
 
-/** Mueve 'steps' pasos relativos a la posicion ACTUAL (negativo = sentido
- * inverso). */
 static inline esp_err_t hc595_stepper_move_by(hc595_stepper_t *m,
                                               int32_t steps) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -613,8 +552,6 @@ static inline esp_err_t hc595_stepper_move_by(hc595_stepper_t *m,
   return err;
 }
 
-/** Gira de forma continua a 'steps_per_s' (con signo). 0 equivale a
- * hc595_stepper_stop(). */
 static inline esp_err_t hc595_stepper_run(hc595_stepper_t *m,
                                           float steps_per_s) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -633,7 +570,6 @@ static inline esp_err_t hc595_stepper_run(hc595_stepper_t *m,
   return err;
 }
 
-/** Parada suave: frena con la rampa configurada y queda en reposo. */
 static inline esp_err_t hc595_stepper_stop(hc595_stepper_t *m) {
   esp_err_t err = hc595_stepper_check_(m);
   if (err != ESP_OK) {
@@ -656,12 +592,6 @@ static inline esp_err_t hc595_stepper_stop(hc595_stepper_t *m) {
   return ESP_OK;
 }
 
-/**
- * Parada inmediata, sin rampa (emergencia). Si release_coils es true se
- *        apagan las bobinas; si es false se mantiene la ultima fase
- * (retencion). NO invoca on_done; los hilos en hc595_stepper_wait_idle se
- * despiertan. Al frenar en seco a alta velocidad el motor puede perder pasos.
- */
 static inline esp_err_t hc595_stepper_stop_now(hc595_stepper_t *m,
                                                bool release_coils) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -687,16 +617,6 @@ static inline esp_err_t hc595_stepper_stop_now(hc595_stepper_t *m,
   return werr;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: sincronizacion                                                       */
-/* ------------------------------------------------------------------------- */
-
-/**
- *Duerme la tarea hasta que el motor quede en reposo (sin polling).
- * @param timeout_ms UINT32_MAX = esperar indefinidamente.
- * @return ESP_OK, o ESP_ERR_TIMEOUT.
- * Varias tareas pueden esperar a la vez. NO llamar desde la callback on_done.
- */
 static inline esp_err_t hc595_stepper_wait_idle(hc595_stepper_t *m,
                                                 uint32_t timeout_ms) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -710,7 +630,6 @@ static inline esp_err_t hc595_stepper_wait_idle(hc595_stepper_t *m,
   return (bits & HC595_STEPPER_EVT_IDLE) ? ESP_OK : ESP_ERR_TIMEOUT;
 }
 
-/** move_to + espera a que llegue. */
 static inline esp_err_t hc595_stepper_move_to_blocking(hc595_stepper_t *m,
                                                        int32_t target_steps,
                                                        uint32_t timeout_ms) {
@@ -718,17 +637,12 @@ static inline esp_err_t hc595_stepper_move_to_blocking(hc595_stepper_t *m,
   return (err == ESP_OK) ? hc595_stepper_wait_idle(m, timeout_ms) : err;
 }
 
-/** move_by + espera a que llegue. */
 static inline esp_err_t hc595_stepper_move_by_blocking(hc595_stepper_t *m,
                                                        int32_t steps,
                                                        uint32_t timeout_ms) {
   esp_err_t err = hc595_stepper_move_by(m, steps);
   return (err == ESP_OK) ? hc595_stepper_wait_idle(m, timeout_ms) : err;
 }
-
-/* ------------------------------------------------------------------------- */
-/* API: consulta y utilidades                                                */
-/* ------------------------------------------------------------------------- */
 
 static inline bool hc595_stepper_is_moving(hc595_stepper_t *m) {
   if (hc595_stepper_check_(m) != ESP_OK || hc595_stepper_lock_(m) != ESP_OK) {
@@ -756,7 +670,6 @@ static inline esp_err_t hc595_stepper_get_position(hc595_stepper_t *m,
   return ESP_OK;
 }
 
-/** Pasos que faltan hasta el objetivo (con signo). */
 static inline esp_err_t hc595_stepper_distance_to_go(hc595_stepper_t *m,
                                                      int32_t *steps) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -776,7 +689,6 @@ static inline esp_err_t hc595_stepper_distance_to_go(hc595_stepper_t *m,
   return ESP_OK;
 }
 
-/** Velocidad instantanea ordenada (pasos/s, con signo). */
 static inline esp_err_t hc595_stepper_get_speed(hc595_stepper_t *m,
                                                 float *steps_per_s) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -794,8 +706,6 @@ static inline esp_err_t hc595_stepper_get_speed(hc595_stepper_t *m,
   return ESP_OK;
 }
 
-/** Redefine la posicion actual (p. ej. poner el cero). Solo con el motor
- * parado. */
 static inline esp_err_t hc595_stepper_set_position(hc595_stepper_t *m,
                                                    int32_t steps) {
   esp_err_t err = hc595_stepper_check_(m);
@@ -815,7 +725,6 @@ static inline esp_err_t hc595_stepper_set_position(hc595_stepper_t *m,
   return err;
 }
 
-/** Apaga todas las bobinas (sin par de retencion). Solo con el motor parado. */
 static inline esp_err_t hc595_stepper_release(hc595_stepper_t *m) {
   esp_err_t err = hc595_stepper_check_(m);
   if (err != ESP_OK) {
@@ -833,8 +742,6 @@ static inline esp_err_t hc595_stepper_release(hc595_stepper_t *m) {
   return err;
 }
 
-/** Energiza la fase actual para retener la posicion. Solo con el motor parado.
- */
 static inline esp_err_t hc595_stepper_hold(hc595_stepper_t *m) {
   esp_err_t err = hc595_stepper_check_(m);
   if (err != ESP_OK) {
@@ -852,10 +759,6 @@ static inline esp_err_t hc595_stepper_hold(hc595_stepper_t *m) {
   return err;
 }
 
-/**
- * Ultimo error de escritura a la cadena (ESP_OK si no hubo ninguno) y lo
- *        borra. Si no es ESP_OK, el motor se detuvo por ese fallo.
- */
 static inline esp_err_t hc595_stepper_take_fault(hc595_stepper_t *m) {
   esp_err_t err = hc595_stepper_check_(m);
   if (err != ESP_OK) {
@@ -869,8 +772,6 @@ static inline esp_err_t hc595_stepper_take_fault(hc595_stepper_t *m) {
   hc595_stepper_unlock_(m);
   return f;
 }
-
-/* ---- Conversion pasos <-> grados / vueltas ---- */
 
 static inline float hc595_stepper_steps_per_rev(const hc595_stepper_t *m) {
   return m ? m->steps_per_rev : 0.0f;
@@ -900,8 +801,6 @@ static inline esp_err_t hc595_stepper_move_to_deg(hc595_stepper_t *m,
              : ESP_ERR_INVALID_STATE;
 }
 
-/** Velocidad en RPM del eje de salida -> pasos/s (para hc595_stepper_run /
- * set_max_speed). */
 static inline float hc595_stepper_rpm_to_steps_per_s(const hc595_stepper_t *m,
                                                      float rpm) {
   return rpm * m->steps_per_rev / 60.0f;

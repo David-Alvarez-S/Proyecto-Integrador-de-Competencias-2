@@ -1,0 +1,13 @@
+{
+  "url": "https://cad.onshape.com/documents/986fddab399fa99c501ce587/w/aebd2b3a2e37adc9e113121a/e/773e8b154009b5c2da8b7f3d",
+  "outputFormat": "urdf",
+  "package": "descripcion_brazo",
+  "meshExtension": "stl",
+  "addDummyBaseLink": true,
+  "ignoreMates": false,
+  "joint_properties": {
+    "*": {
+      "type": "continuous"
+    }
+  }
+}

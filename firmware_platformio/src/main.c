@@ -1,132 +1,158 @@
-#include "driver/i2c_master.h"
-#include "esp_err.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
-#include "freertos/queue.h"
-#include "freertos/semphr.h"
 #include "freertos/task.h"
-#include <stdio.h>
 
-#include "Drivers/tcs3200.h"
-#include "Tasks/control_pallet_task.h"
+#include "nvs_flash.h"
+#include "hw_init.h"
+#include "tarea_brazo.h"
+#include "tarea_cinta.h"
+#include "tarea_hmi.h"
+#include "tipos_de_sistema.h"
+static const char *TAG_MAIN = "MAIN_SYS";
 
-static const char *TAG = "MAIN_APP";
+//=====================================================
+//---- Estado Global y Configuración por Defecto ------
+//=====================================================
+volatile bool g_sistema_en_marcha = SISTEMA_ARRANQUE_AUTOMATICO;
 
-static hc595_t hc595_chain;
-static hc595_stepper_t stepper1;
-static hc595_stepper_t stepper2;
-static pca9685_t pca_dev;
-static hcsr04_group_t hcsr_group;
-static hcsr04_sensor_t hcsr_sensors[2];
-static tcs3200_t tcs_dev;
+volatile estado_telemetria_hmi_t g_telemetria_hmi = {
+    .color_detectado            = COLOR_PALLET_NINGUNO,
+    .distancia_ultrasonico_1_cm = -1.0f,
+    .distancia_ultrasonico_2_cm = -1.0f,
+    .estado_cinta_2             = ESTADO_CINTA2_DETENIDA,
+    .estado_piston              = ESTADO_PISTON_QUIETO,
+    .estado_brazo               = SECUENCIA_BRAZO_LISTO,
+    .angulos_actuales_grados    = { 0.0f, 0.0f, 0.0f, 0.0f }
+};
 
-static pallet_task_args_t pallet_args;
+configuracion_trabajo_brazo_t g_configuracion_trabajo_brazo = {
+    .punto_recogida_m               = { 0.260f, 0.000f, 0.060f },
+    .elevacion_vertical_z_m         = 0.050f,
+    .contenedor_x_m                 = 0.000f,
+    .contenedor_y_m                 = 0.260f,
+    .altura_z_rojo_m                = 0.070f,
+    .altura_z_azul_m                = 0.140f,
+    .altura_z_amarillo_m            = 0.210f,
+    .avance_horizontal_deposito_m   = 0.025f,
+    .bajada_vertical_asentamiento_m = 0.020f,
+};
 
-static void test_leds_buzzer_task(void *pvParameters) {
-  hc595_t *chain = (hc595_t *)pvParameters;
+SemaphoreHandle_t g_mutex_bus_i2c = NULL;
+SemaphoreHandle_t g_mutex_configuracion_brazo = NULL;
 
-  while (1) {
-    for (uint8_t pin = 8; pin <= 11; pin++) {
-      hc595_set_pin(chain, pin, true);
-      vTaskDelay(pdMS_TO_TICKS(80));
+QueueHandle_t g_cola_pallets_cinta_1 = NULL;
+QueueHandle_t g_cola_pallets_cinta_2 = NULL;
+QueueHandle_t g_cola_objetivos_brazo = NULL;
+QueueHandle_t g_cola_ordenes_piston = NULL;
+
+//=====================================================
+//------ Implementación de Conversiones a Texto -------
+//=====================================================
+const char *obtener_nombre_color_pallet(color_pallet_t color) {
+    switch (color) {
+        case COLOR_PALLET_ROJO:     return "ROJO";
+        case COLOR_PALLET_AZUL:     return "AZUL";
+        case COLOR_PALLET_AMARILLO: return "AMARILLO";
+        default:                    return "NINGUNO";
     }
-
-    for (int8_t pin = 11; pin >= 8; pin--) {
-      hc595_set_pin(chain, pin, false);
-      vTaskDelay(pdMS_TO_TICKS(80));
-    }
-
-    vTaskDelay(pdMS_TO_TICKS(2000));
-  }
 }
 
+const char *obtener_nombre_color_para_qt(color_pallet_t color) {
+    switch (color) {
+        case COLOR_PALLET_ROJO:     return "ROJO";
+        case COLOR_PALLET_AZUL:     return "AZUL";
+        case COLOR_PALLET_AMARILLO: return "AMARILLO";
+        default:                    return "INDEFINIDO";
+    }
+}
+
+const char *obtener_texto_estado_cinta2(estado_cinta2_t estado) {
+    switch (estado) {
+        case ESTADO_CINTA2_ESPERANDO_RETARDO: return "ESPERA";
+        case ESTADO_CINTA2_EN_MARCHA:         return "MARCHA";
+        default:                              return "PARADA";
+    }
+}
+
+const char *obtener_texto_estado_piston(estado_piston_t estado) {
+    switch (estado) {
+        case ESTADO_PISTON_ESPERANDO_RETARDO: return "RETARDO";
+        case ESTADO_PISTON_EXTENDIENDO:       return "IDA";
+        case ESTADO_PISTON_PAUSA_INVERSION:   return "PAUSA";
+        case ESTADO_PISTON_RETRAYENDO:        return "REGRESO";
+        default:                              return "QUIETO";
+    }
+}
+
+const char *obtener_texto_estado_brazo(estado_secuencia_brazo_t estado) {
+    switch (estado) {
+        case SECUENCIA_BRAZO_IR_A_RECOGIDA:          return "IR_PICK";
+        case SECUENCIA_BRAZO_ELEVAR_PALLET:          return "SUBIR_Z";
+        case SECUENCIA_BRAZO_IR_A_REPOSO_CON_PALLET: return "HOME_PAL";
+        case SECUENCIA_BRAZO_IR_A_CONTENEDOR:        return "IR_CONT";
+        case SECUENCIA_BRAZO_AVANZAR_EN_CONTENEDOR:  return "AVANZAR";
+        case SECUENCIA_BRAZO_BAJAR_PARA_ASENTAR:     return "ASENTAR";
+        case SECUENCIA_BRAZO_RETROCEDER_DE_CONTENEDOR: return "RETROCED";
+        case SECUENCIA_BRAZO_IR_A_REPOSO_FINAL:      return "HOME_FIN";
+        case SECUENCIA_BRAZO_MOVIMIENTO_MANUAL:      return "MANUAL";
+        default:                                     return "LISTO";
+    }
+}
+
+//=====================================================
+//--------- Sincronización Inicial hacia Qt -----------
+//=====================================================
+static void sincronizar_estado_inicial_con_interfaz_qt(bool cinta_1_activa) {
+    ESP_LOGI("CINTA1", "%s", cinta_1_activa ? "1" : "0");
+    ESP_LOGI("CINTA2", "0");
+    ESP_LOGI("PISTON", "QUIETO");
+    ESP_LOGI("ULTRA1", "0");
+    ESP_LOGI("ULTRA2", "0");
+    ESP_LOGI("COLOR", "INDEFINIDO");
+    ESP_LOGI("PWM", "0, 0, 0, 0");
+    ESP_LOGI("ANGULOS", "0.00, 0.00, 0.00, 0.00");
+}
+
+//=====================================================
+//--------- Punto de Entrada de la Aplicación ---------
+//=====================================================
+configuracion_transporte_t g_configuracion_transporte = {
+    .piston_retardo_ms        = 4300U,
+    .piston_extension_ms      = 1000U,
+    .piston_retraccion_ms     = 1850U,
+    .velocidad_cintas_pasos_s = VELOCIDAD_CINTA_1_PASOS_S,
+};
+
 void app_main(void) {
-  ESP_LOGI(TAG, "Iniciando Sistema de Cinta Transportadora...");
+    esp_err_t estado_nvs = nvs_flash_init();
+    if (estado_nvs == ESP_ERR_NVS_NO_FREE_PAGES || estado_nvs == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        estado_nvs = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(estado_nvs);
 
-  /*  Crear Cola y Mutex */
-  g_pallet_color_queue = xQueueCreate(10, sizeof(pallet_color_data_t));
-  g_pallet_color_mutex = xSemaphoreCreateMutex();
+    g_mutex_bus_i2c = xSemaphoreCreateMutex();
+    configASSERT(g_mutex_bus_i2c != NULL);
 
-  /*  Inicializar 74HC595 */
-  hc595_config_t hc595_cfg = HC595_CONFIG_DEFAULT(
-      HC595_DATA_PIN, HC595_CLK_PIN, HC595_LATCH_PIN, HC595_OE_PIN);
-  hc595_cfg.chips = 2;
-  ESP_ERROR_CHECK(hc595_init(&hc595_chain, &hc595_cfg));
-  hc595_all_off(&hc595_chain);
+    g_mutex_configuracion_brazo = xSemaphoreCreateMutex();
+    configASSERT(g_mutex_configuracion_brazo != NULL);
 
-  /*  Inicializar Steppers */
-  hc595_stepper_config_t s1_cfg = HC595_STEPPER_CONFIG_DEFAULT(
-      &hc595_chain, STEPPER1_IN1_OUTPUT, STEPPER1_IN2_OUTPUT,
-      STEPPER1_IN3_OUTPUT, STEPPER1_IN4_OUTPUT);
-  s1_cfg.max_speed = STEPPER1_SPEED_STEPS_PER_S;
-  s1_cfg.accel = 1000.0f;
-  s1_cfg.mode = HC595_STEPPER_MODE_HALF;
-  ESP_ERROR_CHECK(hc595_stepper_init(&stepper1, &s1_cfg));
+    g_cola_pallets_cinta_1 = xQueueCreate(CAPACIDAD_COLA_CINTA_1, sizeof(color_pallet_t));
+    g_cola_pallets_cinta_2 = xQueueCreate(CAPACIDAD_COLA_CINTA_2, sizeof(color_pallet_t));
+    g_cola_objetivos_brazo = xQueueCreate(CAPACIDAD_COLA_OBJETIVOS_BRAZO, sizeof(color_pallet_t));
+    g_cola_ordenes_piston  = xQueueCreate(CAPACIDAD_COLA_COMANDOS_PISTON, sizeof(orden_piston_t));
 
-  hc595_stepper_config_t s2_cfg = HC595_STEPPER_CONFIG_DEFAULT(
-      &hc595_chain, STEPPER2_IN1_OUTPUT, STEPPER2_IN2_OUTPUT,
-      STEPPER2_IN3_OUTPUT, STEPPER2_IN4_OUTPUT);
-  s2_cfg.max_speed = STEPPER2_SPEED_STEPS_PER_S;
-  s2_cfg.accel = 1000.0f;
-  s2_cfg.mode = HC595_STEPPER_MODE_HALF;
-  ESP_ERROR_CHECK(hc595_stepper_init(&stepper2, &s2_cfg));
+    ESP_ERROR_CHECK(inicializar_todo_el_hardware());
+    ESP_ERROR_CHECK(cargar_parametros_desde_nvs());
 
-  /*  Arrancar Stepper 1 continuo */
-  ESP_ERROR_CHECK(hc595_stepper_run(&stepper1, STEPPER1_SPEED_STEPS_PER_S));
+    if (g_sistema_en_marcha) {
+        ESP_ERROR_CHECK(hc595_stepper_run(&g_motor_cinta_1, g_configuracion_transporte.velocidad_cintas_pasos_s));
+    }
 
-  /*  Inicializar Bus I2C y PCA9685 */
-  i2c_master_bus_config_t i2c_bus_cfg = {
-      .clk_source = I2C_CLK_SRC_DEFAULT,
-      .i2c_port = I2C_NUM_0,
-      .scl_io_num = I2C_SCL_PIN,
-      .sda_io_num = I2C_SDA_PIN,
-      .glitch_ignore_cnt = 7,
-      .flags.enable_internal_pullup = true,
-  };
-  i2c_master_bus_handle_t i2c_bus = NULL;
-  ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_bus_cfg, &i2c_bus));
+    sincronizar_estado_inicial_con_interfaz_qt(g_sistema_en_marcha);
+    imprimir_configuracion_posiciones_brazo();
 
-  pca9685_config_t pca_cfg = PCA9685_CONFIG_DEFAULT(i2c_bus);
-  ESP_ERROR_CHECK(pca9685_init(&pca_dev, &pca_cfg));
-
-  pca9685_cr_config_t cr_cfg = PCA9685_CR_CONFIG_DEFAULT();
-  ESP_ERROR_CHECK(pca9685_cr_attach(&pca_dev, SERVO_CHANNEL, &cr_cfg));
-
-  /*  Inicializar Ultrasónicos 1 y 2 */
-  hcsr04_group_config_t hcsr_cfg = HCSR04_GROUP_CONFIG_DEFAULT();
-  ESP_ERROR_CHECK(hcsr04_group_init(&hcsr_group, hcsr_sensors, 2, &hcsr_cfg));
-
-  uint8_t sensor1_id = 0, sensor2_id = 0;
-  ESP_ERROR_CHECK(hcsr04_group_add(&hcsr_group, HCSR04_1_TRIG_PIN,
-                                   HCSR04_1_ECHO_PIN, "sensor_1", &sensor1_id));
-  ESP_ERROR_CHECK(hcsr04_group_add(&hcsr_group, HCSR04_2_TRIG_PIN,
-                                   HCSR04_2_ECHO_PIN, "sensor_2", &sensor2_id));
-
-  /*  Inicializar Sensor de Color TCS3200 */
-  tcs3200_config_t tcs_cfg =
-      TCS3200_CONFIG_DEFAULT(TCS3200_S0_PIN, TCS3200_S1_PIN, TCS3200_S2_PIN,
-                             TCS3200_S3_PIN, TCS3200_OUT_PIN, GPIO_NUM_NC);
-  ESP_ERROR_CHECK(tcs3200_init(&tcs_dev, &tcs_cfg));
-
-  /*  Lanzar Tareas FreeRTOS */
-  pallet_args.stepper2 = &stepper2;
-  pallet_args.pca_dev = &pca_dev;
-  pallet_args.hcsr_group = &hcsr_group;
-  pallet_args.sensor1_id = sensor1_id;
-  pallet_args.sensor2_id = sensor2_id;
-  pallet_args.tcs_dev = &tcs_dev;
-
-  // Tarea 1: Polling constante del sensor TCS3200
-  xTaskCreatePinnedToCore(tcs3200_color_polling_task, "color_poll_task", 3072,
-                          &tcs_dev, 4, NULL, 1);
-
-  // Tarea 2: Control de flujo de pallets y detención en Ultrasónico 2
-  xTaskCreatePinnedToCore(control_pallet_task, "control_pallet_task", 4096,
-                          &pallet_args, 5, NULL, 1);
-
-  // Tarea 3: Test secuencial LEDs/Buzzer
-  xTaskCreatePinnedToCore(test_leds_buzzer_task, "test_leds_buzzer", 2048,
-                          &hc595_chain, 1, NULL, 1);
-
-  ESP_LOGI(TAG, "Sistema totalmente inicializado y listo.");
+    xTaskCreatePinnedToCore(tarea_control_brazo_robotico, "ctrl_brazo",  8192, NULL, 10, NULL, 1);
+    xTaskCreatePinnedToCore(tarea_logica_cintas_y_piston, "logica_cinta", 4096, NULL,  5, NULL, 1);
+    xTaskCreatePinnedToCore(tarea_pantalla_hmi,           "hmi_tft",     4096, NULL,  2, NULL, 0);
 }

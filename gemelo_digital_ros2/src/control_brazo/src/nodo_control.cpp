@@ -16,8 +16,7 @@ extern "C" {
 
 using namespace std::chrono_literals;
 
-// Período del lazo de control (s). Se usa para crear el timer.
-#define CONTROL_DT_S 0.02f
+#define CONTROL_DT_S 0.01f
 
 class ControlBrazoNode : public rclcpp::Node {
 public:
@@ -25,11 +24,9 @@ public:
   using GoalHandleMoverBrazo = rclcpp_action::ServerGoalHandle<MoverBrazo>;
 
   ControlBrazoNode() : Node("nodo_control_brazo") {
-    // Publicador de articulaciones para RViz / Drivers
-    publisher_ = this->create_publisher<sensor_msgs::msg::JointState>(
-        "/joint_states", 10);
+    
+    publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
 
-    // Crear Action Server
     action_server_ = rclcpp_action::create_server<MoverBrazo>(
         this, "mover_brazo",
         std::bind(&ControlBrazoNode::handle_goal, this, std::placeholders::_1,
@@ -39,15 +36,11 @@ public:
         std::bind(&ControlBrazoNode::handle_accepted, this,
                   std::placeholders::_1));
 
-    // Pose inicial de arranque (Home)
-    v_actual_ = {300.0f, 0.0f, 50.0f};
-    if (!IK_ext(&servos_validos_, v_actual_, 0.0f, 0.0f, &continuidad_ik_,
-                nullptr)) {
-      RCLCPP_ERROR(this->get_logger(),
-                   "Pose inicial inalcanzable: revisar Global_Config.h.");
+    v_actual_ = {0.2f, 0.0f, 0.1f};
+    if (!IK_ext(&servos_validos_, v_actual_, 0.0f, 0.0f, &continuidad_ik_, nullptr)) {
+      RCLCPP_ERROR(this->get_logger(), "Pose inicial inalcanzable: revisar Global_Config.h.");
     }
 
-    // Inicialización de PIDs para encoders AS5600
     Iniciar_PID(&pid_sm1_, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f);
     Iniciar_PID(&pid_sm2_, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f);
     Iniciar_PID(&pid_sm3_, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f);
@@ -57,7 +50,6 @@ public:
         this->create_publisher<std_msgs::msg::Float32MultiArray>(
             "/velocidades_servos", 10);
 
-    // Bucle de control periódico (20ms == CONTROL_DT_S)
     timer_ = this->create_wall_timer(
         std::chrono::duration<float>(CONTROL_DT_S),
         std::bind(&ControlBrazoNode::timer_callback, this));
@@ -70,8 +62,7 @@ private:
   handle_goal(const rclcpp_action::GoalUUID &uuid,
               std::shared_ptr<const MoverBrazo::Goal> goal) {
     (void)uuid;
-    RCLCPP_INFO(this->get_logger(), "Evaluando meta: X=%.2f, Y=%.2f, Z=%.2f",
-                goal->x, goal->y, goal->z);
+    RCLCPP_INFO(this->get_logger(), "Evaluando meta: X=%.2f, Y=%.2f, Z=%.2f", goal->x, goal->y, goal->z);
 
     vector_t v_meta = {goal->x, goal->y, goal->z};
 
@@ -109,11 +100,9 @@ private:
     limites_perfil_s_t limites = {V_MAX, A_MAX, J_MAX};
 
     // Pasa v_actual_ e v_meta correctamente
-    if (!Movimiento_Iniciar(&movimiento_, servos_validos_, v_actual_, v_meta,
-                            limites, &continuidad_ik_)) {
+    if (!Movimiento_Iniciar(&movimiento_, servos_validos_, v_actual_, v_meta, limites, &continuidad_ik_)) {
 
-      RCLCPP_ERROR(this->get_logger(),
-                   "IK falló al iniciar movimiento hacia (%.2f, %.2f, %.2f). "
+      RCLCPP_ERROR(this->get_logger(), "IK falló al iniciar movimiento hacia (%.2f, %.2f, %.2f). "
                    "Meta abortada.",
                    v_meta.x, v_meta.y, v_meta.z);
       auto result = std::make_shared<MoverBrazo::Result>();
@@ -133,7 +122,6 @@ private:
       const float t = static_cast<float>((this->now() - t_ref_).seconds());
 
       float progreso = 0.0f;
-      // Evaluación ciclo a ciclo con actualización de continuidad
       bool en_curso = Movimiento_Evaluar(&servos_validos_, &movimiento_, t,
                                          &continuidad_ik_, &progreso);
 
@@ -143,10 +131,7 @@ private:
         goal_handle_actual_->publish_feedback(feedback);
       }
 
-      if (!en_curso && goal_handle_actual_ &&
-          goal_handle_actual_->is_active()) {
-
-        // Movimiento completado: actualizar la posición cartesiana de partida
+      if (!en_curso && goal_handle_actual_ && goal_handle_actual_->is_active()) {
         v_actual_ = v_meta_actual_;
 
         auto result = std::make_shared<MoverBrazo::Result>();
@@ -156,10 +141,9 @@ private:
       }
     }
 
-    // Publicación periódica en /joint_states
     sensor_msgs::msg::JointState msg;
     msg.header.stamp = this->now();
-    msg.name = {"revolute_1", "revolute_2", "revolute_3", "revolute_4"};
+    msg.name = {"Base", "Hombro", "Codo", "Muñeca"};
     msg.position = {
         servos_validos_.sm1.angulo_objetivo,
         servos_validos_.sm2.angulo_objetivo,
@@ -169,7 +153,6 @@ private:
     publisher_->publish(msg);
   }
 
-  // Miembros de ROS 2 y estado local
   rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_;
   rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr
       publisher_velocidades_;

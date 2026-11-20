@@ -20,38 +20,26 @@ extern "C" {
 #include "freertos/semphr.h"
 #include "freertos/task.h"
 
-/* ---------- */
-/* Parametros */
-/* ---------- */
-
-/** Duracion del pulso TRIG en us (el datasheet pide >= 10 us). */
 #ifndef HCSR04_TRIGGER_US
 #define HCSR04_TRIGGER_US 12U
 #endif
 
-/** Espera maxima del eco (ms). 4 m ~ 23.3 ms; el sensor sin objeto da ~38 ms.
- */
 #ifndef HCSR04_DEFAULT_TIMEOUT_MS
 #define HCSR04_DEFAULT_TIMEOUT_MS 30U
 #endif
 
-/** Tiempo de guarda minimo entre dos mediciones cualesquiera del grupo (ms). */
 #ifndef HCSR04_DEFAULT_GUARD_MS
 #define HCSR04_DEFAULT_GUARD_MS 30U
 #endif
 
-/** Espera maxima por el mutex del grupo (ms). */
 #ifndef HCSR04_DEFAULT_LOCK_TIMEOUT_MS
 #define HCSR04_DEFAULT_LOCK_TIMEOUT_MS 1000U
 #endif
 
-/** Si ECHO esta en alto al empezar, espera hasta este tiempo a que baje (ms).
- */
 #ifndef HCSR04_STUCK_WAIT_MS
 #define HCSR04_STUCK_WAIT_MS 60U
 #endif
 
-/** Maximo de muestras para el filtro de mediana. */
 #ifndef HCSR04_MAX_SAMPLES
 #define HCSR04_MAX_SAMPLES 9U
 #endif
@@ -62,7 +50,6 @@ extern "C" {
 #define HCSR04_ERR_BUSY ESP_ERR_NOT_FINISHED
 #define HCSR04_ERR_NO_DATA ESP_ERR_NOT_FOUND
 
-/* Compatibilidad portYIELD_FROM_ISR entre IDF 4.4 y 5.x */
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
 #define HCSR04_YIELD_FROM_ISR_(hpw) portYIELD_FROM_ISR(hpw)
 #else
@@ -73,28 +60,23 @@ extern "C" {
   } while (0)
 #endif
 
-/* ------------------------------------------------------------------------- */
-/* Tipos                                                                     */
-/* ------------------------------------------------------------------------- */
-
-/** Resultado de una medicion (copia coherente de la ultima lectura). */
 typedef struct {
-  float distance_cm;    /**< Distancia en cm (-1.0 si hubo error)        */
-  uint32_t echo_us;     /**< Ancho del pulso ECHO en us (0 si error)     */
-  esp_err_t err;        /**< ESP_OK o codigo HCSR04_ERR_*                */
-  int64_t timestamp_us; /**< esp_timer_get_time() al terminar (0 = nunca)*/
-  uint32_t ok_count;    /**< Mediciones correctas acumuladas             */
-  uint32_t err_count;   /**< Mediciones fallidas acumuladas              */
+  float distance_cm;    
+  uint32_t echo_us;     
+  esp_err_t err;        
+  int64_t timestamp_us; 
+  uint32_t ok_count;    
+  uint32_t err_count;   
 } hcsr04_reading_t;
 
 typedef struct {
-  uint32_t timeout_ms;      /**< Espera maxima del eco                     */
-  uint32_t guard_ms;        /**< Guarda entre mediciones (anti-diafonia)   */
-  uint32_t lock_timeout_ms; /**< Espera maxima del mutex del grupo         */
-  float min_cm;             /**< Distancia minima valida (HC-SR04: 2 cm)   */
-  float max_cm;             /**< Distancia maxima valida (HC-SR04: 400 cm) */
-  float temperature_c;      /**< Temperatura ambiente inicial (compens.)   */
-  int isr_flags;            /**< Flags ESP_INTR_FLAG_* para el servicio ISR*/
+  uint32_t timeout_ms;      
+  uint32_t guard_ms;        
+  uint32_t lock_timeout_ms; 
+  float min_cm;             
+  float max_cm;             
+  float temperature_c;      
+  int isr_flags;            
 } hcsr04_group_config_t;
 
 #define HCSR04_GROUP_CONFIG_DEFAULT()                                          \
@@ -115,13 +97,12 @@ typedef enum {
   HCSR04_ST_DONE,
 } hcsr04_state_t;
 
-/** Estado de un sensor. Lo aporta el usuario como arreglo (ver group_init). */
 typedef struct {
   gpio_num_t trig;
   gpio_num_t echo;
-  const char *name;       /**< Debe ser persistente (literal)    */
-  SemaphoreHandle_t done; /**< La ISR lo da al terminar el eco   */
-  portMUX_TYPE mux;       /**< Protege 'last'                    */
+  const char *name;     
+  SemaphoreHandle_t done;
+  portMUX_TYPE mux;      
   volatile hcsr04_state_t state;
   volatile int64_t t_rise;
   volatile uint32_t echo_us;
@@ -132,12 +113,12 @@ typedef void (*hcsr04_reading_cb_t)(uint8_t id, const hcsr04_reading_t *reading,
                                     void *ctx);
 
 typedef struct {
-  uint32_t period_ms; /**< Pausa entre ciclos completos        */
-  uint8_t samples;    /**< Muestras por sensor (mediana, 1..9) */
+  uint32_t period_ms; 
+  uint8_t samples;   
   UBaseType_t priority;
-  uint32_t stack_size;            /**< Bytes                               */
-  BaseType_t core_id;             /**< <0: sin afinidad                    */
-  hcsr04_reading_cb_t on_reading; /**< Opcional; se llama desde la tarea   */
+  uint32_t stack_size;    
+  BaseType_t core_id;    
+  hcsr04_reading_cb_t on_reading;
   void *cb_ctx;
 } hcsr04_poll_config_t;
 
@@ -157,10 +138,10 @@ typedef struct {
   hcsr04_sensor_t *sensors;
   uint8_t capacity;
   uint8_t count;
-  SemaphoreHandle_t bus_lock;    /**< Serializa TODAS las mediciones  */
-  portMUX_TYPE mux;              /**< Para el pulso TRIG              */
-  volatile float speed_of_sound; /**< m/s                             */
-  int64_t last_end_us;           /**< Protegido por bus_lock          */
+  SemaphoreHandle_t bus_lock;   
+  portMUX_TYPE mux;            
+  volatile float speed_of_sound; 
+  int64_t last_end_us;          
 
   hcsr04_poll_config_t poll;
   TaskHandle_t poll_task;
@@ -169,10 +150,6 @@ typedef struct {
   volatile bool polling;
   bool initialized;
 } hcsr04_group_t;
-
-/* ------------------------------------------------------------------------- */
-/* Utilidades                                                                */
-/* ------------------------------------------------------------------------- */
 
 static inline const char *hcsr04_err_to_str(esp_err_t err) {
   switch (err) {
@@ -193,11 +170,7 @@ static inline const char *hcsr04_err_to_str(esp_err_t err) {
   }
 }
 
-/* ------------------------------------------------------------------------- */
-/* Internas                                                                  */
-/* ------------------------------------------------------------------------- */
 
-/** ISR de ECHO: mide el ancho del pulso y despierta a la tarea. */
 __attribute__((unused)) static void IRAM_ATTR hcsr04_isr_(void *arg) {
   hcsr04_sensor_t *s = (hcsr04_sensor_t *)arg;
   int64_t now = esp_timer_get_time();
@@ -221,7 +194,7 @@ __attribute__((unused)) static void IRAM_ATTR hcsr04_isr_(void *arg) {
 
 static inline float hcsr04_echo_to_cm_(const hcsr04_group_t *g,
                                        uint32_t echo_us) {
-  /* distancia = echo * c / 2 ; (us * m/s) * 5e-5 = cm */
+
   return (float)echo_us * g->speed_of_sound * 0.00005f;
 }
 
@@ -230,14 +203,12 @@ static inline TickType_t hcsr04_ms_to_ticks_min1_(uint32_t ms) {
   return (t == 0) ? 1 : t;
 }
 
-/** Una medicion cruda. El llamador DEBE tener g->bus_lock. */
+
 static inline esp_err_t hcsr04_measure_raw_locked_(hcsr04_group_t *g,
                                                    hcsr04_sensor_t *s,
                                                    uint32_t *echo_us) {
   esp_err_t err;
 
-  /* Tiempo de guarda desde el fin de la medicion anterior (cualquier sensor)
-   */
   int64_t guard_us = (int64_t)g->cfg.guard_ms * 1000;
   int64_t elapsed = esp_timer_get_time() - g->last_end_us;
   if (elapsed < guard_us) {
@@ -245,7 +216,7 @@ static inline esp_err_t hcsr04_measure_raw_locked_(hcsr04_group_t *g,
     vTaskDelay(hcsr04_ms_to_ticks_min1_(rem_ms));
   }
 
-  /* ECHO debe estar en bajo; si no, esperar a que termine un eco anterior */
+
   uint32_t waited = 0;
   while (gpio_get_level(s->echo) && waited < HCSR04_STUCK_WAIT_MS) {
     vTaskDelay(1);
@@ -256,22 +227,21 @@ static inline esp_err_t hcsr04_measure_raw_locked_(hcsr04_group_t *g,
     return HCSR04_ERR_ECHO_STUCK;
   }
 
-  /*  Armar captura */
+
   (void)xSemaphoreTake(s->done, 0);
   s->echo_us = 0;
   s->t_rise = 0;
   s->state = HCSR04_ST_ARMED;
   gpio_intr_enable(s->echo);
 
-  /*  Pulso TRIG corto y acotado (seccion critica de ~12 us) */
+
   portENTER_CRITICAL(&g->mux);
   gpio_set_level(s->trig, 1);
   esp_rom_delay_us(HCSR04_TRIGGER_US);
   gpio_set_level(s->trig, 0);
   portEXIT_CRITICAL(&g->mux);
 
-  /*  Dormir hasta que la ISR cierre la captura (o timeout). +1 tick por la
-   *    granularidad del planificador. */
+
   (void)xSemaphoreTake(s->done, pdMS_TO_TICKS(g->cfg.timeout_ms) + 1);
   gpio_intr_disable(s->echo);
 
@@ -282,26 +252,16 @@ static inline esp_err_t hcsr04_measure_raw_locked_(hcsr04_group_t *g,
     *echo_us = s->echo_us;
     err = ESP_OK;
   } else if (st == HCSR04_ST_RISING) {
-    err = HCSR04_ERR_OUT_OF_RANGE; /* el eco empezo pero no termino */
+    err = HCSR04_ERR_OUT_OF_RANGE; 
   } else {
-    err = HCSR04_ERR_NO_ECHO; /* ni siquiera hubo flanco de subida */
+    err = HCSR04_ERR_NO_ECHO; 
   }
 
   g->last_end_us = esp_timer_get_time();
   return err;
 }
 
-/* ------------------------------------------------------------------------- */
-/* API: grupo y sensores                                                     */
-/* ------------------------------------------------------------------------- */
 
-/**
- * @brief Inicializa un grupo de sensores.
- *
- * @param g        Grupo (almacenamiento del usuario).
- * @param storage  Arreglo de hcsr04_sensor_t con 'capacity' elementos.
- * @param cfg      Configuracion (NULL = valores por defecto).
- */
 static inline esp_err_t hcsr04_group_init(hcsr04_group_t *g,
                                           hcsr04_sensor_t *storage,
                                           uint8_t capacity,
@@ -331,7 +291,6 @@ static inline esp_err_t hcsr04_group_init(hcsr04_group_t *g,
     goto fail_nomem;
   }
 
-  /* El servicio ISR puede haber sido instalado ya por otra parte de la app. */
   esp_err_t err = gpio_install_isr_service(use.isr_flags);
   if (err != ESP_OK && err != ESP_ERR_INVALID_STATE) {
     if (g->bus_lock)
@@ -375,7 +334,7 @@ static inline esp_err_t hcsr04_group_add(hcsr04_group_t *g, gpio_num_t trig,
     const hcsr04_sensor_t *o = &g->sensors[i];
     if (o->trig == trig || o->trig == echo || o->echo == trig ||
         o->echo == echo) {
-      return ESP_ERR_INVALID_ARG; /* pin repetido */
+      return ESP_ERR_INVALID_ARG;
     }
   }
 
@@ -418,7 +377,6 @@ static inline esp_err_t hcsr04_group_add(hcsr04_group_t *g, gpio_num_t trig,
       .pin_bit_mask = 1ULL << echo,
       .mode = GPIO_MODE_INPUT,
       .pull_up_en = GPIO_PULLUP_DISABLE,
-      /* Pull-down interno si el pin lo soporta: un sensor desconectado lee 0 */
       .pull_down_en = GPIO_IS_VALID_OUTPUT_GPIO(echo) ? GPIO_PULLDOWN_ENABLE
                                                       : GPIO_PULLDOWN_DISABLE,
       .intr_type = GPIO_INTR_ANYEDGE,
@@ -432,7 +390,7 @@ static inline esp_err_t hcsr04_group_add(hcsr04_group_t *g, gpio_num_t trig,
   if (err != ESP_OK) {
     goto fail_sem;
   }
-  gpio_intr_disable(echo); /* solo se habilita durante una medicion */
+  gpio_intr_disable(echo); 
 
   g->count++;
   if (out_id) {
@@ -448,19 +406,17 @@ out:
   return err;
 }
 
-/** Numero de sensores registrados. */
 static inline uint8_t hcsr04_group_count(const hcsr04_group_t *g) {
   return g ? g->count : 0;
 }
 
-/** Cambia la temperatura ambiente para compensar la velocidad del sonido. */
 static inline esp_err_t hcsr04_group_set_temperature(hcsr04_group_t *g,
                                                      float celsius) {
   if (g == NULL || !g->initialized || celsius < -40.0f || celsius > 85.0f) {
     return ESP_ERR_INVALID_ARG;
   }
   g->speed_of_sound =
-      331.3f + 0.606f * celsius; /* escritura atomica de 32 bits */
+      331.3f + 0.606f * celsius; 
   g->cfg.temperature_c = celsius;
   return ESP_OK;
 }
@@ -486,7 +442,6 @@ static inline esp_err_t hcsr04_group_measure(hcsr04_group_t *g, uint8_t id,
   esp_err_t last_err = HCSR04_ERR_NO_ECHO;
 
   for (uint8_t i = 0; i < samples; i++) {
-    /* El mutex se toma por muestra: entre muestras otras tareas pueden medir */
     if (xSemaphoreTake(g->bus_lock, pdMS_TO_TICKS(g->cfg.lock_timeout_ms)) !=
         pdTRUE) {
       last_err = HCSR04_ERR_BUSY;
@@ -512,7 +467,7 @@ static inline esp_err_t hcsr04_group_measure(hcsr04_group_t *g, uint8_t id,
   uint32_t median = 0;
   float cm = -1.0f;
   if (n_ok > 0) {
-    for (uint8_t i = 1; i < n_ok; i++) { /* insercion */
+    for (uint8_t i = 1; i < n_ok; i++) {  
       uint32_t v = echoes[i];
       int8_t j = (int8_t)i - 1;
       while (j >= 0 && echoes[j] > v) {
@@ -559,11 +514,6 @@ static inline esp_err_t hcsr04_group_get_last(hcsr04_group_t *g, uint8_t id,
   portEXIT_CRITICAL(&s->mux);
   return ESP_OK;
 }
-
-/* ------------------------------------------------------------------------- */
-/* Tarea de polling en segundo plano                                         */
-/* ------------------------------------------------------------------------- */
-
 static inline void hcsr04_poll_task_(void *arg) {
   hcsr04_group_t *g = (hcsr04_group_t *)arg;
   bool stop = false;
@@ -581,7 +531,6 @@ static inline void hcsr04_poll_task_(void *arg) {
       }
     }
     if (!stop) {
-      /* Espera interrumpible: stop() da el semaforo y despierta enseguida */
       if (xSemaphoreTake(g->stop_sem, hcsr04_ms_to_ticks_min1_(
                                           g->poll.period_ms)) == pdTRUE) {
         stop = true;
@@ -634,7 +583,7 @@ static inline esp_err_t hcsr04_group_stop_polling(hcsr04_group_t *g) {
   uint32_t wait_ms = 1000U + (uint32_t)g->count * g->poll.samples *
                                  (g->cfg.timeout_ms + g->cfg.guard_ms + 100U);
   if (xSemaphoreTake(g->exited_sem, pdMS_TO_TICKS(wait_ms)) != pdTRUE) {
-    return ESP_ERR_TIMEOUT; /* la tarea sigue viva; polling sigue en true */
+    return ESP_ERR_TIMEOUT; 
   }
   g->poll_task = NULL;
   g->polling = false;
