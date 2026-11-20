@@ -419,9 +419,19 @@ if __name__ == "__main__":
     backend = Backend()
     engine.rootContext().setContextProperty("backend", backend)
 
-    engine.addImportPath(Path(__file__).parent)
+    # Detectar si corre como ejecutable empaquetado o en desarrollo
+    if getattr(sys, 'frozen', False):
+        base_path = Path(sys._MEIPASS)
+    else:
+        base_path = Path(__file__).resolve().parent
+
+        # Añadir la ruta base para que encuentre el módulo QML
+    engine.addImportPath(str(base_path))
+
+        # Cargar el módulo creado por Qt Creator / Design Studio
     engine.loadFromModule("interfaz_de_usuario_qt_python", "Main")
 
     if not engine.rootObjects():
         sys.exit(-1)
+    app.aboutToQuit.connect(backend.close_serial)
     sys.exit(app.exec())
