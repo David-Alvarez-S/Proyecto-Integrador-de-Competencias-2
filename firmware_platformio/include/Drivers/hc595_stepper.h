@@ -294,7 +294,8 @@ static inline bool hc595_stepper_advance_locked_(hc595_stepper_t *m,
   if (will_stop && can_stop_now) {
     int64_t settle = (int64_t)m->cfg.settle_ms * 1000;
     if (delay < settle) {
-      delay = settle; 
+      delay = settle;
+    }
   }
 
   if (was_at_rest) {
@@ -326,7 +327,7 @@ static inline void hc595_stepper_timer_cb_(void *arg) {
 
   if (hc595_stepper_advance_locked_(m, esp_timer_get_time(), &wait_us)) {
     esp_err_t err = esp_timer_start_once(m->timer, (uint64_t)wait_us);
-    if (err == ESP_ERR_INVALID_STATE) { /
+    if (err == ESP_ERR_INVALID_STATE) { 
       (void)esp_timer_stop(m->timer);
       err = esp_timer_start_once(m->timer, (uint64_t)wait_us);
     }

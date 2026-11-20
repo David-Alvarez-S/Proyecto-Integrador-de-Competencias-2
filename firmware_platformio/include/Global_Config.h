@@ -9,7 +9,7 @@
 //==========================================
 #define R_MIN_ALCANCE   0.090f
 #define R_MAX_ALCANCE   0.360f  
-#define Z_MIN_MESA      0.040f  
+#define Z_MIN_MESA      0.00f  
 //==========================================
 //  VELOCIDAD , ACELERACION Y TIRON MAXIMO
 //==========================================
@@ -20,9 +20,9 @@
 //===================================
 // LONGITUD DE LAS PARTES DEL BRAZO
 //===================================
-#define L_ESLABON_1 0.16f
+#define L_ESLABON_1 0.107f
 #define L_ESLABON_2 0.109f
-#define L_ESLABON_3 0.10f
+#define L_ESLABON_3 0.085f
 #define L_SHOULDER_Z 0.099f
 #define L_HERRAMIENTA 0.0f
 

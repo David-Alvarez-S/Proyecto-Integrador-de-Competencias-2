@@ -343,7 +343,7 @@ esp_err_t inicializar_todo_el_hardware(void) {
             .enc_bus = &g_bus_encoders_magneticos, .enc_use_hw_i2c = false, .enc_scl_pin = PIN_AS5600_4_SCL,
             .neutral_us = 1623U, .us_umbral_pos = 45.0f, .us_umbral_neg = 45.0f,
             .us_max_offset = 320.0f, .vel_umbral_deg_s = 42.7f, .servo_reversed = true,
-            .enc_zero_deg = -107.8f, .enc_reversed = false,
+            .enc_zero_deg = -100.8f, .enc_reversed = false,
             .min_deg = -105.0f, .max_deg = 110.0f,
             .kp = 1.2f, .ki = 0.25f, .kd = 0.02f, .kff_vel = 1.0f,
             .k_grav_deg_s = 3.0f, .grav_zero_deg = 0.0f,

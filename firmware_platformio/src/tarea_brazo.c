@@ -273,24 +273,28 @@ void imprimir_estado_articular_y_cartesiano(void) {
     float theta_3 = sec_get_angle_rad(&g_ejes_brazo[2]);
     float theta_4 = sec_get_angle_rad(&g_ejes_brazo[3]);
 
-    float angulo_herramienta_rad = (SEC_PI * 0.5f) - theta_2 + theta_3 + theta_4;
-    float longitud_efector_m     = L_ESLABON_3 + L_HERRAMIENTA;
-    float radio_muneca_m         = L_ESLABON_1 * sinf(theta_2) + L_ESLABON_2 * sinf(theta_2 - theta_3);
-    float radio_total_m          = radio_muneca_m + longitud_efector_m * cosf(angulo_herramienta_rad);
+    // Convención URDF / Real: 0 rad = erguido vertical arriba, + = dobla hacia adelante
+    float ang_eslabon1_rad    = theta_2;
+    float ang_eslabon2_rad    = theta_2 + theta_3;
+    float ang_herramienta_rad = theta_2 + theta_3 + theta_4; // 90 deg = horizontal adelante
+
+    float longitud_efector_m  = L_ESLABON_3 + L_HERRAMIENTA;
+    float radio_muneca_m      = L_ESLABON_1 * sinf(ang_eslabon1_rad) +
+                                L_ESLABON_2 * sinf(ang_eslabon2_rad);
+    float radio_total_m       = radio_muneca_m + longitud_efector_m * sinf(ang_herramienta_rad);
 
     float x_actual_m = radio_total_m * cosf(theta_1);
     float y_actual_m = radio_total_m * sinf(theta_1);
     float z_actual_m = L_SHOULDER_Z +
-                       L_ESLABON_1 * cosf(theta_2) +
-                       L_ESLABON_2 * cosf(theta_2 - theta_3) +
-                       longitud_efector_m * sinf(angulo_herramienta_rad);
+                       L_ESLABON_1 * cosf(ang_eslabon1_rad) +
+                       L_ESLABON_2 * cosf(ang_eslabon2_rad) +
+                       longitud_efector_m * cosf(ang_herramienta_rad);
 
     printf("XYZ ACTUAL: [%.3f, %.3f, %.3f] m  ([%.1f, %.1f, %.1f] cm) | Herramienta: %.1f deg\n",
            x_actual_m, y_actual_m, z_actual_m,
            x_actual_m * 100.0f, y_actual_m * 100.0f, z_actual_m * 100.0f,
-           sec_rad2deg_(angulo_herramienta_rad));
+           sec_rad2deg_(ang_herramienta_rad));
 }
-
 //=====================================================
 //---- Planificadores de Trayectoria con Perfil S -----
 //=====================================================

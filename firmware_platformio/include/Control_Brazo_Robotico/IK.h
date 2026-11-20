@@ -11,8 +11,8 @@
 // ==================================================
 // PARAMETROS DE CALIBRACIÓN DE LA ZONA DE PROTECCION
 // ==================================================
-#define R_BASE_SEGURIDAD_MAX  0.210f  
-#define Z_ALTURA_PROTECCION   0.190f  
+#define R_BASE_SEGURIDAD_MAX  0.075f  
+#define Z_ALTURA_PROTECCION   0.120f   
 
 typedef enum {
     IK_OK = 0,
@@ -86,7 +86,7 @@ static inline ik_status_t IK_ext_debug(servomotores_h *out, vector_t a, ik_conti
 
   float sm2_cmd = (PI / 2.0f) - angulo2;
   float sm3_cmd = angulo3;            
-  float sm4_cmd = -(angulo3 + angulo2);  
+  float sm4_cmd = (PI / 2.0f) - (sm2_cmd + sm3_cmd);
 
   if (sm2_cmd < -PI || sm2_cmd > PI || 
       sm3_cmd < -PI || sm3_cmd > PI || 
