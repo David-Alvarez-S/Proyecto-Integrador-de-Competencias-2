@@ -7,25 +7,68 @@
 #include "hw_init.h"
 #include "uart_cli.h"
 #include "Global_Config.h"
-#include "Control_Brazo_Robotico/IK.h"
-#include "Control_Brazo_Robotico/Movimiento.h"
 #include "Control_Brazo_Robotico/Perfil_S.h"
 
-static const char *TAG_BRAZO = "BRAZO_IK";
+static const char *TAG_BRAZO = "BRAZO_TEACH";
 
-#define RADIO_BUSQUEDA_MINIMO_M             0.040f
-#define PASO_BUSQUEDA_RADIO_M               0.005f
-#define DISTANCIA_APROX_RECOGIDA_MAX_M      0.035f
-
+// ============================================================================
+// PUNTOS TEACH-IN ARTICULARES [Base, Hombro, Codo, Muñeca] EN GRADOS
+// Rellena estos arreglos leyendo "MED:[...]" con el comando STATUS
+// mientras posicionas el brazo con la mano (con DIS activado).
+// ============================================================================
 static const float POSICION_HOME_GRADOS[CANTIDAD_EJES_BRAZO] = {
-    27.0f,   
-    2.5f,    
-    116.3f,  
-    59.7f    
+    0.3f,   -6.5f,  130.5f,   0.0f
+};
+
+// 1. Secuencia de recogida en cinta
+static const float PUNTO_DEG_APROX_RECOGIDA[CANTIDAD_EJES_BRAZO] = {
+    -7.8f,  55.5f,   73.9f,  -19.0f   // Encima / antes de entrar al pallet
+};
+static const float PUNTO_DEG_RECOGIDA[CANTIDAD_EJES_BRAZO] = {
+    -7.8f,  62.3f,   2.9f,  -12.9f   // Horquilla metida en el pallet sobre la cinta
+};
+static const float PUNTO_DEG_ELEVACION[CANTIDAD_EJES_BRAZO] = {
+    -7.1f,  35.3f,   5.9f,  -8.8f   // Pa llet levantado verticalmente
+};
+static const float PUNTO_DEG_TRANSITO_ORIGEN[CANTIDAD_EJES_BRAZO] = {
+    -7.1f,  8.4f,  138.5f,   -41.6f   // Brazo replegado antes de girar la base
+};
+
+// 2. Estructura y puntos de depósito por contenedor
+typedef struct {
+    float transito_destino[CANTIDAD_EJES_BRAZO]; // Frente al contenedor (replegado/alto)
+    float entrada[CANTIDAD_EJES_BRAZO];          // Boca del contenedor a su altura Z
+    float avance[CANTIDAD_EJES_BRAZO];           // Adentro del contenedor
+    float asentamiento[CANTIDAD_EJES_BRAZO];     // Bajada suave para apoyar el pallet
+    float retroceso[CANTIDAD_EJES_BRAZO];        // Salida hacia atrás sin arrastrar
+} puntos_contenedor_deg_t;
+
+static const puntos_contenedor_deg_t PUNTO_CONTENEDOR_ROJO = {
+    .transito_destino = {  85.4f,  -24.5f,  125.0f,   4.1f },
+    .entrada          = {  85.4f,  -24.5f,  125.1f,   4.1f },
+    .avance           = {  85.8f,  9.4f, 86.6f,  3.7f },
+    .asentamiento     = {  85.8f,  11.1f,   92.6f,  0.7f },
+    .retroceso        = {  85.4f,  -24.5f,   125.1f,  5.1f }
+};
+
+static const puntos_contenedor_deg_t PUNTO_CONTENEDOR_AZUL = {
+    .transito_destino = {  85.9f,  15.0f,  110.0f,   10.0f },
+    .entrada          = {  85.9f,  15.0f,  110.5f,   10.0f },
+    .avance           = {  85.1f,  30.2f,   108.5f,  -21.8f },
+    .asentamiento     = {  85.2f,  30.7f,   112.2f,  -21.6f },
+    .retroceso        = {  85.9f,  15.0f,   110.5f,  10.0f }
+};
+
+static const puntos_contenedor_deg_t PUNTO_CONTENEDOR_AMARILLO = {
+    .transito_destino = { 85.6f,  47.0f,  135.8f,   -107.1f },
+    .entrada          = { 85.6f,  47.0f,   135.8f,   -107.1f },
+    .avance           = { 85.6f,  44.9f,   99.7f,   -75.3f },
+    .asentamiento     = { 85.6f,  44.8f,   101.7f,   -66.1f },
+    .retroceso        = { 85.6f,  47.0f,   135.8f,   -107.1f }
 };
 
 //================================
-//----- Estructuras Internas ----- 
+//----- Estructuras Internas -----
 //================================
 typedef struct {
     planificador_perfil_s_t planificador;
@@ -37,223 +80,90 @@ typedef struct {
 
 static estado_secuencia_brazo_t s_estado_secuencia = SECUENCIA_BRAZO_LISTO;
 static color_pallet_t s_color_pallet_activo = COLOR_PALLET_NINGUNO;
-static configuracion_trabajo_brazo_t s_configuracion_ciclo_actual = {0};
-
-static vector_t s_punto_aprox_recogida_m = {0};
-static vector_t s_punto_recogida_m = {0};
-static vector_t s_punto_elevacion_m = {0};
-static vector_t s_punto_radio_minimo_origen_m = {0};
-static vector_t s_punto_radio_minimo_destino_m = {0};
-static vector_t s_punto_entrada_contenedor_m = {0};
-static vector_t s_punto_avance_contenedor_m = {0};
-static vector_t s_punto_asentamiento_m = {0};
-static vector_t s_punto_retroceso_m = {0};
+static puntos_contenedor_deg_t s_puntos_contenedor_activo = {0};
 
 static bool s_aproximacion_recogida_completada = false;
 static bool s_giro_en_radio_minimo_completado = false;
 
 static trayectoria_articular_t s_trayectoria_articular = {0};
-static movimiento_t s_trayectoria_cartesiana = {0};
-static ik_continuidad_t s_continuidad_ik = {0};
-static float s_tiempo_trayectoria_cartesiana_s = 0.0f;
-static float s_ultimo_comando_cartesiano_rad[CANTIDAD_EJES_BRAZO] = {0};
 
 static bool s_trayectoria_finalizada = false;
 static uint32_t s_tiempo_espera_enclave_ms = 0;
 static uint32_t s_tiempo_estable_continuo_ms = 0;
 
 //=====================================================
-//---- Validación Cinemática y Lectura Cartesiana -----
+//---- Validación Articular y Telemetría de Estado ----
 //=====================================================
-static const char *obtener_descripcion_error_ik(ik_status_t estado_ik) {
-    switch (estado_ik) {
-        case IK_OK:                          return "OK";
-        case IK_ERROR_BASE_FUERA_DE_LIMITE:  return "BASE_FUERA_LIMITE";
-        case IK_ERROR_SINGULARIDAD_MUNICA:   return "SINGULARIDAD_MUNECA_O_BASE";
-        case IK_ERROR_FUERA_DE_ALCANCE:      return "FUERA_DE_ALCANCE";
-        case IK_ERROR_SERVO_FUERA_DE_LIMITE: return "SERVO_FUERA_LIMITE";
-        case IK_ERROR_COLISION_MESA:         return "COLISION_MESA";
-        default:                             return "ERROR_IK";
-    }
+static float normalizar_angulo_deg(float deg) {
+    while (deg > 180.0f)  deg -= 360.0f;
+    while (deg < -180.0f) deg += 360.0f;
+    return deg;
 }
 
-static bool validar_punto_cartesiano_con_ik(vector_t punto_m, servomotores_h *servos_salida, const char *nombre_punto) {
-    servomotores_h servos_calculados = {0};
-    ik_status_t estado_ik = IK_ext_debug(&servos_calculados, punto_m, NULL);
-    if (estado_ik != IK_OK) {
-        if (nombre_punto != NULL) {
-            printf("[ERROR IK] Punto '%s' (%.3f, %.3f, %.3f m) invalido: %s\n",
-                   nombre_punto, punto_m.x, punto_m.y, punto_m.z, obtener_descripcion_error_ik(estado_ik));
-        }
-        return false;
-    }
-
-    float angulos_grados[CANTIDAD_EJES_BRAZO] = {
-        sec_rad2deg_(servos_calculados.sm1.angulo_objetivo),
-        sec_rad2deg_(servos_calculados.sm2.angulo_objetivo),
-        sec_rad2deg_(servos_calculados.sm3.angulo_objetivo),
-        sec_rad2deg_(servos_calculados.sm4.angulo_objetivo),
-    };
-
+static bool validar_pose_articular_en_limites(const float pose_deg[CANTIDAD_EJES_BRAZO], const char *nombre_punto) {
     for (int indice_eje = 0; indice_eje < CANTIDAD_EJES_BRAZO; indice_eje++) {
-        if (angulos_grados[indice_eje] < g_ejes_brazo[indice_eje].cfg.min_deg ||
-            angulos_grados[indice_eje] > g_ejes_brazo[indice_eje].cfg.max_deg) {
+        float ang = normalizar_angulo_deg(pose_deg[indice_eje]);
+        if (ang < g_ejes_brazo[indice_eje].cfg.min_deg ||
+            ang > g_ejes_brazo[indice_eje].cfg.max_deg) {
             if (nombre_punto != NULL) {
                 printf("[ERROR LIMITE] Punto '%s' exige %s = %.1f deg (rango [%.1f, %.1f] deg)\n",
                        nombre_punto,
                        g_nombres_ejes_brazo[indice_eje],
-                       angulos_grados[indice_eje],
+                       ang,
                        g_ejes_brazo[indice_eje].cfg.min_deg,
                        g_ejes_brazo[indice_eje].cfg.max_deg);
             }
             return false;
         }
     }
-
-    if (servos_salida) *servos_salida = servos_calculados;
     return true;
 }
 
-static vector_t calcular_punto_aproximacion_horizontal_ik(vector_t punto_recogida_m) {
-    float radio_recogida = hypotf(punto_recogida_m.x, punto_recogida_m.y);
-    if (radio_recogida < 1e-4f) return punto_recogida_m;
-
-    float cos_dir = punto_recogida_m.x / radio_recogida;
-    float sin_dir = punto_recogida_m.y / radio_recogida;
-
-    for (float retroceso = DISTANCIA_APROX_RECOGIDA_MAX_M; retroceso >= 0.005f; retroceso -= 0.005f) {
-        float radio_aprox = radio_recogida - retroceso;
-        if (radio_aprox <= 0.01f) continue;
-
-        vector_t candidato = {
-            radio_aprox * cos_dir,
-            radio_aprox * sin_dir,
-            punto_recogida_m.z
-        };
-        if (validar_punto_cartesiano_con_ik(candidato, NULL, NULL)) {
-            return candidato;
-        }
-    }
-
-    return punto_recogida_m;
-}
-
-static bool calcular_puntos_transito_radio_minimo_ik(vector_t punto_origen_m,
-                                                     vector_t punto_destino_m,
-                                                     vector_t *punto_rmin_origen_salida,
-                                                     vector_t *punto_rmin_destino_salida) {
-    float radio_origen = hypotf(punto_origen_m.x, punto_origen_m.y);
-    float radio_destino = hypotf(punto_destino_m.x, punto_destino_m.y);
-    if (radio_origen < 1e-4f || radio_destino < 1e-4f) return false;
-
-    float cos_origen = punto_origen_m.x / radio_origen;
-    float sin_origen = punto_origen_m.y / radio_origen;
-    float cos_destino = punto_destino_m.x / radio_destino;
-    float sin_destino = punto_destino_m.y / radio_destino;
-
-    float z_transito = fmaxf(punto_origen_m.z, punto_destino_m.z);
-    float radio_limite_superior = fminf(radio_origen, radio_destino);
-
-    for (float radio_prueba = RADIO_BUSQUEDA_MINIMO_M;
-         radio_prueba <= radio_limite_superior + 1e-4f;
-         radio_prueba += PASO_BUSQUEDA_RADIO_M) {
-        float radio_actual = fminf(radio_prueba, radio_limite_superior);
-        vector_t candidato_origen = {
-            radio_actual * cos_origen,
-            radio_actual * sin_origen,
-            z_transito
-        };
-        vector_t candidato_destino = {
-            radio_actual * cos_destino,
-            radio_actual * sin_destino,
-            z_transito
-        };
-
-        if (validar_punto_cartesiano_con_ik(candidato_origen, NULL, NULL) &&
-            validar_punto_cartesiano_con_ik(candidato_destino, NULL, NULL)) {
-            if (punto_rmin_origen_salida) *punto_rmin_origen_salida = candidato_origen;
-            if (punto_rmin_destino_salida) *punto_rmin_destino_salida = candidato_destino;
-            return true;
-        }
-    }
-
-    return false;
-}
-
 bool validar_configuracion_completa_trabajo(const configuracion_trabajo_brazo_t *configuracion) {
-    if (!configuracion) return false;
+    (void)configuracion;
 
-    vector_t punto_recogida = configuracion->punto_recogida_m;
-    vector_t punto_elevacion = {
-        punto_recogida.x,
-        punto_recogida.y,
-        punto_recogida.z + configuracion->elevacion_vertical_z_m
+    if (!validar_pose_articular_en_limites(POSICION_HOME_GRADOS, "HOME")) return false;
+    if (!validar_pose_articular_en_limites(PUNTO_DEG_APROX_RECOGIDA, "APROX_RECOGIDA")) return false;
+    if (!validar_pose_articular_en_limites(PUNTO_DEG_RECOGIDA, "RECOGIDA")) return false;
+    if (!validar_pose_articular_en_limites(PUNTO_DEG_ELEVACION, "ELEVACION")) return false;
+    if (!validar_pose_articular_en_limites(PUNTO_DEG_TRANSITO_ORIGEN, "TRANSITO_ORIGEN")) return false;
+
+    const puntos_contenedor_deg_t *contenedores[3] = {
+        &PUNTO_CONTENEDOR_ROJO,
+        &PUNTO_CONTENEDOR_AZUL,
+        &PUNTO_CONTENEDOR_AMARILLO
     };
+    const char *nombres[3] = { "ROJO", "AZUL", "AMARILLO" };
 
-    if (!validar_punto_cartesiano_con_ik(punto_recogida, NULL, "RECOGIDA (x1,y1,z1)")) return false;
-    if (!validar_punto_cartesiano_con_ik(punto_elevacion, NULL, "ELEVACION (x1,y1,z1+dz)")) return false;
-
-    float angulo_contenedor_rad = atan2f(configuracion->contenedor_y_m, configuracion->contenedor_x_m);
-    float direccion_radial_x = cosf(angulo_contenedor_rad);
-    float direccion_radial_y = sinf(angulo_contenedor_rad);
-
-    const float alturas_por_color[3] = {
-        configuracion->altura_z_rojo_m,
-        configuracion->altura_z_azul_m,
-        configuracion->altura_z_amarillo_m
-    };
-    const char *etiquetas_contenedores[3] = {
-        "CONT_ROJO", "CONT_AZUL", "CONT_AMARILLO"
-    };
-
-    for (int indice_color = 0; indice_color < 3; indice_color++) {
-        float z_actual = alturas_por_color[indice_color];
-        vector_t punto_entrada = { configuracion->contenedor_x_m, configuracion->contenedor_y_m, z_actual };
-        vector_t punto_avance  = {
-            configuracion->contenedor_x_m + configuracion->avance_horizontal_deposito_m * direccion_radial_x,
-            configuracion->contenedor_y_m + configuracion->avance_horizontal_deposito_m * direccion_radial_y,
-            z_actual
-        };
-        vector_t punto_asentado = {
-            punto_avance.x,
-            punto_avance.y,
-            z_actual - configuracion->bajada_vertical_asentamiento_m
-        };
-
-        if (!validar_punto_cartesiano_con_ik(punto_entrada,  NULL, etiquetas_contenedores[indice_color])) return false;
-        if (!validar_punto_cartesiano_con_ik(punto_avance,   NULL, "AVANCE_CONTENEDOR")) return false;
-        if (!validar_punto_cartesiano_con_ik(punto_asentado, NULL, "ASENTAR_PALLET")) return false;
-        if (!calcular_puntos_transito_radio_minimo_ik(punto_elevacion, punto_entrada, NULL, NULL)) {
-            printf("[ERROR IK] Sin zona de radio minimo valida para transito hacia %s\n",
-                   etiquetas_contenedores[indice_color]);
-            return false;
-        }
+    for (int i = 0; i < 3; i++) {
+        if (!validar_pose_articular_en_limites(contenedores[i]->transito_destino, nombres[i])) return false;
+        if (!validar_pose_articular_en_limites(contenedores[i]->entrada, nombres[i])) return false;
+        if (!validar_pose_articular_en_limites(contenedores[i]->avance, nombres[i])) return false;
+        if (!validar_pose_articular_en_limites(contenedores[i]->asentamiento, nombres[i])) return false;
+        if (!validar_pose_articular_en_limites(contenedores[i]->retroceso, nombres[i])) return false;
     }
+
     return true;
 }
 
 void imprimir_configuracion_posiciones_brazo(void) {
-    configuracion_trabajo_brazo_t cfg;
-    xSemaphoreTake(g_mutex_configuracion_brazo, portMAX_DELAY);
-    cfg = g_configuracion_trabajo_brazo;
-    xSemaphoreGive(g_mutex_configuracion_brazo);
-
-    printf("\n--- POSICIONES CONFIGURADAS DEL BRAZO ---\n");
-    printf("  Recogida (x1,y1,z1) : [%.3f, %.3f, %.3f] m  ([%.1f, %.1f, %.1f] cm)\n",
-           cfg.punto_recogida_m.x, cfg.punto_recogida_m.y, cfg.punto_recogida_m.z,
-           cfg.punto_recogida_m.x * 100.0f, cfg.punto_recogida_m.y * 100.0f, cfg.punto_recogida_m.z * 100.0f);
-    printf("  Elevacion (+dz)     : +%.3f m (+%.1f cm)\n",
-           cfg.elevacion_vertical_z_m, cfg.elevacion_vertical_z_m * 100.0f);
-    printf("  Contenedor (x,y)    : [%.3f, %.3f] m  ([%.1f, %.1f] cm)\n",
-           cfg.contenedor_x_m, cfg.contenedor_y_m,
-           cfg.contenedor_x_m * 100.0f, cfg.contenedor_y_m * 100.0f);
-    printf("  Alturas Z por color : ROJO=%.3f m (%.1f cm) | AZUL=%.3f m (%.1f cm) | AMARILLO=%.3f m (%.1f cm)\n",
-           cfg.altura_z_rojo_m, cfg.altura_z_rojo_m * 100.0f,
-           cfg.altura_z_azul_m, cfg.altura_z_azul_m * 100.0f,
-           cfg.altura_z_amarillo_m, cfg.altura_z_amarillo_m * 100.0f);
-    printf("  Deposito            : Avance=%.3f m (%.1f cm) | Bajada=%.3f m (%.1f cm)\n\n",
-           cfg.avance_horizontal_deposito_m, cfg.avance_horizontal_deposito_m * 100.0f,
-           cfg.bajada_vertical_asentamiento_m, cfg.bajada_vertical_asentamiento_m * 100.0f);
+    printf("\n--- PUNTOS TEACH-IN ARTICULARES CONFIGURADOS (deg) ---\n");
+    printf("  HOME            : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           POSICION_HOME_GRADOS[0], POSICION_HOME_GRADOS[1], POSICION_HOME_GRADOS[2], POSICION_HOME_GRADOS[3]);
+    printf("  Aprox Recogida  : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           PUNTO_DEG_APROX_RECOGIDA[0], PUNTO_DEG_APROX_RECOGIDA[1], PUNTO_DEG_APROX_RECOGIDA[2], PUNTO_DEG_APROX_RECOGIDA[3]);
+    printf("  Recogida Cinta  : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           PUNTO_DEG_RECOGIDA[0], PUNTO_DEG_RECOGIDA[1], PUNTO_DEG_RECOGIDA[2], PUNTO_DEG_RECOGIDA[3]);
+    printf("  Elevacion       : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           PUNTO_DEG_ELEVACION[0], PUNTO_DEG_ELEVACION[1], PUNTO_DEG_ELEVACION[2], PUNTO_DEG_ELEVACION[3]);
+    printf("  Transito Origen : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           PUNTO_DEG_TRANSITO_ORIGEN[0], PUNTO_DEG_TRANSITO_ORIGEN[1], PUNTO_DEG_TRANSITO_ORIGEN[2], PUNTO_DEG_TRANSITO_ORIGEN[3]);
+    printf("  Entrada ROJO    : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           PUNTO_CONTENEDOR_ROJO.entrada[0], PUNTO_CONTENEDOR_ROJO.entrada[1], PUNTO_CONTENEDOR_ROJO.entrada[2], PUNTO_CONTENEDOR_ROJO.entrada[3]);
+    printf("  Entrada AZUL    : [%6.1f, %6.1f, %6.1f, %6.1f]\n",
+           PUNTO_CONTENEDOR_AZUL.entrada[0], PUNTO_CONTENEDOR_AZUL.entrada[1], PUNTO_CONTENEDOR_AZUL.entrada[2], PUNTO_CONTENEDOR_AZUL.entrada[3]);
+    printf("  Entrada AMARILLO: [%6.1f, %6.1f, %6.1f, %6.1f]\n\n",
+           PUNTO_CONTENEDOR_AMARILLO.entrada[0], PUNTO_CONTENEDOR_AMARILLO.entrada[1], PUNTO_CONTENEDOR_AMARILLO.entrada[2], PUNTO_CONTENEDOR_AMARILLO.entrada[3]);
 }
 
 void imprimir_estado_articular_y_cartesiano(void) {
@@ -268,35 +178,15 @@ void imprimir_estado_articular_y_cartesiano(void) {
                g_ejes_brazo[indice_eje].locked);
     }
 
-    float theta_1 = sec_get_angle_rad(&g_ejes_brazo[0]);
-    float theta_2 = sec_get_angle_rad(&g_ejes_brazo[1]);
-    float theta_3 = sec_get_angle_rad(&g_ejes_brazo[2]);
-    float theta_4 = sec_get_angle_rad(&g_ejes_brazo[3]);
-
-    // Convención URDF / Real: 0 rad = erguido vertical arriba, + = dobla hacia adelante
-    float ang_eslabon1_rad    = theta_2;
-    float ang_eslabon2_rad    = theta_2 + theta_3;
-    float ang_herramienta_rad = theta_2 + theta_3 + theta_4; // 90 deg = horizontal adelante
-
-    float longitud_efector_m  = L_ESLABON_3 + L_HERRAMIENTA;
-    float radio_muneca_m      = L_ESLABON_1 * sinf(ang_eslabon1_rad) +
-                                L_ESLABON_2 * sinf(ang_eslabon2_rad);
-    float radio_total_m       = radio_muneca_m + longitud_efector_m * sinf(ang_herramienta_rad);
-
-    float x_actual_m = radio_total_m * cosf(theta_1);
-    float y_actual_m = radio_total_m * sinf(theta_1);
-    float z_actual_m = L_SHOULDER_Z +
-                       L_ESLABON_1 * cosf(ang_eslabon1_rad) +
-                       L_ESLABON_2 * cosf(ang_eslabon2_rad) +
-                       longitud_efector_m * cosf(ang_herramienta_rad);
-
-    printf("XYZ ACTUAL: [%.3f, %.3f, %.3f] m  ([%.1f, %.1f, %.1f] cm) | Herramienta: %.1f deg\n",
-           x_actual_m, y_actual_m, z_actual_m,
-           x_actual_m * 100.0f, y_actual_m * 100.0f, z_actual_m * 100.0f,
-           sec_rad2deg_(ang_herramienta_rad));
+    printf("TEACH-IN LISTO PARA COPIAR -> { %.1ff, %.1ff, %.1ff, %.1ff }\n",
+           sec_get_angle_deg(&g_ejes_brazo[0]),
+           sec_get_angle_deg(&g_ejes_brazo[1]),
+           sec_get_angle_deg(&g_ejes_brazo[2]),
+           sec_get_angle_deg(&g_ejes_brazo[3]));
 }
+
 //=====================================================
-//---- Planificadores de Trayectoria con Perfil S -----
+//---- Planificador de Trayectoria con Perfil S -------
 //=====================================================
 static void iniciar_trayectoria_articular_suave(const float objetivos_grados[CANTIDAD_EJES_BRAZO],
                                                 bool es_retorno_reposo) {
@@ -312,7 +202,8 @@ static void iniciar_trayectoria_articular_suave(const float objetivos_grados[CAN
             (void)sec_enable(&g_ejes_brazo[indice_eje]);
         }
         float angulo_actual_deg = sec_get_angle_deg(&g_ejes_brazo[indice_eje]);
-        float angulo_limitado_deg = sec_clamp_(objetivos_grados[indice_eje],
+        float objetivo_norm_deg = normalizar_angulo_deg(objetivos_grados[indice_eje]);
+        float angulo_limitado_deg = sec_clamp_(objetivo_norm_deg,
                                                g_ejes_brazo[indice_eje].cfg.min_deg,
                                                g_ejes_brazo[indice_eje].cfg.max_deg);
 
@@ -364,81 +255,6 @@ static bool evaluar_trayectoria_articular_suave(float paso_tiempo_s) {
     return false;
 }
 
-static bool iniciar_trayectoria_cartesiana_lineal(vector_t punto_inicio_m, vector_t punto_fin_m) {
-    servomotores_h servos_iniciales = {0};
-    for (int indice_eje = 0; indice_eje < CANTIDAD_EJES_BRAZO; indice_eje++) {
-        if (!g_ejes_brazo[indice_eje].enabled) {
-            (void)sec_enable(&g_ejes_brazo[indice_eje]);
-        }
-        s_ultimo_comando_cartesiano_rad[indice_eje] = sec_get_angle_rad(&g_ejes_brazo[indice_eje]);
-    }
-
-    servos_iniciales.sm1.angulo_objetivo = s_ultimo_comando_cartesiano_rad[0];
-    servos_iniciales.sm2.angulo_objetivo = s_ultimo_comando_cartesiano_rad[1];
-    servos_iniciales.sm3.angulo_objetivo = s_ultimo_comando_cartesiano_rad[2];
-    servos_iniciales.sm4.angulo_objetivo = s_ultimo_comando_cartesiano_rad[3];
-
-    limites_perfil_s_t limites = {
-        .v_max = PERFIL_S_VELOCIDAD_MAXIMA,
-        .a_max = PERFIL_S_ACELERACION_MAXIMA,
-        .j_max = PERFIL_S_JERK_MAXIMO,
-    };
-
-    if (!Movimiento_Iniciar(&s_trayectoria_cartesiana,
-                            servos_iniciales,
-                            punto_inicio_m,
-                            punto_fin_m,
-                            limites,
-                            &s_continuidad_ik)) {
-        return false;
-    }
-
-    s_tiempo_trayectoria_cartesiana_s = 0.0f;
-    return true;
-}
-
-static bool evaluar_trayectoria_cartesiana_lineal(float paso_tiempo_s, bool *hubo_error_ik) {
-    *hubo_error_ik = false;
-    if (!s_trayectoria_cartesiana.activo) return true;
-
-    s_tiempo_trayectoria_cartesiana_s += paso_tiempo_s;
-    servomotores_h servos_objetivo = {0};
-    float progreso_normalizado = 0.0f;
-
-    bool en_curso = Movimiento_Evaluar(&servos_objetivo,
-                                       &s_trayectoria_cartesiana,
-                                       s_tiempo_trayectoria_cartesiana_s,
-                                       &s_continuidad_ik,
-                                       &progreso_normalizado);
-
-    if (!en_curso && progreso_normalizado < 0.999f) {
-        *hubo_error_ik = true;
-        for (int indice_eje = 0; indice_eje < CANTIDAD_EJES_BRAZO; indice_eje++) {
-            sec_set_trajectory_rad(&g_ejes_brazo[indice_eje],
-                                   s_ultimo_comando_cartesiano_rad[indice_eje],
-                                   0.0f);
-        }
-        return true;
-    }
-
-    float angulos_objetivo_rad[CANTIDAD_EJES_BRAZO] = {
-        servos_objetivo.sm1.angulo_objetivo,
-        servos_objetivo.sm2.angulo_objetivo,
-        servos_objetivo.sm3.angulo_objetivo,
-        servos_objetivo.sm4.angulo_objetivo,
-    };
-
-    for (int indice_eje = 0; indice_eje < CANTIDAD_EJES_BRAZO; indice_eje++) {
-        float velocidad_avance = en_curso
-            ? ((angulos_objetivo_rad[indice_eje] - s_ultimo_comando_cartesiano_rad[indice_eje]) / paso_tiempo_s)
-            : 0.0f;
-        sec_set_trajectory_rad(&g_ejes_brazo[indice_eje], angulos_objetivo_rad[indice_eje], velocidad_avance);
-        s_ultimo_comando_cartesiano_rad[indice_eje] = angulos_objetivo_rad[indice_eje];
-    }
-
-    return !en_curso;
-}
-
 //=====================================================
 //---- Verificación de Estabilización Anti-Rebote -----
 //=====================================================
@@ -474,25 +290,11 @@ static void preparar_siguiente_paso_articular(const float objetivos_grados[CANTI
     s_estado_secuencia = nuevo_estado;
 }
 
-static void preparar_siguiente_paso_cartesiano(vector_t inicio_m,
-                                               vector_t fin_m,
-                                               estado_secuencia_brazo_t nuevo_estado) {
-    if (iniciar_trayectoria_cartesiana_lineal(inicio_m, fin_m)) {
-        s_trayectoria_finalizada = false;
-        s_tiempo_espera_enclave_ms = 0;
-        s_tiempo_estable_continuo_ms = 0;
-        s_estado_secuencia = nuevo_estado;
-    } else {
-        preparar_siguiente_paso_articular(POSICION_HOME_GRADOS, SECUENCIA_BRAZO_IR_A_REPOSO_FINAL);
-    }
-}
-
 //=====================================================
 //------- Funciones Públicas de Control Manual --------
 //=====================================================
 void cancelar_movimiento_y_secuencia_brazo(void) {
     s_trayectoria_articular.activa = false;
-    s_trayectoria_cartesiana.activo = false;
     s_estado_secuencia = SECUENCIA_BRAZO_LISTO;
     s_color_pallet_activo = COLOR_PALLET_NINGUNO;
     s_aproximacion_recogida_completada = false;
@@ -502,7 +304,6 @@ void cancelar_movimiento_y_secuencia_brazo(void) {
 }
 
 void ordenar_movimiento_articular_suave(const float objetivos_grados[CANTIDAD_EJES_BRAZO], bool es_retorno_reposo) {
-    s_trayectoria_cartesiana.activo = false;
     if (es_retorno_reposo) {
         preparar_siguiente_paso_articular(POSICION_HOME_GRADOS, SECUENCIA_BRAZO_MOVIMIENTO_MANUAL);
     } else {
@@ -516,11 +317,11 @@ void ordenar_objetivo_articular_directo(uint8_t indice_eje, float angulo_grados)
     if (!g_ejes_brazo[indice_eje].enabled) {
         (void)sec_enable(&g_ejes_brazo[indice_eje]);
     }
-    sec_set_target_deg(&g_ejes_brazo[indice_eje], angulo_grados);
+    sec_set_target_deg(&g_ejes_brazo[indice_eje], normalizar_angulo_deg(angulo_grados));
 }
 
 //===============================================
-//---- Tarea Principal de Control del Brazo ----- 
+//---- Tarea Principal de Control del Brazo -----
 //===============================================
 void tarea_control_brazo_robotico(void *parametro) {
     (void)parametro;
@@ -549,12 +350,8 @@ void tarea_control_brazo_robotico(void *parametro) {
             case SECUENCIA_BRAZO_LISTO: {
                 color_pallet_t siguiente_pallet;
                 if (xQueueReceive(g_cola_objetivos_brazo, &siguiente_pallet, 0) == pdTRUE) {
-                    xSemaphoreTake(g_mutex_configuracion_brazo, portMAX_DELAY);
-                    s_configuracion_ciclo_actual = g_configuracion_trabajo_brazo;
-                    xSemaphoreGive(g_mutex_configuracion_brazo);
-
-                    if (!validar_configuracion_completa_trabajo(&s_configuracion_ciclo_actual)) {
-                        printf("[ARM] Ciclo abortado: coordenadas fuera de alcance IK.\n");
+                    if (!validar_configuracion_completa_trabajo(NULL)) {
+                        printf("[ARM] Ciclo abortado: punto Teach-In fuera de limite articular.\n");
                         break;
                     }
 
@@ -562,72 +359,20 @@ void tarea_control_brazo_robotico(void *parametro) {
                     s_aproximacion_recogida_completada = false;
                     s_giro_en_radio_minimo_completado = false;
 
-                    s_punto_recogida_m = s_configuracion_ciclo_actual.punto_recogida_m;
-                    s_punto_aprox_recogida_m = calcular_punto_aproximacion_horizontal_ik(s_punto_recogida_m);
-                    s_punto_elevacion_m = (vector_t){
-                        s_punto_recogida_m.x,
-                        s_punto_recogida_m.y,
-                        s_punto_recogida_m.z + s_configuracion_ciclo_actual.elevacion_vertical_z_m
-                    };
-
-                    float altura_destino_z = s_configuracion_ciclo_actual.altura_z_rojo_m;
                     if (s_color_pallet_activo == COLOR_PALLET_AZUL) {
-                        altura_destino_z = s_configuracion_ciclo_actual.altura_z_azul_m;
+                        s_puntos_contenedor_activo = PUNTO_CONTENEDOR_AZUL;
                     } else if (s_color_pallet_activo == COLOR_PALLET_AMARILLO) {
-                        altura_destino_z = s_configuracion_ciclo_actual.altura_z_amarillo_m;
+                        s_puntos_contenedor_activo = PUNTO_CONTENEDOR_AMARILLO;
+                    } else {
+                        s_puntos_contenedor_activo = PUNTO_CONTENEDOR_ROJO;
                     }
 
-                    float angulo_contenedor = atan2f(s_configuracion_ciclo_actual.contenedor_y_m,
-                                                     s_configuracion_ciclo_actual.contenedor_x_m);
-                    float coseno_radial = cosf(angulo_contenedor);
-                    float seno_radial   = sinf(angulo_contenedor);
-
-                    s_punto_entrada_contenedor_m = (vector_t){
-                        s_configuracion_ciclo_actual.contenedor_x_m,
-                        s_configuracion_ciclo_actual.contenedor_y_m,
-                        altura_destino_z
-                    };
-                    s_punto_avance_contenedor_m = (vector_t){
-                        s_configuracion_ciclo_actual.contenedor_x_m +
-                            s_configuracion_ciclo_actual.avance_horizontal_deposito_m * coseno_radial,
-                        s_configuracion_ciclo_actual.contenedor_y_m +
-                            s_configuracion_ciclo_actual.avance_horizontal_deposito_m * seno_radial,
-                        altura_destino_z
-                    };
-                    s_punto_asentamiento_m = (vector_t){
-                        s_punto_avance_contenedor_m.x,
-                        s_punto_avance_contenedor_m.y,
-                        altura_destino_z - s_configuracion_ciclo_actual.bajada_vertical_asentamiento_m
-                    };
-                    s_punto_retroceso_m = (vector_t){
-                        s_configuracion_ciclo_actual.contenedor_x_m,
-                        s_configuracion_ciclo_actual.contenedor_y_m,
-                        altura_destino_z - s_configuracion_ciclo_actual.bajada_vertical_asentamiento_m
-                    };
-
-                    if (!calcular_puntos_transito_radio_minimo_ik(s_punto_elevacion_m,
-                                                                  s_punto_entrada_contenedor_m,
-                                                                  &s_punto_radio_minimo_origen_m,
-                                                                  &s_punto_radio_minimo_destino_m)) {
-                        printf("[ARM] Ciclo abortado: no existe zona IK de radio minimo.\n");
-                        break;
-                    }
-
-                    servomotores_h servos_aprox = {0};
-                    (void)IK_ext_debug(&servos_aprox, s_punto_aprox_recogida_m, &s_continuidad_ik);
-
-                    float angulos_aprox_deg[CANTIDAD_EJES_BRAZO] = {
-                        sec_rad2deg_(servos_aprox.sm1.angulo_objetivo),
-                        sec_rad2deg_(servos_aprox.sm2.angulo_objetivo),
-                        sec_rad2deg_(servos_aprox.sm3.angulo_objetivo),
-                        sec_rad2deg_(servos_aprox.sm4.angulo_objetivo),
-                    };
-
-                    printf("[ARM] Pallet %s -> Paso 1a: Pre-recogida horizontal [%.3f, %.3f, %.3f] m\n",
+                    printf("[ARM] Pallet %s -> Paso 1a: Aproximacion recogida [%.1f, %.1f, %.1f, %.1f] deg\n",
                            obtener_nombre_color_pallet(s_color_pallet_activo),
-                           s_punto_aprox_recogida_m.x, s_punto_aprox_recogida_m.y, s_punto_aprox_recogida_m.z);
+                           PUNTO_DEG_APROX_RECOGIDA[0], PUNTO_DEG_APROX_RECOGIDA[1],
+                           PUNTO_DEG_APROX_RECOGIDA[2], PUNTO_DEG_APROX_RECOGIDA[3]);
 
-                    preparar_siguiente_paso_articular(angulos_aprox_deg, SECUENCIA_BRAZO_IR_A_RECOGIDA);
+                    preparar_siguiente_paso_articular(PUNTO_DEG_APROX_RECOGIDA, SECUENCIA_BRAZO_IR_A_RECOGIDA);
                 }
                 break;
             }
@@ -638,65 +383,47 @@ void tarea_control_brazo_robotico(void *parametro) {
                         s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                     } else if (verificar_brazo_estable_continuamente()) {
                         s_aproximacion_recogida_completada = true;
-                        printf("[ARM] Paso 1b: Avance recto horizontal hacia pallet [%.3f, %.3f, %.3f] m (IK)\n",
-                               s_punto_recogida_m.x, s_punto_recogida_m.y, s_punto_recogida_m.z);
-                        preparar_siguiente_paso_cartesiano(s_punto_aprox_recogida_m,
-                                                           s_punto_recogida_m,
-                                                           SECUENCIA_BRAZO_IR_A_RECOGIDA);
+                        printf("[ARM] Paso 1b: Recogida en cinta [%.1f, %.1f, %.1f, %.1f] deg\n",
+                               PUNTO_DEG_RECOGIDA[0], PUNTO_DEG_RECOGIDA[1],
+                               PUNTO_DEG_RECOGIDA[2], PUNTO_DEG_RECOGIDA[3]);
+                        preparar_siguiente_paso_articular(PUNTO_DEG_RECOGIDA, SECUENCIA_BRAZO_IR_A_RECOGIDA);
                     }
                 } else {
                     if (!s_trayectoria_finalizada) {
-                        bool hubo_error_ik = false;
-                        s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                        if (hubo_error_ik) s_trayectoria_finalizada = true;
+                        s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                     } else if (verificar_brazo_estable_continuamente()) {
-                        printf("[ARM] Paso 2: Levantando pallet horizontal en +Z hasta z=%.3f m (IK)\n", s_punto_elevacion_m.z);
-                        preparar_siguiente_paso_cartesiano(s_punto_recogida_m,
-                                                           s_punto_elevacion_m,
-                                                           SECUENCIA_BRAZO_ELEVAR_PALLET);
+                        printf("[ARM] Paso 2: Elevando pallet [%.1f, %.1f, %.1f, %.1f] deg\n",
+                               PUNTO_DEG_ELEVACION[0], PUNTO_DEG_ELEVACION[1],
+                               PUNTO_DEG_ELEVACION[2], PUNTO_DEG_ELEVACION[3]);
+                        preparar_siguiente_paso_articular(PUNTO_DEG_ELEVACION, SECUENCIA_BRAZO_ELEVAR_PALLET);
                     }
                 }
                 break;
 
             case SECUENCIA_BRAZO_ELEVAR_PALLET:
                 if (!s_trayectoria_finalizada) {
-                    bool hubo_error_ik = false;
-                    s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                    if (hubo_error_ik) s_trayectoria_finalizada = true;
+                    s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                 } else if (verificar_brazo_estable_continuamente()) {
-                    printf("[ARM] Paso 3: Replegando a radio minimo IK [%.3f, %.3f, %.3f] m\n",
-                           s_punto_radio_minimo_origen_m.x,
-                           s_punto_radio_minimo_origen_m.y,
-                           s_punto_radio_minimo_origen_m.z);
-                    preparar_siguiente_paso_cartesiano(s_punto_elevacion_m,
-                                                       s_punto_radio_minimo_origen_m,
-                                                       SECUENCIA_BRAZO_IR_A_REPOSO_CON_PALLET);
+                    printf("[ARM] Paso 3: Replegando en origen [%.1f, %.1f, %.1f, %.1f] deg\n",
+                           PUNTO_DEG_TRANSITO_ORIGEN[0], PUNTO_DEG_TRANSITO_ORIGEN[1],
+                           PUNTO_DEG_TRANSITO_ORIGEN[2], PUNTO_DEG_TRANSITO_ORIGEN[3]);
+                    preparar_siguiente_paso_articular(PUNTO_DEG_TRANSITO_ORIGEN, SECUENCIA_BRAZO_IR_A_REPOSO_CON_PALLET);
                 }
                 break;
 
             case SECUENCIA_BRAZO_IR_A_REPOSO_CON_PALLET:
                 if (!s_trayectoria_finalizada) {
-                    bool hubo_error_ik = false;
-                    s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                    if (hubo_error_ik) s_trayectoria_finalizada = true;
+                    s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                 } else if (verificar_brazo_estable_continuamente()) {
-                    servomotores_h servos_rmin_destino = {0};
-                    (void)IK_ext_debug(&servos_rmin_destino, s_punto_radio_minimo_destino_m, &s_continuidad_ik);
-
-                    float angulos_rmin_destino_deg[CANTIDAD_EJES_BRAZO] = {
-                        sec_rad2deg_(servos_rmin_destino.sm1.angulo_objetivo),
-                        sec_rad2deg_(servos_rmin_destino.sm2.angulo_objetivo),
-                        sec_rad2deg_(servos_rmin_destino.sm3.angulo_objetivo),
-                        sec_rad2deg_(servos_rmin_destino.sm4.angulo_objetivo),
-                    };
-
-                    printf("[ARM] Paso 4a: Girando en radio minimo IK hacia [%.3f, %.3f, %.3f] m\n",
-                           s_punto_radio_minimo_destino_m.x,
-                           s_punto_radio_minimo_destino_m.y,
-                           s_punto_radio_minimo_destino_m.z);
-
+                    printf("[ARM] Paso 4a: Girando hacia contenedor %s [%.1f, %.1f, %.1f, %.1f] deg\n",
+                           obtener_nombre_color_pallet(s_color_pallet_activo),
+                           s_puntos_contenedor_activo.transito_destino[0],
+                           s_puntos_contenedor_activo.transito_destino[1],
+                           s_puntos_contenedor_activo.transito_destino[2],
+                           s_puntos_contenedor_activo.transito_destino[3]);
                     s_giro_en_radio_minimo_completado = false;
-                    preparar_siguiente_paso_articular(angulos_rmin_destino_deg, SECUENCIA_BRAZO_IR_A_CONTENEDOR);
+                    preparar_siguiente_paso_articular(s_puntos_contenedor_activo.transito_destino,
+                                                      SECUENCIA_BRAZO_IR_A_CONTENEDOR);
                 }
                 break;
 
@@ -706,65 +433,65 @@ void tarea_control_brazo_robotico(void *parametro) {
                         s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                     } else if (verificar_brazo_estable_continuamente()) {
                         s_giro_en_radio_minimo_completado = true;
-                        printf("[ARM] Paso 4b: Extendiendo en IK hacia contenedor %s [%.3f, %.3f, %.3f] m\n",
+                        printf("[ARM] Paso 4b: Entrada contenedor %s [%.1f, %.1f, %.1f, %.1f] deg\n",
                                obtener_nombre_color_pallet(s_color_pallet_activo),
-                               s_punto_entrada_contenedor_m.x,
-                               s_punto_entrada_contenedor_m.y,
-                               s_punto_entrada_contenedor_m.z);
-                        preparar_siguiente_paso_cartesiano(s_punto_radio_minimo_destino_m,
-                                                           s_punto_entrada_contenedor_m,
-                                                           SECUENCIA_BRAZO_IR_A_CONTENEDOR);
+                               s_puntos_contenedor_activo.entrada[0],
+                               s_puntos_contenedor_activo.entrada[1],
+                               s_puntos_contenedor_activo.entrada[2],
+                               s_puntos_contenedor_activo.entrada[3]);
+                        preparar_siguiente_paso_articular(s_puntos_contenedor_activo.entrada,
+                                                          SECUENCIA_BRAZO_IR_A_CONTENEDOR);
                     }
                 } else {
                     if (!s_trayectoria_finalizada) {
-                        bool hubo_error_ik = false;
-                        s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                        if (hubo_error_ik) s_trayectoria_finalizada = true;
+                        s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                     } else if (verificar_brazo_estable_continuamente()) {
-                        printf("[ARM] Paso 5: Avanzando %.1f cm hacia el contenedor (IK)\n",
-                               s_configuracion_ciclo_actual.avance_horizontal_deposito_m * 100.0f);
-                        preparar_siguiente_paso_cartesiano(s_punto_entrada_contenedor_m,
-                                                           s_punto_avance_contenedor_m,
-                                                           SECUENCIA_BRAZO_AVANZAR_EN_CONTENEDOR);
+                        printf("[ARM] Paso 5: Avanzando en contenedor [%.1f, %.1f, %.1f, %.1f] deg\n",
+                               s_puntos_contenedor_activo.avance[0],
+                               s_puntos_contenedor_activo.avance[1],
+                               s_puntos_contenedor_activo.avance[2],
+                               s_puntos_contenedor_activo.avance[3]);
+                        preparar_siguiente_paso_articular(s_puntos_contenedor_activo.avance,
+                                                          SECUENCIA_BRAZO_AVANZAR_EN_CONTENEDOR);
                     }
                 }
                 break;
 
             case SECUENCIA_BRAZO_AVANZAR_EN_CONTENEDOR:
                 if (!s_trayectoria_finalizada) {
-                    bool hubo_error_ik = false;
-                    s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                    if (hubo_error_ik) s_trayectoria_finalizada = true;
+                    s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                 } else if (verificar_brazo_estable_continuamente()) {
-                    printf("[ARM] Paso 6: Bajando %.1f cm para asentar pallet (IK)\n",
-                           s_configuracion_ciclo_actual.bajada_vertical_asentamiento_m * 100.0f);
-                    preparar_siguiente_paso_cartesiano(s_punto_avance_contenedor_m,
-                                                       s_punto_asentamiento_m,
-                                                       SECUENCIA_BRAZO_BAJAR_PARA_ASENTAR);
+                    printf("[ARM] Paso 6: Bajando para asentar pallet [%.1f, %.1f, %.1f, %.1f] deg\n",
+                           s_puntos_contenedor_activo.asentamiento[0],
+                           s_puntos_contenedor_activo.asentamiento[1],
+                           s_puntos_contenedor_activo.asentamiento[2],
+                           s_puntos_contenedor_activo.asentamiento[3]);
+                    preparar_siguiente_paso_articular(s_puntos_contenedor_activo.asentamiento,
+                                                      SECUENCIA_BRAZO_BAJAR_PARA_ASENTAR);
                 }
                 break;
 
             case SECUENCIA_BRAZO_BAJAR_PARA_ASENTAR:
                 if (!s_trayectoria_finalizada) {
-                    bool hubo_error_ik = false;
-                    s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                    if (hubo_error_ik) s_trayectoria_finalizada = true;
+                    s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                 } else if (verificar_brazo_estable_continuamente()) {
-                    printf("[ARM] Paso 7: Retrocediendo %.1f cm (IK)\n",
-                           s_configuracion_ciclo_actual.avance_horizontal_deposito_m * 100.0f);
-                    preparar_siguiente_paso_cartesiano(s_punto_asentamiento_m,
-                                                       s_punto_retroceso_m,
-                                                       SECUENCIA_BRAZO_RETROCEDER_DE_CONTENEDOR);
+                    printf("[ARM] Paso 7: Retrocediendo de contenedor [%.1f, %.1f, %.1f, %.1f] deg\n",
+                           s_puntos_contenedor_activo.retroceso[0],
+                           s_puntos_contenedor_activo.retroceso[1],
+                           s_puntos_contenedor_activo.retroceso[2],
+                           s_puntos_contenedor_activo.retroceso[3]);
+                    preparar_siguiente_paso_articular(s_puntos_contenedor_activo.retroceso,
+                                                      SECUENCIA_BRAZO_RETROCEDER_DE_CONTENEDOR);
                 }
                 break;
 
             case SECUENCIA_BRAZO_RETROCEDER_DE_CONTENEDOR:
                 if (!s_trayectoria_finalizada) {
-                    bool hubo_error_ik = false;
-                    s_trayectoria_finalizada = evaluar_trayectoria_cartesiana_lineal(PASO_TIEMPO_CONTROL_S, &hubo_error_ik);
-                    if (hubo_error_ik) s_trayectoria_finalizada = true;
+                    s_trayectoria_finalizada = evaluar_trayectoria_articular_suave(PASO_TIEMPO_CONTROL_S);
                 } else if (verificar_brazo_estable_continuamente()) {
-                    printf("[ARM] Paso 8: Regresando a posicion final [90.0, 0.0, 148.8, 47.2]\n");
+                    printf("[ARM] Paso 8: Regresando a HOME [%.1f, %.1f, %.1f, %.1f] deg\n",
+                           POSICION_HOME_GRADOS[0], POSICION_HOME_GRADOS[1],
+                           POSICION_HOME_GRADOS[2], POSICION_HOME_GRADOS[3]);
                     preparar_siguiente_paso_articular(POSICION_HOME_GRADOS, SECUENCIA_BRAZO_IR_A_REPOSO_FINAL);
                 }
                 break;
@@ -797,7 +524,7 @@ void tarea_control_brazo_robotico(void *parametro) {
         g_telemetria_hmi.estado_brazo = s_estado_secuencia;
 
         //-----------------------------
-        //  Logs Periódicos Para El QT 
+        //  Logs Periódicos Para El QT
         //-----------------------------
         if (algun_eje_habilitado && (++divisor_log_diagnostico >= 50U)) {
             divisor_log_diagnostico = 0;
@@ -849,7 +576,7 @@ void tarea_control_brazo_robotico(void *parametro) {
                          pwm_porcentaje[0], pwm_porcentaje[1],
                          pwm_porcentaje[2], pwm_porcentaje[3]);
             }
-        } 
+        }
 
         vTaskDelayUntil(&ultimo_despertar, pdMS_TO_TICKS(PERIODO_LAZO_CONTROL_MS));
     }

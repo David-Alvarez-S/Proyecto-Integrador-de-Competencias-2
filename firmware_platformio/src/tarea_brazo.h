@@ -17,9 +17,9 @@
 //=====================================================
 //--- Límites Suavizados de Perfil-S (Anti-Rebote) ----
 //=====================================================
-#define PERFIL_S_VELOCIDAD_MAXIMA           0.8f
-#define PERFIL_S_ACELERACION_MAXIMA         0.4f
-#define PERFIL_S_JERK_MAXIMO                0.8f
+#define PERFIL_S_VELOCIDAD_MAXIMA           0.2f
+#define PERFIL_S_ACELERACION_MAXIMA         0.1f
+#define PERFIL_S_JERK_MAXIMO                0.15f
 
 //=====================================================
 //------ Interfaz de Control Manual y Secuencia -------

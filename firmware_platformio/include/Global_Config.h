@@ -9,7 +9,7 @@
 //==========================================
 #define R_MIN_ALCANCE   0.090f
 #define R_MAX_ALCANCE   0.360f  
-#define Z_MIN_MESA      0.00f  
+#define Z_MIN_MESA      -0.05f  
 //==========================================
 //  VELOCIDAD , ACELERACION Y TIRON MAXIMO
 //==========================================

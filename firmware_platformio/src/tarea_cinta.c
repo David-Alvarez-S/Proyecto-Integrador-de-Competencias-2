@@ -30,15 +30,23 @@ static color_pallet_t clasificar_color_pallet_calibrado(const tcs3200_sample_t *
     float matiz = muestra->h;
     float saturacion = muestra->s;
 
-    if (matiz >= 226.0f && matiz <= 235.0f && saturacion >= 0.75f) {
+    // 1. AZUL en movimiento (Medido: H=240.5..243.3 | S=0.64..0.65 | Clr=12873..13503 Hz)
+    if (matiz >= 228.0f && matiz <= 243.6f &&
+        saturacion >= 0.60f &&
+        frecuencia_clear >= 11500.0f && frecuencia_clear <= 13800.0f) {
         return COLOR_PALLET_AZUL;
     }
-    if (matiz >= 241.5f && matiz <= 248.5f && saturacion >= 0.55f && saturacion <= 0.65f && frecuencia_clear >= 6000.0f) {
-        return COLOR_PALLET_AMARILLO;
-    }
-    if (matiz >= 258.0f && matiz <= 276.0f && saturacion >= 0.70f && frecuencia_clear <= 4800.0f) {
+
+    // 2. ROJO en movimiento (Medido: H=259.9..266.7 | S=0.67..0.69 | Clr=9019..10702 Hz)
+    if (matiz >= 259.0f && matiz <= 276.0f &&
+        saturacion >= 0.63f &&
+        frecuencia_clear <= 11200.0f) {
         return COLOR_PALLET_ROJO;
     }
+
+    // El pallet amarillo tiene la misma firma optica que el fondo de la cinta
+    // (H=244.4..253.1 | Clr=11502..14849 Hz), por lo que se deduce al llegar a ULTRA1
+    // si no se detecto previamente Rojo ni Azul.
     return COLOR_PALLET_NINGUNO;
 }
 
@@ -65,6 +73,8 @@ void tarea_logica_cintas_y_piston(void *parametro) {
     bool us2_detectaba_antes = false;
 
     bool deteccion_color_bloqueada = false;
+    bool amarillo_confirmado_por_us1 = false;
+    color_pallet_t color_crudo_actual = COLOR_PALLET_NINGUNO;
     color_pallet_t color_crudo_anterior = COLOR_PALLET_NINGUNO;
     color_pallet_t color_pallet_confirmado = COLOR_PALLET_NINGUNO;
     uint8_t contador_muestras_estables = 0;
@@ -78,6 +88,8 @@ void tarea_logica_cintas_y_piston(void *parametro) {
             estado_actual_cinta2 = ESTADO_CINTA2_DETENIDA;
             estado_actual_piston = ESTADO_PISTON_QUIETO;
             deteccion_color_bloqueada = false;
+            amarillo_confirmado_por_us1 = false;
+            color_crudo_actual = COLOR_PALLET_NINGUNO;
             color_pallet_confirmado = COLOR_PALLET_NINGUNO;
             color_crudo_anterior = COLOR_PALLET_NINGUNO;
             contador_muestras_estables = 0;
@@ -97,21 +109,21 @@ void tarea_logica_cintas_y_piston(void *parametro) {
         //     Lectura y Debounce del Sensor de Color
         //-------------------------------------------------
         if (tcs3200_read(&g_sensor_color, &muestra_color) == ESP_OK && muestra_color.valid) {
-            color_pallet_t color_crudo = clasificar_color_pallet_calibrado(&muestra_color);
+            color_crudo_actual = clasificar_color_pallet_calibrado(&muestra_color);
 
-            if (!deteccion_color_bloqueada) {
-                if (color_crudo != COLOR_PALLET_NINGUNO) {
-                    if (color_crudo == color_crudo_anterior) {
+            if (!deteccion_color_bloqueada && !amarillo_confirmado_por_us1) {
+                if (color_crudo_actual != COLOR_PALLET_NINGUNO) {
+                    if (color_crudo_actual == color_crudo_anterior) {
                         if (contador_muestras_estables < COLOR_MUESTRAS_CONFIRMACION) {
                             contador_muestras_estables++;
                         }
                     } else {
-                        color_crudo_anterior = color_crudo;
+                        color_crudo_anterior = color_crudo_actual;
                         contador_muestras_estables = 1;
                     }
 
                     if (contador_muestras_estables >= COLOR_MUESTRAS_CONFIRMACION) {
-                        color_pallet_confirmado = color_crudo;
+                        color_pallet_confirmado = color_crudo_actual;
                         deteccion_color_bloqueada = true;
                         fin_zona_muerta_color_us = tiempo_actual_us + ((int64_t)COLOR_ZONA_MUERTA_DETECCION_MS * 1000LL);
                         contador_muestras_vacias = 0;
@@ -129,8 +141,8 @@ void tarea_logica_cintas_y_piston(void *parametro) {
                     color_crudo_anterior = COLOR_PALLET_NINGUNO;
                     contador_muestras_estables = 0;
                 }
-            } else if (tiempo_actual_us >= fin_zona_muerta_color_us) {
-                if (color_crudo == COLOR_PALLET_NINGUNO) {
+            } else if (deteccion_color_bloqueada && tiempo_actual_us >= fin_zona_muerta_color_us) {
+                if (color_crudo_actual == COLOR_PALLET_NINGUNO) {
                     if (contador_muestras_vacias < COLOR_MUESTRAS_LIBERACION_VACIO) {
                         contador_muestras_vacias++;
                     }
@@ -172,15 +184,44 @@ void tarea_logica_cintas_y_piston(void *parametro) {
             us2_detectaba_antes = pallet_en_ultrasonico_2;
         }
 
-        if (!us1_detectaba_antes && pallet_en_ultrasonico_1 && estado_actual_piston == ESTADO_PISTON_QUIETO) {
-            instante_cambio_piston_us = tiempo_actual_us + ((int64_t)g_configuracion_transporte.piston_retardo_ms * 1000LL);
-            estado_actual_piston = ESTADO_PISTON_ESPERANDO_RETARDO;
+        // Flanco de subida en ULTRA1: llega un pallet al piston
+        if (!us1_detectaba_antes && pallet_en_ultrasonico_1) {
+            // Si no hay Rojo ni Azul en cola de Cinta 1, el pallet es AMARILLO
+            if (uxQueueMessagesWaiting(g_cola_pallets_cinta_1) == 0) {
+                color_pallet_t color_deducido = (color_crudo_actual != COLOR_PALLET_NINGUNO)
+                                                    ? color_crudo_actual
+                                                    : COLOR_PALLET_AMARILLO;
+                color_pallet_confirmado = color_deducido;
+                amarillo_confirmado_por_us1 = (color_deducido == COLOR_PALLET_AMARILLO);
+
+                actualizar_leds_indicadores_color(color_pallet_confirmado);
+                (void)xQueueSend(g_cola_pallets_cinta_1, &color_pallet_confirmado, 0);
+
+                ESP_LOGI("COLOR", "%s", obtener_nombre_color_para_qt(color_pallet_confirmado));
+                ESP_LOGI(TAG_CINTA, "Pallet confirmado en ULTRA1: %s | H=%.1f S=%.2f Clr=%.0f Hz",
+                         obtener_nombre_color_pallet(color_pallet_confirmado),
+                         muestra_color.h, muestra_color.s,
+                         muestra_color.hz100[TCS3200_FILTER_CLEAR]);
+            }
+
+            if (estado_actual_piston == ESTADO_PISTON_QUIETO) {
+                instante_cambio_piston_us = tiempo_actual_us + ((int64_t)g_configuracion_transporte.piston_retardo_ms * 1000LL);
+                estado_actual_piston = ESTADO_PISTON_ESPERANDO_RETARDO;
+            }
         }
 
+        // Flanco de bajada en ULTRA1: el pallet pasa a Cinta 2
         if (us1_detectaba_antes && !pallet_en_ultrasonico_1) {
             color_pallet_t color_transferido;
             if (xQueueReceive(g_cola_pallets_cinta_1, &color_transferido, 0) == pdTRUE) {
                 (void)xQueueSend(g_cola_pallets_cinta_2, &color_transferido, 0);
+            }
+
+            if (amarillo_confirmado_por_us1) {
+                amarillo_confirmado_por_us1 = false;
+                color_pallet_confirmado = COLOR_PALLET_NINGUNO;
+                actualizar_leds_indicadores_color(COLOR_PALLET_NINGUNO);
+                ESP_LOGI("COLOR", "%s", obtener_nombre_color_para_qt(COLOR_PALLET_NINGUNO));
             }
 
             if (!pallet_en_ultrasonico_2 && estado_actual_cinta2 == ESTADO_CINTA2_DETENIDA) {
@@ -286,18 +327,18 @@ void tarea_logica_cintas_y_piston(void *parametro) {
         estado_anterior_cinta2_log = estado_actual_cinta2;
 
         //-----------------------------
-        //  Publicación de Telemetría 
+        //  Publicación de Telemetría
         //-----------------------------
-        g_telemetria_hmi.color_detectado         = color_pallet_confirmado;
-        g_telemetria_hmi.matiz_h                 = muestra_color.h;
-        g_telemetria_hmi.saturacion_s            = muestra_color.s;
-        g_telemetria_hmi.frecuencia_clear_hz     = muestra_color.hz100[TCS3200_FILTER_CLEAR];
+        g_telemetria_hmi.color_detectado            = color_pallet_confirmado;
+        g_telemetria_hmi.matiz_h                    = muestra_color.h;
+        g_telemetria_hmi.saturacion_s               = muestra_color.s;
+        g_telemetria_hmi.frecuencia_clear_hz        = muestra_color.hz100[TCS3200_FILTER_CLEAR];
         g_telemetria_hmi.distancia_ultrasonico_1_cm = lectura_us1.distance_cm;
         g_telemetria_hmi.distancia_ultrasonico_2_cm = lectura_us2.distance_cm;
-        g_telemetria_hmi.pallets_en_cola_cinta_1 = (uint8_t)uxQueueMessagesWaiting(g_cola_pallets_cinta_1);
-        g_telemetria_hmi.pallets_en_cola_cinta_2 = (uint8_t)uxQueueMessagesWaiting(g_cola_pallets_cinta_2);
-        g_telemetria_hmi.estado_cinta_2          = estado_actual_cinta2;
-        g_telemetria_hmi.estado_piston           = estado_actual_piston;
+        g_telemetria_hmi.pallets_en_cola_cinta_1    = (uint8_t)uxQueueMessagesWaiting(g_cola_pallets_cinta_1);
+        g_telemetria_hmi.pallets_en_cola_cinta_2    = (uint8_t)uxQueueMessagesWaiting(g_cola_pallets_cinta_2);
+        g_telemetria_hmi.estado_cinta_2             = estado_actual_cinta2;
+        g_telemetria_hmi.estado_piston              = estado_actual_piston;
 
         vTaskDelayUntil(&ultimo_despertar, pdMS_TO_TICKS(20));
     }

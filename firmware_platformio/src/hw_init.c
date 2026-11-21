@@ -4,6 +4,7 @@
 #include "esp_log.h"
 #include "nvs.h"
 #include "nvs_flash.h"
+#include "Global_Config.h"
 
 static const char *TAG_NVS = "NVS_CFG";
 #define ESPACIO_NOMBRES_NVS "robot_cfg"
@@ -308,10 +309,10 @@ esp_err_t inicializar_todo_el_hardware(void) {
             .neutral_us = 1625U, .us_umbral_pos = 110.0f, .us_umbral_neg = 110.0f,
             .us_max_offset = 620.0f, .vel_umbral_deg_s = 35.0f, .servo_reversed = true,
             .enc_zero_deg = -107.9f, .enc_reversed = false,
-            .min_deg = -105.0f, .max_deg = 105.0f,
+            .min_deg = sec_rad2deg_(SM1_ANG_MIN), .max_deg = sec_rad2deg_(SM1_ANG_MAX),
             .kp = 1.2f, .ki = 0.25f, .kd = 0.02f, .kff_vel = 1.0f,
             .k_grav_deg_s = 0.0f, .grav_zero_deg = 0.0f,
-            .i_max_deg_s = 100.0f, .vel_max_deg_s = 25.0f,
+            .i_max_deg_s = 100.0f, .vel_max_deg_s = 30.0f,
             .error_deadband_deg = 2.0f, .lock_tol_deg = 2.2f,
         },
         {   /* Eje 2: HOMBRO */
@@ -319,11 +320,11 @@ esp_err_t inicializar_todo_el_hardware(void) {
             .enc_bus = &g_bus_encoders_magneticos, .enc_use_hw_i2c = false, .enc_scl_pin = PIN_AS5600_2_SCL,
             .neutral_us = 1618U, .us_umbral_pos = 80.0f, .us_umbral_neg = 62.0f,
             .us_max_offset = 600.0f, .vel_umbral_deg_s = 40.0f, .servo_reversed = false,
-            .enc_zero_deg = -150.9f, .enc_reversed = true,
-            .min_deg = -90.0f, .max_deg = 90.0f,
+            .enc_zero_deg = -169.9f, .enc_reversed = true,
+            .min_deg = sec_rad2deg_(SM2_ANG_MIN), .max_deg = sec_rad2deg_(SM1_ANG_MAX),
             .kp = 1.6f, .ki = 0.45f, .kd = 0.03f, .kff_vel = 1.0f,
             .k_grav_deg_s = 12.0f, .grav_zero_deg = 0.0f,
-            .i_max_deg_s = 80.0f, .vel_max_deg_s = 25.0f,
+            .i_max_deg_s = 80.0f, .vel_max_deg_s = 30.0f,
             .error_deadband_deg = 2.0f, .lock_tol_deg = 2.2f,
         },
         {   /* Eje 3: CODO */
@@ -332,7 +333,7 @@ esp_err_t inicializar_todo_el_hardware(void) {
             .neutral_us = 1618U, .us_umbral_pos = 80.0f, .us_umbral_neg = 80.0f,
             .us_max_offset = 550.0f, .vel_umbral_deg_s = 45.0f, .servo_reversed = false,
             .enc_zero_deg = -137.5f, .enc_reversed = true,
-            .min_deg = -135.0f, .max_deg = 160.0f,
+            .min_deg = sec_rad2deg_(SM3_ANG_MIN), .max_deg = sec_rad2deg_(SM3_ANG_MAX),
             .kp = 1.4f, .ki = 0.35f, .kd = 0.02f, .kff_vel = 1.0f,
             .k_grav_deg_s = 10.0f, .grav_zero_deg = 0.0f,
             .i_max_deg_s = 120.0f, .vel_max_deg_s = 30.0f,
@@ -343,11 +344,11 @@ esp_err_t inicializar_todo_el_hardware(void) {
             .enc_bus = &g_bus_encoders_magneticos, .enc_use_hw_i2c = false, .enc_scl_pin = PIN_AS5600_4_SCL,
             .neutral_us = 1623U, .us_umbral_pos = 45.0f, .us_umbral_neg = 45.0f,
             .us_max_offset = 320.0f, .vel_umbral_deg_s = 42.7f, .servo_reversed = true,
-            .enc_zero_deg = -100.8f, .enc_reversed = false,
-            .min_deg = -105.0f, .max_deg = 110.0f,
+            .enc_zero_deg = -107.8f, .enc_reversed = false,
+            .min_deg = sec_rad2deg_(SM4_ANG_MIN), .max_deg = sec_rad2deg_(SM4_ANG_MAX),
             .kp = 1.2f, .ki = 0.25f, .kd = 0.02f, .kff_vel = 1.0f,
             .k_grav_deg_s = 3.0f, .grav_zero_deg = 0.0f,
-            .i_max_deg_s = 60.0f, .vel_max_deg_s = 25.0f,
+            .i_max_deg_s = 60.0f, .vel_max_deg_s = 30.0f,
             .error_deadband_deg = 2.5f, .lock_tol_deg = 2.8f,
         },  
     };
